@@ -7,47 +7,31 @@
 <title>LogiDesk</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;height:100vh;display:flex;flex-direction:row;overflow:hidden;background:#f0f2f5}
-/* 사이드 네비 */
-.nav{width:200px;background:#1b2333;display:flex;flex-direction:column;flex-shrink:0}
-.nav-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.lm{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.5px}
-.lm span{color:#2563eb}
-.ls{font-size:10px;color:rgba(255,255,255,0.3);margin-top:2px;letter-spacing:1px;text-transform:uppercase}
-.ns{font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:1.5px;text-transform:uppercase;padding:16px 16px 5px}
-.ni{display:flex;align-items:center;gap:9px;padding:10px 16px;color:rgba(255,255,255,0.55);cursor:pointer;transition:all .15s;font-size:12.5px;border-left:3px solid transparent;user-select:none}
-.ni:hover{background:#2a3650;color:#fff}
-.ni.active{background:rgba(37,99,235,0.2);color:#fff;border-left-color:#2563eb}
-.ni .ic{font-size:14px;width:17px;text-align:center;flex-shrink:0}
-.nav-foot{margin-top:auto;padding:14px 16px;border-top:1px solid rgba(255,255,255,0.07)}
-.nav-foot span{font-size:10px;color:rgba(255,255,255,0.2)}
-/* 메인 영역 */
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
-.topbar{background:#fff;border-bottom:1px solid #e2e8f0;padding:0 22px;height:50px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.topbar .pt{font-size:14px;font-weight:700;color:#1a1a2e}
-.topbar .bc{font-size:11px;color:#94a3b8}
-/* 콘텐츠 + CBM 가로 배치 */
-.mid{flex:1;display:flex;flex-direction:row;overflow:hidden}
-/* 페이지 */
-.pages{flex:1;overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.pg{display:none;flex:1;overflow:hidden;flex-direction:column}
-.pg.active{display:flex}
-.pg iframe{flex:1;border:none;width:100%;height:100%}
-/* 홈 */
-.home{flex:1;overflow-y:auto;padding:28px 32px}
-.home-title{font-size:21px;font-weight:800;color:#1a1a2e;margin-bottom:4px}
-.home-sub{font-size:13px;color:#64748b;margin-bottom:24px}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px 18px 18px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#2563eb;opacity:0;transition:.15s}
-.card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.08);border-color:#bfdbfe}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;height:100vh;display:flex;flex-direction:column;overflow:hidden;background:#f0f2f5}
+.tabbar{display:flex;align-items:center;background:#1b2333;height:52px;flex-shrink:0;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,0.3)}
+.logo{font-size:16px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-right:28px;white-space:nowrap}
+.logo span{color:#2563eb}
+.tab{display:flex;align-items:center;gap:6px;padding:0 18px;height:52px;color:rgba(255,255,255,0.5);cursor:pointer;font-size:13px;font-weight:500;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap;user-select:none}
+.tab:hover{color:#fff;background:rgba(255,255,255,0.06)}
+.tab.active{color:#fff;border-bottom-color:#2563eb;background:rgba(37,99,235,0.12)}
+.body{flex:1;display:flex;overflow:hidden}
+.content{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.page{display:none;flex:1;overflow:hidden}
+.page.active{display:flex;flex-direction:column}
+.page iframe{flex:1;border:none;width:100%;height:100%}
+.home{flex:1;overflow-y:auto;padding:36px 40px}
+.home-title{font-size:22px;font-weight:800;color:#1a1a2e;margin-bottom:6px}
+.home-sub{font-size:13px;color:#64748b;margin-bottom:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px 20px 20px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:#2563eb;opacity:0;transition:.15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.09);border-color:#bfdbfe}
 .card:hover::before{opacity:1}
-.card-ic{font-size:26px;margin-bottom:10px}
-.card-tt{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:4px}
-.card-dc{font-size:11px;color:#94a3b8;line-height:1.55}
-.card-ar{position:absolute;bottom:14px;right:14px;font-size:15px;color:#cbd5e1;transition:.15s}
-.card:hover .card-ar{color:#2563eb;transform:translateX(3px)}
-/* CBM 패널 */
+.ci{font-size:30px;margin-bottom:12px}
+.ct{font-size:13.5px;font-weight:700;color:#1e293b;margin-bottom:5px}
+.cd{font-size:11.5px;color:#94a3b8;line-height:1.6}
+.ca{position:absolute;bottom:16px;right:16px;font-size:16px;color:#cbd5e1;transition:.15s}
+.card:hover .ca{color:#2563eb;transform:translateX(4px)}
 .cbm-panel{width:295px;flex-shrink:0;background:#1b2333;border-left:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column}
 .cbm-hdr{padding:14px 16px 11px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between}
 .cbm-hdr .ht{font-size:13px;font-weight:700;color:#fff}
@@ -56,16 +40,16 @@ body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;height:100vh;d
 .cbm-inputs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
 .cbm-grp{display:flex;flex-direction:column;gap:3px}
 .cbm-grp label{font-size:9px;color:rgba(255,255,255,0.35);text-align:center;font-weight:700}
-.ci{width:100%;padding:8px 2px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;text-align:center;background:rgba(255,255,255,0.07);color:#fff}
-.ci:focus{border-color:#2563eb;outline:none;background:rgba(37,99,235,0.12)}
-.ci::placeholder{color:rgba(255,255,255,0.18)}
+.ci2{width:100%;padding:8px 2px;border:1px solid rgba(255,255,255,0.1);border-radius:6px;font-size:11px;text-align:center;background:rgba(255,255,255,0.07);color:#fff}
+.ci2:focus{border-color:#2563eb;outline:none;background:rgba(37,99,235,0.12)}
+.ci2::placeholder{color:rgba(255,255,255,0.18)}
 .cbm-tbl-wrap{border:1px solid rgba(255,255,255,0.08);border-radius:7px;max-height:195px;overflow-y:auto;margin-top:6px}
 .cbm-tbl-wrap::-webkit-scrollbar{width:3px}
 .cbm-tbl-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:3px}
 .ctbl{width:100%;border-collapse:collapse;font-size:10.5px}
 .ctbl th{padding:6px 4px;color:rgba(255,255,255,0.28);font-weight:500;font-size:9px;background:rgba(0,0,0,0.22);text-align:center;position:sticky;top:0}
 .ctbl td{padding:8px 4px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.75)}
-.dl{color:#ef4444;cursor:pointer;font-size:13px}.dl:hover{color:#fca5a5}
+.del{color:#ef4444;cursor:pointer;font-size:13px}.del:hover{color:#fca5a5}
 .cbm-sum{background:rgba(37,99,235,0.13);border:1px solid rgba(37,99,235,0.28);border-radius:9px;margin-top:10px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .si{text-align:center}
 .sl{font-size:9px;color:rgba(255,255,255,0.35);display:block;margin-bottom:3px}
@@ -76,150 +60,2647 @@ body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;height:100vh;d
 </head>
 <body>
 
-<!-- 사이드 네비 -->
-<nav class="nav">
-  <div class="nav-logo">
-    <div class="lm">⚓ Logi<span>Desk</span></div>
-    <div class="ls">Freight Tools</div>
-  </div>
-  <div class="ns">메뉴</div>
-  <div class="ni active" onclick="go('home',this)"><span class="ic">🏠</span>홈</div>
-  <div class="ns">계산기</div>
-  <div class="ni" onclick="go('aus',this)"><span class="ic">🇦🇺</span>호주 도착지 비용</div>
-  <div class="ni" onclick="go('inc',this)"><span class="ic">💹</span>선사운임 &amp; 인센티브</div>
-  <div class="nav-foot"><span>LogiDesk v2.0</span></div>
-</nav>
+<div class="tabbar">
+  <div class="logo">⚓ Logi<span>Desk</span></div>
+  <div class="tab active" onclick="go('home',this)">🏠 홈</div>
+  <div class="tab" onclick="go('aus',this)">🇦🇺 호주 도착지 비용</div>
+  <div class="tab" onclick="go('inc',this)">💹 운임 인센티브</div>
+</div>
 
-<!-- 메인 -->
-<div class="main">
-  <div class="topbar">
-    <div class="pt" id="PT">홈</div>
-    <div class="bc" id="BC">LogiDesk · 대시보드</div>
-  </div>
-  <div class="mid">
+<div class="body">
+  <div class="content">
 
-    <!-- 페이지들 -->
-    <div class="pages">
-
-      <!-- 홈 -->
-      <div id="pg-home" class="pg active">
-        <div class="home">
-          <div class="home-title">안녕하세요 👋</div>
-          <div class="home-sub">업무에 필요한 도구를 바로 사용하세요.</div>
-          <div class="cards">
-            <div class="card" onclick="go('aus',null)">
-              <div class="card-ic">🇦🇺</div>
-              <div class="card-tt">호주 도착지 비용</div>
-              <div class="card-dc">Melbourne / Sydney / Brisbane<br>Co-loader · Direct 차액 계산</div>
-              <div class="card-ar">→</div>
-            </div>
-            <div class="card" onclick="go('inc',null)">
-              <div class="card-ic">💹</div>
-              <div class="card-tt">선사운임 &amp; 인센티브</div>
-              <div class="card-dc">운임 &amp; 인센티브 관리<br>기간별 비교 / 편집</div>
-              <div class="card-ar">→</div>
-            </div>
+    <!-- 홈 -->
+    <div id="page-home" class="page active">
+      <div class="home">
+        <div class="home-title">안녕하세요 👋</div>
+        <div class="home-sub">업무에 필요한 도구를 바로 사용하세요. 오른쪽 CBM 계산기는 항상 사용 가능합니다.</div>
+        <div class="cards">
+          <div class="card" onclick="go('aus',document.querySelectorAll('.tab')[1])">
+            <div class="ci">🇦🇺</div>
+            <div class="ct">호주 도착지 비용</div>
+            <div class="cd">Melbourne / Sydney / Brisbane<br>Co-loader · Direct 차액 계산</div>
+            <div class="ca">→</div>
+          </div>
+          <div class="card" onclick="go('inc',document.querySelectorAll('.tab')[2])">
+            <div class="ci">💹</div>
+            <div class="ct">운임 인센티브</div>
+            <div class="cd">운임 &amp; 인센티브 관리<br>기간별 비교 / 편집</div>
+            <div class="ca">→</div>
           </div>
         </div>
+        <div style="font-size:12px;color:#94a3b8">💡 운송 오더장 · 보세면허 요청서는 추후 추가됩니다.</div>
       </div>
+    </div>
 
-      <!-- 호주 -->
-      <div id="pg-aus" class="pg">
-        <iframe id="fr-aus" src=""></iframe>
+    <!-- 호주 -->
+    <div id="page-aus" class="page">
+      <iframe id="fr-aus" src=""></iframe>
+    </div>
+
+    <!-- 인센티브 -->
+    <div id="page-inc" class="page">
+      <iframe id="fr-inc" src=""></iframe>
+    </div>
+
+  </div>
+
+  <!-- CBM 패널 -->
+  <div class="cbm-panel">
+    <div class="cbm-hdr">
+      <div class="ht">📦 CBM 계산기</div>
+      <span class="cbm-badge">상시 고정</span>
+    </div>
+    <div class="cbm-body">
+      <div class="cbm-inputs">
+        <div class="cbm-grp"><label>가로(W)</label><input class="ci2" type="number" id="cw" placeholder="cm" onkeydown="ke(event,'cl')"></div>
+        <div class="cbm-grp"><label>세로(L)</label><input class="ci2" type="number" id="cl" placeholder="cm" onkeydown="ke(event,'ch')"></div>
+        <div class="cbm-grp"><label>높이(H)</label><input class="ci2" type="number" id="ch" placeholder="cm" onkeydown="ke(event,'cp')"></div>
+        <div class="cbm-grp"><label>수량</label><input class="ci2" type="number" id="cp" placeholder="EA" onkeydown="ke(event,'ADD')"></div>
       </div>
-
-      <!-- 인센티브 -->
-      <div id="pg-inc" class="pg">
-        <iframe id="fr-inc" src=""></iframe>
+      <div class="cbm-tbl-wrap">
+        <table class="ctbl">
+          <thead><tr><th>치수</th><th>수량</th><th>CBM</th><th>×</th></tr></thead>
+          <tbody id="cbm-body"></tbody>
+        </table>
       </div>
-
-    </div><!-- /pages -->
-
-    <!-- CBM 패널 -->
-    <div class="cbm-panel">
-      <div class="cbm-hdr">
-        <div class="ht">📦 CBM 계산기</div>
-        <span class="cbm-badge">상시 고정</span>
+      <div class="cbm-sum">
+        <div class="si"><span class="sl">TOTAL PKG</span><span class="sv" id="cbm-pkg">0</span></div>
+        <div class="si"><span class="sl">TOTAL CBM</span><span class="sv" id="cbm-cbm">0.000</span></div>
       </div>
-      <div class="cbm-body">
-        <div class="cbm-inputs">
-          <div class="cbm-grp"><label>가로(W)</label><input class="ci" type="number" id="cw" placeholder="cm" onkeydown="ke(event,'cl')"></div>
-          <div class="cbm-grp"><label>세로(L)</label><input class="ci" type="number" id="cl" placeholder="cm" onkeydown="ke(event,'ch')"></div>
-          <div class="cbm-grp"><label>높이(H)</label><input class="ci" type="number" id="ch" placeholder="cm" onkeydown="ke(event,'cp')"></div>
-          <div class="cbm-grp"><label>수량</label><input class="ci" type="number" id="cp" placeholder="EA" onkeydown="ke(event,'ADD')"></div>
-        </div>
-        <div class="cbm-tbl-wrap">
-          <table class="ctbl">
-            <thead><tr><th>치수</th><th>수량</th><th>CBM</th><th>×</th></tr></thead>
-            <tbody id="cbm-bd"></tbody>
-          </table>
-        </div>
-        <div class="cbm-sum">
-          <div class="si"><span class="sl">TOTAL PKG</span><span class="sv" id="cbm-pk">0</span></div>
-          <div class="si"><span class="sl">TOTAL CBM</span><span class="sv" id="cbm-cb">0.000</span></div>
-        </div>
-        <button class="cbm-clr" onclick="cc()">전체 지우기</button>
-      </div>
-    </div><!-- /cbm-panel -->
-
-  </div><!-- /mid -->
-</div><!-- /main -->
+      <button class="cbm-clr" onclick="cc()">전체 지우기</button>
+    </div>
+  </div>
+</div>
 
 <script>
-const AUS_B64='PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ii8+CjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIi8+Cjx0aXRsZT5BdXN0cmFsaWEgRGVzdGluYXRpb24gQ2hhcmdlIENhbGN1bGF0b3I8L3RpdGxlPgo8c3R5bGU+Cip7Ym94LXNpemluZzpib3JkZXItYm94O21hcmdpbjowO3BhZGRpbmc6MH0KYm9keXtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLEJsaW5rTWFjU3lzdGVtRm9udCwnU2Vnb2UgVUknLCdOb3RvIFNhbnMgS1InLHNhbnMtc2VyaWY7YmFja2dyb3VuZDojZjVmNWYzO2NvbG9yOiMxYTFhMWE7Zm9udC1zaXplOjE0cHh9Ci5jb250YWluZXJ7bWF4LXdpZHRoOjg2MHB4O21hcmdpbjowIGF1dG87cGFkZGluZzoycmVtIDEuNXJlbX0KLmJsLWNhcmR7YmFja2dyb3VuZDojZmZmO2JvcmRlcjoxcHggc29saWQgI2U1ZTVlMztib3JkZXItcmFkaXVzOjEycHg7cGFkZGluZzoxcmVtIDEuNXJlbTttYXJnaW4tYm90dG9tOjFyZW07ZGlzcGxheTpncmlkO2dhcDoxMnB4O2FsaWduLWl0ZW1zOmVuZH0KLmJsLWNhcmQuY29sczN7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjJmciAxZnIgMWZyfQouYmwtY2FyZC5jb2xzM2J7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmciAxZnIgMWZyfQouZmllbGQgbGFiZWx7Zm9udC1zaXplOjEycHg7Y29sb3I6Izg4ODtkaXNwbGF5OmJsb2NrO21hcmdpbi1ib3R0b206NXB4O2ZvbnQtd2VpZ2h0OjUwMH0KLmZpZWxkIHNlbGVjdCwuZmllbGQgaW5wdXR7d2lkdGg6MTAwJTtwYWRkaW5nOjhweCAxMHB4O2ZvbnQtc2l6ZToxNHB4O2JvcmRlcjoxcHggc29saWQgI2RkZDtib3JkZXItcmFkaXVzOjhweDtiYWNrZ3JvdW5kOiNmZmY7Y29sb3I6IzFhMWExYTtvdXRsaW5lOm5vbmV9Ci5maWVsZCBzZWxlY3Q6Zm9jdXMsLmZpZWxkIGlucHV0OmZvY3Vze2JvcmRlci1jb2xvcjojOTk5fQouYmwtaW5wdXR7Zm9udC1zaXplOjE0cHghaW1wb3J0YW50O2ZvbnQtd2VpZ2h0OjQwMCFpbXBvcnRhbnQ7bGV0dGVyLXNwYWNpbmc6MDt0ZXh0LXRyYW5zZm9ybTpub25lO2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LCJTZWdvZSBVSSIsIk5vdG8gU2FucyBLUiIsc2Fucy1zZXJpZiFpbXBvcnRhbnQ7YmFja2dyb3VuZDojZmZmIWltcG9ydGFudH0KLmJsLWlucHV0OjpwbGFjZWhvbGRlcntjb2xvcjojYmJifQouc3VtbWFyeS1ncmlke2Rpc3BsYXk6Z3JpZDtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyIDFmciAxZnI7Z2FwOjEwcHg7bWFyZ2luLWJvdHRvbToxLjI1cmVtfQoubWV0cmlje2JhY2tncm91bmQ6I2Y5ZjlmODtib3JkZXItcmFkaXVzOjhweDtwYWRkaW5nOjEycHggMTRweH0KLm1ldHJpYyAubWxhYmVse2ZvbnQtc2l6ZToxMXB4O2NvbG9yOiM5OTk7bWFyZ2luLWJvdHRvbTozcHg7Zm9udC13ZWlnaHQ6NTAwfQoubWV0cmljIC5tdmFse2ZvbnQtc2l6ZToyMHB4O2ZvbnQtd2VpZ2h0OjYwMH0KLm12YWwubmVne2NvbG9yOiNkMDRhNGF9Ci50YWJsZS13cmFwe2JhY2tncm91bmQ6I2ZmZjtib3JkZXI6MXB4IHNvbGlkICNlNWU1ZTM7Ym9yZGVyLXJhZGl1czoxMnB4O292ZXJmbG93OmhpZGRlbjttYXJnaW4tYm90dG9tOjFyZW19Ci50YWJsZS1oZWFkZXJ7cGFkZGluZzoxMHB4IDE2cHg7YmFja2dyb3VuZDojMmMyYzJjO2Rpc3BsYXk6ZmxleDtqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYmV0d2VlbjthbGlnbi1pdGVtczpjZW50ZXJ9Ci50YWJsZS1oZWFkZXIgLnBvcnR7Zm9udC1zaXplOjE0cHg7Zm9udC13ZWlnaHQ6NjAwO2NvbG9yOiNmZmZ9Ci50eXBlLWJhZGdle2ZvbnQtc2l6ZToxMXB4O3BhZGRpbmc6M3B4IDlweDtib3JkZXItcmFkaXVzOjIwcHg7YmFja2dyb3VuZDojZThmMGZlO2NvbG9yOiMzYjViZGI7Zm9udC13ZWlnaHQ6NTAwfQp0YWJsZXt3aWR0aDoxMDAlO2JvcmRlci1jb2xsYXBzZTpjb2xsYXBzZTtmb250LXNpemU6MTNweDt0YWJsZS1sYXlvdXQ6Zml4ZWR9CnRoe3RleHQtYWxpZ246bGVmdDtwYWRkaW5nOjhweCAxMnB4O2NvbG9yOiM5OTk7Zm9udC13ZWlnaHQ6NTAwO2JvcmRlci1ib3R0b206MXB4IHNvbGlkICNlZWU7Zm9udC1zaXplOjEycHg7YmFja2dyb3VuZDojZmFmYWY5fQp0aC5ye3RleHQtYWxpZ246cmlnaHR9CnRke3BhZGRpbmc6NnB4IDEycHg7Ym9yZGVyLWJvdHRvbToxcHggc29saWQgI2YwZjBmMDtjb2xvcjojMWExYTFhfQp0ZC5ye3RleHQtYWxpZ246cmlnaHR9CnRkLmRpZmYtbmVne3RleHQtYWxpZ246cmlnaHQ7Y29sb3I6I2QwNGE0YTtmb250LXdlaWdodDo1MDB9CnRkLmRpZmYtcG9ze3RleHQtYWxpZ246cmlnaHQ7Y29sb3I6IzJkOGE0ZTtmb250LXdlaWdodDo1MDB9CnRkLmRpZmYtemVyb3t0ZXh0LWFsaWduOnJpZ2h0O2NvbG9yOiNhYWF9Ci5jbmVlLWlucHV0e3dpZHRoOjgwcHg7cGFkZGluZzo0cHggN3B4O2ZvbnQtc2l6ZToxM3B4O2JvcmRlcjoxcHggc29saWQgI2RkZDtib3JkZXItcmFkaXVzOjZweDtiYWNrZ3JvdW5kOiNmZmY7Y29sb3I6IzFhMWExYTt0ZXh0LWFsaWduOnJpZ2h0O291dGxpbmU6bm9uZX0KLmNuZWUtaW5wdXQ6Zm9jdXN7Ym9yZGVyLWNvbG9yOiM4ODh9CnRmb290IHRyIHRke3BhZGRpbmc6OXB4IDEycHg7Zm9udC13ZWlnaHQ6NjAwO2JhY2tncm91bmQ6I2Y1ZjVmMztib3JkZXItYm90dG9tOm5vbmU7Ym9yZGVyLXRvcDoxcHggc29saWQgI2U1ZTVlM30KLnBkZi1idG57d2lkdGg6MTAwJTtwYWRkaW5nOjExcHg7Zm9udC1zaXplOjE0cHg7Zm9udC13ZWlnaHQ6NTAwO2JhY2tncm91bmQ6IzFhMWExYTtjb2xvcjojZmZmO2JvcmRlcjpub25lO2JvcmRlci1yYWRpdXM6MTBweDtjdXJzb3I6cG9pbnRlcjtkaXNwbGF5OmZsZXg7YWxpZ24taXRlbXM6Y2VudGVyO2p1c3RpZnktY29udGVudDpjZW50ZXI7Z2FwOjdweDt0cmFuc2l0aW9uOmJhY2tncm91bmQgMC4xNXM7bWFyZ2luLWJvdHRvbToxLjVyZW19Ci5wZGYtYnRuOmhvdmVye2JhY2tncm91bmQ6IzMzM30KLnJlc2V0LWJ0bnt3aWR0aDoxMDAlO3BhZGRpbmc6OHB4IDEwcHg7Zm9udC1zaXplOjEzcHg7Ym9yZGVyOjFweCBzb2xpZCAjZGRkO2JvcmRlci1yYWRpdXM6OHB4O2JhY2tncm91bmQ6I2ZmZjtjdXJzb3I6cG9pbnRlcjtjb2xvcjojODg4O3RyYW5zaXRpb246Ym9yZGVyLWNvbG9yIDAuMTVzfQoucmVzZXQtYnRuOmhvdmVye2JvcmRlci1jb2xvcjojOTk5O2NvbG9yOiM1NTV9CgovKiBQUklOVCAqLwoucHJpbnQtYmwtaGVhZGVye2Rpc3BsYXk6bm9uZX0KQG1lZGlhIHByaW50ewogIGJvZHl7YmFja2dyb3VuZDojZmZmO2ZvbnQtc2l6ZToxMnB4fQogIC5uby1wcmludHtkaXNwbGF5Om5vbmUhaW1wb3J0YW50fQogIC5jb250YWluZXJ7bWF4LXdpZHRoOjEwMCU7cGFkZGluZzoxMnB4IDE2cHh9CiAgLnByaW50LWJsLWhlYWRlcnsKICAgIGRpc3BsYXk6ZmxleCFpbXBvcnRhbnQ7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6c3BhY2UtYmV0d2VlbjsKICAgIGFsaWduLWl0ZW1zOmZsZXgtZW5kOwogICAgYm9yZGVyLWJvdHRvbToycHggc29saWQgIzFhMWExYTsKICAgIHBhZGRpbmctYm90dG9tOjEwcHg7CiAgICBtYXJnaW4tYm90dG9tOjE2cHg7CiAgfQogIC5wcmludC1ibC1ub3tmb250LXNpemU6MThweDtmb250LXdlaWdodDo3MDA7bGV0dGVyLXNwYWNpbmc6MS41cHg7Zm9udC1mYW1pbHk6bW9ub3NwYWNlO2NvbG9yOiMxYTFhMWF9CiAgLnByaW50LWJsLXN1Yntmb250LXNpemU6MTBweDtjb2xvcjojODg4O3RleHQtdHJhbnNmb3JtOnVwcGVyY2FzZTtsZXR0ZXItc3BhY2luZzowLjVweDttYXJnaW4tdG9wOjJweH0KICAucHJpbnQtYmwtcmlnaHR7dGV4dC1hbGlnbjpyaWdodDtmb250LXNpemU6MTJweDtjb2xvcjojNTU1O2xpbmUtaGVpZ2h0OjEuN30KICAudGFibGUtd3JhcHtib3JkZXI6MXB4IHNvbGlkICNjY2M7Ym9yZGVyLXJhZGl1czowO2JveC1zaGFkb3c6bm9uZX0KICAudGFibGUtaGVhZGVyey13ZWJraXQtcHJpbnQtY29sb3ItYWRqdXN0OmV4YWN0O3ByaW50LWNvbG9yLWFkanVzdDpleGFjdDtiYWNrZ3JvdW5kOiMyYzJjMmMhaW1wb3J0YW50fQogIC50YWJsZS1oZWFkZXIgLnBvcnR7Y29sb3I6I2ZmZiFpbXBvcnRhbnR9CiAgLnR5cGUtYmFkZ2V7LXdlYmtpdC1wcmludC1jb2xvci1hZGp1c3Q6ZXhhY3Q7cHJpbnQtY29sb3ItYWRqdXN0OmV4YWN0O2JhY2tncm91bmQ6I2U4ZjBmZSFpbXBvcnRhbnQ7Y29sb3I6IzNiNWJkYiFpbXBvcnRhbnR9CiAgLnN1bW1hcnktZ3JpZHstd2Via2l0LXByaW50LWNvbG9yLWFkanVzdDpleGFjdDtwcmludC1jb2xvci1hZGp1c3Q6ZXhhY3R9CiAgLm1ldHJpY3std2Via2l0LXByaW50LWNvbG9yLWFkanVzdDpleGFjdDtwcmludC1jb2xvci1hZGp1c3Q6ZXhhY3Q7YmFja2dyb3VuZDojZjlmOWY4IWltcG9ydGFudH0KICB0Zm9vdCB0ciB0ZHstd2Via2l0LXByaW50LWNvbG9yLWFkanVzdDpleGFjdDtwcmludC1jb2xvci1hZGp1c3Q6ZXhhY3Q7YmFja2dyb3VuZDojZjVmNWYzIWltcG9ydGFudH0KfQpAbWVkaWEobWF4LXdpZHRoOjYwMHB4KXsKICAuYmwtY2FyZC5jb2xzMywuYmwtY2FyZC5jb2xzM2IsLnN1bW1hcnktZ3JpZHtncmlkLXRlbXBsYXRlLWNvbHVtbnM6MWZyIDFmcn0KICAuYmwtY2FyZC5jb2xzMyAuZmllbGQ6Zmlyc3QtY2hpbGR7Z3JpZC1jb2x1bW46c3BhbiAyfQp9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CjxkaXYgY2xhc3M9ImNvbnRhaW5lciI+CgogIDwhLS0gUHJpbnQtb25seSBCTCBoZWFkZXIgLS0+CiAgPGRpdiBjbGFzcz0icHJpbnQtYmwtaGVhZGVyIj4KICAgIDxkaXY+CiAgICAgIDxkaXYgY2xhc3M9InByaW50LWJsLW5vIiBpZD0icHJpbnQtYmwtbm8iPuKAlDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJwcmludC1ibC1zdWIiPkIvTCBOdW1iZXI8L2Rpdj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0icHJpbnQtYmwtcmlnaHQiIGlkPSJwcmludC1ibC1yaWdodCI+PC9kaXY+CiAgPC9kaXY+CgogIDwhLS0gQkwgTnVtYmVyICsgc2VsZWN0b3JzIC0tPgogIDxkaXYgY2xhc3M9ImJsLWNhcmQgY29sczMgbm8tcHJpbnQiPgogICAgPGRpdiBjbGFzcz0iZmllbGQiPgogICAgICA8bGFiZWw+Qi9MIE51bWJlcjwvbGFiZWw+CiAgICAgIDxpbnB1dCB0eXBlPSJ0ZXh0IiBpZD0iYmxOdW1iZXIiIGNsYXNzPSJibC1pbnB1dCIgcGxhY2Vob2xkZXI9ImUuZy4gQ09TVTEyMzQ1Njc4OTAiIG9uaW5wdXQ9InN5bmNQcmludCgpIi8+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImZpZWxkIj4KICAgICAgPGxhYmVsPkRlc3RpbmF0aW9uPC9sYWJlbD4KICAgICAgPHNlbGVjdCBpZD0icG9ydCIgb25jaGFuZ2U9InJlbmRlcigpIj4KICAgICAgICA8b3B0aW9uIHZhbHVlPSJtZWxib3VybmUiPk1lbGJvdXJuZSAoQVVEKTwvb3B0aW9uPgogICAgICAgIDxvcHRpb24gdmFsdWU9InN5ZG5leSI+U3lkbmV5IChBVUQpPC9vcHRpb24+CiAgICAgICAgPG9wdGlvbiB2YWx1ZT0iYnJpc2JhbmUiPkJyaXNiYW5lIChBVUQpPC9vcHRpb24+CiAgICAgIDwvc2VsZWN0PgogICAgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJmaWVsZCI+CiAgICAgIDxsYWJlbD5Db25zaWduZWUgVHlwZTwvbGFiZWw+CiAgICAgIDxzZWxlY3QgaWQ9ImNhcmdvVHlwZSIgb25jaGFuZ2U9InJlbmRlcigpIj4KICAgICAgICA8b3B0aW9uIHZhbHVlPSJjbyI+Q28tbG9hZGVyPC9vcHRpb24+CiAgICAgICAgPG9wdGlvbiB2YWx1ZT0iZGlyZWN0Ij5EaXJlY3QgQ29uc2lnbmVlPC9vcHRpb24+CiAgICAgIDwvc2VsZWN0PgogICAgPC9kaXY+CiAgPC9kaXY+CgogIDwhLS0gVy9NICsgRXhjaGFuZ2UgKGZpeGVkKSArIFJlc2V0IC0tPgogIDxkaXYgY2xhc3M9ImJsLWNhcmQgY29sczNiIG5vLXByaW50IiBzdHlsZT0ibWFyZ2luLXRvcDotMC41cmVtIj4KICAgIDxkaXYgY2xhc3M9ImZpZWxkIj4KICAgICAgPGxhYmVsPlcvTSAoQ0JNKTwvbGFiZWw+CiAgICAgIDxpbnB1dCB0eXBlPSJudW1iZXIiIGlkPSJjYm0iIHZhbHVlPSIxLjAwMCIgbWluPSIwLjAwMSIgc3RlcD0iMC4wMDEiIG9uaW5wdXQ9InJlbmRlcigpIi8+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImZpZWxkIj4KICAgICAgPGxhYmVsPkV4Y2hhbmdlIFJhdGUgKEFVRCDihpIgVVNEKTwvbGFiZWw+CiAgICAgIDxpbnB1dCB0eXBlPSJudW1iZXIiIGlkPSJleGNoYW5nZVJhdGUiIHZhbHVlPSIwLjY5IiBzdGVwPSIwLjAwMSIgbWluPSIwLjAwMSIgb25pbnB1dD0icmVuZGVyKCkiLz4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0iZmllbGQiIHN0eWxlPSJkaXNwbGF5OmZsZXg7YWxpZ24taXRlbXM6ZmxleC1lbmQiPgogICAgICA8YnV0dG9uIGNsYXNzPSJyZXNldC1idG4iIG9uY2xpY2s9InJlc2V0Q25lZSgpIj7ihrogUmVzZXQgQ05FRSBSYXRlPC9idXR0b24+CiAgICA8L2Rpdj4KICA8L2Rpdj4KCiAgPCEtLSBTdW1tYXJ5IG1ldHJpY3MgLS0+CiAgPGRpdiBjbGFzcz0ic3VtbWFyeS1ncmlkIiBpZD0ic3VtbWFyeUdyaWQiPjwvZGl2PgoKICA8IS0tIENoYXJnZSB0YWJsZSAtLT4KICA8ZGl2IGNsYXNzPSJ0YWJsZS13cmFwIiBpZD0idGFibGVXcmFwIj48L2Rpdj4KCiAgPCEtLSBQREYgYnV0dG9uIC0tPgogIDxidXR0b24gY2xhc3M9InBkZi1idG4gbm8tcHJpbnQiIG9uY2xpY2s9IndpbmRvdy5wcmludCgpIj7wn5aoIFNhdmUgYXMgUERGIC8gUHJpbnQ8L2J1dHRvbj4KCjwvZGl2Pgo8c2NyaXB0PgpmdW5jdGlvbiBnZXRFeGNoYW5nZSgpeyByZXR1cm4gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiZXhjaGFuZ2VSYXRlIikudmFsdWUpIHx8IDAuNjk7IH0KCmNvbnN0IFJBVEVTID0gewogIG1lbGJvdXJuZTp7CiAgICBjbzp7bGFiZWw6J0NvLWxvYWRlcicsaXRlbXM6WwogICAgICB7bmFtZTonUG9ydCBTZXJ2aWNlIENoYXJnZScsICAgICAgY29zdDo5MCwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonVGVybWluYWwgSGFuZGxpbmcgQ2hhcmdlJywgY29zdDoyNSwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonRGVsaXZlcnkgT3JkZXInLCAgICAgICAgICAgY29zdDo0MCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonQ01SJywgICAgICAgICAgICAgICAgICAgICAgY29zdDoxMCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonSVNQUycsICAgICAgICAgICAgICAgICAgICAgY29zdDoxMCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonSW5mcmFzdHJ1Y3R1cmUgRmVlJywgICAgICAgY29zdDoyNywgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonSW1wb3J0IFByb2Nlc3NpbmcgRmVlJywgICAgY29zdDoxOCwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonRW1lcmdlbmN5IEZ1ZWwgU3VyY2hhcmdlJywgY29zdDoyLCAgIHVuaXQ6J1cvTSd9LAogICAgXX0sCiAgICBkaXJlY3Q6e2xhYmVsOidEaXJlY3QgQ29uc2lnbmVlJyxpdGVtczpbCiAgICAgIHtuYW1lOidQb3J0IFNlcnZpY2UgQ2hhcmdlJywgICAgICBjb3N0OjExMCwgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidUZXJtaW5hbCBIYW5kbGluZyBDaGFyZ2UnLCBjb3N0OjMwLCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidEZWxpdmVyeSBPcmRlcicsICAgICAgICAgICBjb3N0OjY1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidDTVInLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjI1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidTQ0EnLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjIwLCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJU1BTJywgICAgICAgICAgICAgICAgICAgICBjb3N0OjE1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJbmZyYXN0cnVjdHVyZSBGZWUnLCAgICAgICBjb3N0OjI3LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidJbXBvcnQgUHJvY2Vzc2luZyBGZWUnLCAgICBjb3N0OjE4LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidFbWVyZ2VuY3kgRnVlbCBTdXJjaGFyZ2UnLCBjb3N0OjIsICAgdW5pdDonVy9NJ30sCiAgICBdfQogIH0sCiAgc3lkbmV5OnsKICAgIGNvOntsYWJlbDonQ28tbG9hZGVyJyxpdGVtczpbCiAgICAgIHtuYW1lOidQb3J0IFNlcnZpY2UgQ2hhcmdlJywgICAgICBjb3N0OjkwLCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidUZXJtaW5hbCBIYW5kbGluZyBDaGFyZ2UnLCBjb3N0OjI1LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidEZWxpdmVyeSBPcmRlcicsICAgICAgICAgICBjb3N0OjQwLCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidDTVInLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjEwLCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJU1BTJywgICAgICAgICAgICAgICAgICAgICBjb3N0OjEwLCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJbmZyYXN0cnVjdHVyZSBGZWUnLCAgICAgICBjb3N0OjI3LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidDRlMnLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjkuNSwgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidJbXBvcnQgUHJvY2Vzc2luZyBGZWUnLCAgICBjb3N0OjE4LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidFbWVyZ2VuY3kgRnVlbCBTdXJjaGFyZ2UnLCBjb3N0OjIsICAgdW5pdDonVy9NJ30sCiAgICBdfSwKICAgIGRpcmVjdDp7bGFiZWw6J0RpcmVjdCBDb25zaWduZWUnLGl0ZW1zOlsKICAgICAge25hbWU6J1BvcnQgU2VydmljZSBDaGFyZ2UnLCAgICAgIGNvc3Q6MTEwLCB1bml0OidXL00nfSwKICAgICAge25hbWU6J1Rlcm1pbmFsIEhhbmRsaW5nIENoYXJnZScsIGNvc3Q6MzAsICB1bml0OidXL00nfSwKICAgICAge25hbWU6J0RlbGl2ZXJ5IE9yZGVyJywgICAgICAgICAgIGNvc3Q6NjUsICB1bml0OidCL0wnfSwKICAgICAge25hbWU6J0NNUicsICAgICAgICAgICAgICAgICAgICAgIGNvc3Q6MjUsICB1bml0OidCL0wnfSwKICAgICAge25hbWU6J1NDQScsICAgICAgICAgICAgICAgICAgICAgIGNvc3Q6MjAsICB1bml0OidCL0wnfSwKICAgICAge25hbWU6J0lTUFMnLCAgICAgICAgICAgICAgICAgICAgIGNvc3Q6MTUsICB1bml0OidCL0wnfSwKICAgICAge25hbWU6J0luZnJhc3RydWN0dXJlIEZlZScsICAgICAgIGNvc3Q6MjcsICB1bml0OidXL00nfSwKICAgICAge25hbWU6J0NGUycsICAgICAgICAgICAgICAgICAgICAgIGNvc3Q6OS41LCB1bml0OidXL00nfSwKICAgICAge25hbWU6J0ltcG9ydCBQcm9jZXNzaW5nIEZlZScsICAgIGNvc3Q6MTgsICB1bml0OidXL00nfSwKICAgICAge25hbWU6J0VtZXJnZW5jeSBGdWVsIFN1cmNoYXJnZScsIGNvc3Q6MiwgICB1bml0OidXL00nfSwKICAgIF19CiAgfSwKICBicmlzYmFuZTp7CiAgICBjbzp7bGFiZWw6J0NvLWxvYWRlcicsaXRlbXM6WwogICAgICB7bmFtZTonUG9ydCBTZXJ2aWNlIENoYXJnZScsICAgICAgY29zdDo5MCwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonVGVybWluYWwgSGFuZGxpbmcgQ2hhcmdlJywgY29zdDoyNSwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonRGVsaXZlcnkgT3JkZXInLCAgICAgICAgICAgY29zdDo0MCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonQ01SJywgICAgICAgICAgICAgICAgICAgICAgY29zdDoxMCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonSVNQUycsICAgICAgICAgICAgICAgICAgICAgY29zdDoxMCwgIHVuaXQ6J0IvTCd9LAogICAgICB7bmFtZTonSW5mcmFzdHJ1Y3R1cmUgRmVlJywgICAgICAgY29zdDoyNywgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonQ0ZTJywgICAgICAgICAgICAgICAgICAgICAgY29zdDo5LjUsIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonSW1wb3J0IFByb2Nlc3NpbmcgRmVlJywgICAgY29zdDoxOCwgIHVuaXQ6J1cvTSd9LAogICAgICB7bmFtZTonRW1lcmdlbmN5IEZ1ZWwgU3VyY2hhcmdlJywgY29zdDoyLCAgIHVuaXQ6J1cvTSd9LAogICAgXX0sCiAgICBkaXJlY3Q6e2xhYmVsOidEaXJlY3QgQ29uc2lnbmVlJyxpdGVtczpbCiAgICAgIHtuYW1lOidQb3J0IFNlcnZpY2UgQ2hhcmdlJywgICAgICBjb3N0OjExMCwgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidUZXJtaW5hbCBIYW5kbGluZyBDaGFyZ2UnLCBjb3N0OjMwLCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidEZWxpdmVyeSBPcmRlcicsICAgICAgICAgICBjb3N0OjY1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidDTVInLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjI1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidTQ0EnLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjIwLCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJU1BTJywgICAgICAgICAgICAgICAgICAgICBjb3N0OjE1LCAgdW5pdDonQi9MJ30sCiAgICAgIHtuYW1lOidJbmZyYXN0cnVjdHVyZSBGZWUnLCAgICAgICBjb3N0OjI3LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidDRlMnLCAgICAgICAgICAgICAgICAgICAgICBjb3N0OjkuNSwgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidJbXBvcnQgUHJvY2Vzc2luZyBGZWUnLCAgICBjb3N0OjE4LCAgdW5pdDonVy9NJ30sCiAgICAgIHtuYW1lOidFbWVyZ2VuY3kgRnVlbCBTdXJjaGFyZ2UnLCBjb3N0OjIsICAgdW5pdDonVy9NJ30sCiAgICBdfQogIH0KfTsKCmxldCBjdXJyZW50Q25lZSA9IFtdOwoKZnVuY3Rpb24gaW5pdENuZWUoaXRlbXMpeyBjdXJyZW50Q25lZSA9IGl0ZW1zLm1hcCgoKSA9PiAwKTsgfQoKZnVuY3Rpb24gZ2V0Um93cyhpdGVtcywgY2JtKXsKICByZXR1cm4gaXRlbXMubWFwKChpdCwgaSkgPT4gewogICAgY29uc3QgbXVsdCA9IGl0LnVuaXQgPT09ICdXL00nID8gY2JtIDogMTsKICAgIGNvbnN0IGNuZWVWYWwgPSBjdXJyZW50Q25lZVtpXSAhPT0gbnVsbCA/IGN1cnJlbnRDbmVlW2ldIDogMDsKICAgIGNvbnN0IGRpZmZSYXRlID0gY25lZVZhbCAtIGl0LmNvc3Q7CiAgICBjb25zdCBkaWZmQW10ICA9IGRpZmZSYXRlICogbXVsdDsKICAgIHJldHVybiB7Li4uaXQsIG11bHQsIGNuZWVWYWwsIGRpZmZSYXRlLCBkaWZmQW10fTsKICB9KTsKfQoKZnVuY3Rpb24gY2FsY1RvdGFscyhyb3dzKXsKICBsZXQgdG90YWxBVUQgPSAwOwogIHJvd3MuZm9yRWFjaChyID0+IHsgdG90YWxBVUQgKz0gci5kaWZmQW10OyB9KTsKICByZXR1cm4ge3RvdGFsQVVELCB0b3RhbFVTRDogdG90YWxBVUQgKiBnZXRFeGNoYW5nZSgpfTsKfQoKZnVuY3Rpb24gc3luY1ByaW50KCl7CiAgY29uc3QgYmwgICA9IChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmxOdW1iZXInKS52YWx1ZS50cmltKCkgfHwgJ+KAlCcpLnRvVXBwZXJDYXNlKCk7CiAgY29uc3QgcG9ydCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwb3J0JykudmFsdWU7CiAgY29uc3QgdHlwZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjYXJnb1R5cGUnKS52YWx1ZTsKICBjb25zdCBjYm0gID0gcGFyc2VGbG9hdChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2JtJykudmFsdWUpIHx8IDE7CiAgY29uc3QgcG9ydExhYmVsID0ge21lbGJvdXJuZTonTWVsYm91cm5lJyxzeWRuZXk6J1N5ZG5leScsYnJpc2JhbmU6J0JyaXNiYW5lJ31bcG9ydF07CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3ByaW50LWJsLW5vJykudGV4dENvbnRlbnQgPSBibDsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncHJpbnQtYmwtcmlnaHQnKS5pbm5lckhUTUwgPQogICAgYCR7cG9ydExhYmVsfSAmbmJzcDvCtyZuYnNwOyAke1JBVEVTW3BvcnRdW3R5cGVdLmxhYmVsfSAmbmJzcDvCtyZuYnNwOyBXL00gJHtjYm0udG9GaXhlZCgzKX08YnI+YCArCiAgICBgPHNwYW4gc3R5bGU9ImNvbG9yOiNhYWE7Zm9udC1zaXplOjExcHgiPkFVRCDihpIgVVNEIEV4Y2hhbmdlIFJhdGU6ICR7Z2V0RXhjaGFuZ2UoKX08L3NwYW4+YDsKfQoKZnVuY3Rpb24gdXBkYXRlU3VtbWFyeShyb3dzKXsKICBjb25zdCBjYm0gPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjYm0nKS52YWx1ZSkgfHwgMTsKICBjb25zdCB7dG90YWxBVUQsIHRvdGFsVVNEfSA9IGNhbGNUb3RhbHMocm93cyk7CiAgY29uc3QgZXggPSBnZXRFeGNoYW5nZSgpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdW1tYXJ5R3JpZCcpLmlubmVySFRNTCA9IGAKICAgIDxkaXYgY2xhc3M9Im1ldHJpYyI+PGRpdiBjbGFzcz0ibWxhYmVsIj5XL00gKENCTSk8L2Rpdj48ZGl2IGNsYXNzPSJtdmFsIj4ke2NibS50b0ZpeGVkKDMpfTwvZGl2PjwvZGl2PgogICAgPGRpdiBjbGFzcz0ibWV0cmljIj48ZGl2IGNsYXNzPSJtbGFiZWwiPlRvdGFsIERpZmZlcmVuY2UgKEFVRCk8L2Rpdj48ZGl2IGNsYXNzPSJtdmFsIG5lZyI+JHt0b3RhbEFVRC50b0ZpeGVkKDIpfTwvZGl2PjwvZGl2PgogICAgPGRpdiBjbGFzcz0ibWV0cmljIj48ZGl2IGNsYXNzPSJtbGFiZWwiPlRvdGFsIERpZmZlcmVuY2UgKFVTRCBAICR7ZXh9KTwvZGl2PjxkaXYgY2xhc3M9Im12YWwgbmVnIj4ke3RvdGFsVVNELnRvRml4ZWQoMil9PC9kaXY+PC9kaXY+CiAgYDsKfQoKZnVuY3Rpb24gcmVuZGVyVGFibGUocm93cywgcG9ydCwgdHlwZSl7CiAgY29uc3Qge3RvdGFsQVVELCB0b3RhbFVTRH0gPSBjYWxjVG90YWxzKHJvd3MpOwogIGNvbnN0IHBvcnRMYWJlbCA9IHttZWxib3VybmU6J01lbGJvdXJuZScsc3lkbmV5OidTeWRuZXknLGJyaXNiYW5lOidCcmlzYmFuZSd9W3BvcnRdOwoKICBjb25zdCB0cnMgPSByb3dzLm1hcCgociwgaSkgPT4gewogICAgY29uc3QgY25lZURpc3AgICAgID0gci5jbmVlVmFsICE9PSBudWxsID8gci5jbmVlVmFsIDogMDsKICAgIGNvbnN0IGRpZmZSYXRlRGlzcCA9IHIuZGlmZlJhdGUudG9GaXhlZCgyKTsKICAgIGNvbnN0IGRpZmZBbXREaXNwICA9IHIuZGlmZkFtdC50b0ZpeGVkKDIpOwogICAgY29uc3QgZGMgPSByLmRpZmZBbXQgPCAtMC4wMDEgPyAnZGlmZi1uZWcnIDogci5kaWZmQW10ID4gMC4wMDEgPyAnZGlmZi1wb3MnIDogJ2RpZmYtemVybyc7CiAgICByZXR1cm4gYDx0cj4KICAgICAgPHRkPiR7ci5uYW1lfTwvdGQ+CiAgICAgIDx0ZCBjbGFzcz0iciI+JHtyLnVuaXR9PC90ZD4KICAgICAgPHRkIGNsYXNzPSJyIj4ke3IuY29zdC50b0ZpeGVkKDIpfTwvdGQ+CiAgICAgIDx0ZCBzdHlsZT0idGV4dC1hbGlnbjpyaWdodCI+PGlucHV0IGNsYXNzPSJjbmVlLWlucHV0IiB0eXBlPSJudW1iZXIiIHZhbHVlPSIke2NuZWVEaXNwfSIgc3RlcD0iMC41IiBkYXRhLWlkeD0iJHtpfSIgb25pbnB1dD0ib25DbmVlQ2hhbmdlKHRoaXMpIi8+PC90ZD4KICAgICAgPHRkIGNsYXNzPSJyIj4ke2RpZmZSYXRlRGlzcH08L3RkPgogICAgICA8dGQgY2xhc3M9IiR7ZGN9Ij4ke2RpZmZBbXREaXNwfTwvdGQ+CiAgICA8L3RyPmA7CiAgfSkuam9pbignJyk7CgogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0YWJsZVdyYXAnKS5pbm5lckhUTUwgPSBgCiAgICA8ZGl2IGNsYXNzPSJ0YWJsZS1oZWFkZXIiPgogICAgICA8c3BhbiBjbGFzcz0icG9ydCI+JHtwb3J0TGFiZWx9IERlc3RpbmF0aW9uIENoYXJnZXM8L3NwYW4+CiAgICAgIDxzcGFuIGNsYXNzPSJ0eXBlLWJhZGdlIj4ke1JBVEVTW3BvcnRdW3R5cGVdLmxhYmVsfTwvc3Bhbj4KICAgIDwvZGl2PgogICAgPHRhYmxlPgogICAgICA8Y29sZ3JvdXA+PGNvbCBzdHlsZT0id2lkdGg6MzAlIj48Y29sIHN0eWxlPSJ3aWR0aDo5JSI+PGNvbCBzdHlsZT0id2lkdGg6MTMlIj48Y29sIHN0eWxlPSJ3aWR0aDoxNSUiPjxjb2wgc3R5bGU9IndpZHRoOjEzJSI+PGNvbCBzdHlsZT0id2lkdGg6MTQlIj48L2NvbGdyb3VwPgogICAgICA8dGhlYWQ+PHRyPgogICAgICAgIDx0aD5JdGVtPC90aD4KICAgICAgICA8dGggY2xhc3M9InIiPlVuaXQ8L3RoPgogICAgICAgIDx0aCBjbGFzcz0iciI+T3JpZ2luYWwgQ29zdDwvdGg+CiAgICAgICAgPHRoIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0O3BhZGRpbmctcmlnaHQ6MTRweCI+Q05FRSBSYXRlIOKcj++4jzwvdGg+CiAgICAgICAgPHRoIGNsYXNzPSJyIj5EaWZmIFJhdGU8L3RoPgogICAgICAgIDx0aCBjbGFzcz0iciI+RGlmZiBBbXQgKEFVRCk8L3RoPgogICAgICA8L3RyPjwvdGhlYWQ+CiAgICAgIDx0Ym9keT4ke3Ryc308L3Rib2R5PgogICAgICA8dGZvb3Q+CiAgICAgICAgPHRyPjx0ZCBjb2xzcGFuPSI1Ij5Ub3RhbCAoQVVEKTwvdGQ+PHRkIGNsYXNzPSJyIj4ke3RvdGFsQVVELnRvRml4ZWQoMil9PC90ZD48L3RyPgogICAgICAgIDx0cj48dGQgY29sc3Bhbj0iNSI+VG90YWwgKFVTRCkgJm5ic3A7IEV4Y2hhbmdlIEAgJHtnZXRFeGNoYW5nZSgpfTwvdGQ+PHRkIGNsYXNzPSJyIj4ke3RvdGFsVVNELnRvRml4ZWQoMil9PC90ZD48L3RyPgogICAgICA8L3Rmb290PgogICAgPC90YWJsZT4KICBgOwp9CgpmdW5jdGlvbiBvbkNuZWVDaGFuZ2UoZWwpewogIGNvbnN0IGlkeCA9IHBhcnNlSW50KGVsLmRhdGFzZXQuaWR4KTsKICBjdXJyZW50Q25lZVtpZHhdID0gZWwudmFsdWUudHJpbSgpID09PSAnJyA/IDAgOiBwYXJzZUZsb2F0KGVsLnZhbHVlKTsKICBjb25zdCBwb3J0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3BvcnQnKS52YWx1ZTsKICBjb25zdCB0eXBlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhcmdvVHlwZScpLnZhbHVlOwogIGNvbnN0IGNibSAgPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjYm0nKS52YWx1ZSkgfHwgMTsKICBjb25zdCByb3dzID0gZ2V0Um93cyhSQVRFU1twb3J0XVt0eXBlXS5pdGVtcywgY2JtKTsKICB1cGRhdGVTdW1tYXJ5KHJvd3MpOwogIC8vIGluLXBsYWNlIHVwZGF0ZSAocHJlc2VydmUgZm9jdXMpCiAgY29uc3QgdGJvZHkgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjdGFibGVXcmFwIHRib2R5Jyk7CiAgY29uc3QgdGZvb3QgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcjdGFibGVXcmFwIHRmb290Jyk7CiAgaWYoIXRib2R5KSByZXR1cm47CiAgdGJvZHkucXVlcnlTZWxlY3RvckFsbCgndHInKS5mb3JFYWNoKCh0ciwgaSkgPT4gewogICAgY29uc3QgciA9IHJvd3NbaV07CiAgICBjb25zdCBkaWZmUmF0ZURpc3AgPSByLmRpZmZSYXRlLnRvRml4ZWQoMik7CiAgICBjb25zdCBkaWZmQW10RGlzcCAgPSByLmRpZmZBbXQudG9GaXhlZCgyKTsKICAgIGNvbnN0IGRjID0gci5kaWZmQW10IDwgLTAuMDAxID8gJ2RpZmYtbmVnJyA6IHIuZGlmZkFtdCA+IDAuMDAxID8gJ2RpZmYtcG9zJyA6ICdkaWZmLXplcm8nOwogICAgdHIuY2hpbGRyZW5bNF0udGV4dENvbnRlbnQgPSBkaWZmUmF0ZURpc3A7CiAgICB0ci5jaGlsZHJlbls1XS50ZXh0Q29udGVudCA9IGRpZmZBbXREaXNwOwogICAgdHIuY2hpbGRyZW5bNV0uY2xhc3NOYW1lICAgPSBkYzsKICB9KTsKICBpZih0Zm9vdCl7CiAgICBjb25zdCB7dG90YWxBVUQsIHRvdGFsVVNEfSA9IGNhbGNUb3RhbHMocm93cyk7CiAgICB0Zm9vdC5yb3dzWzBdLmNlbGxzWzFdLnRleHRDb250ZW50ID0gdG90YWxBVUQudG9GaXhlZCgyKTsKICAgIHRmb290LnJvd3NbMV0uY2VsbHNbMF0udGV4dENvbnRlbnQgPSBgVG90YWwgKFVTRCkgIEV4Y2hhbmdlIEAgJHtnZXRFeGNoYW5nZSgpfWA7CiAgICB0Zm9vdC5yb3dzWzFdLmNlbGxzWzFdLnRleHRDb250ZW50ID0gdG90YWxVU0QudG9GaXhlZCgyKTsKICB9CiAgc3luY1ByaW50KCk7Cn0KCmZ1bmN0aW9uIHJlc2V0Q25lZSgpewogIGNvbnN0IHBvcnQgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncG9ydCcpLnZhbHVlOwogIGNvbnN0IHR5cGUgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2FyZ29UeXBlJykudmFsdWU7CiAgaW5pdENuZWUoUkFURVNbcG9ydF1bdHlwZV0uaXRlbXMpOwogIHJlbmRlcigpOwp9CgpmdW5jdGlvbiByZW5kZXIoKXsKICBjb25zdCBwb3J0ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3BvcnQnKS52YWx1ZTsKICBjb25zdCB0eXBlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhcmdvVHlwZScpLnZhbHVlOwogIGNvbnN0IGNibSAgPSBwYXJzZUZsb2F0KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjYm0nKS52YWx1ZSkgfHwgMTsKICBpbml0Q25lZShSQVRFU1twb3J0XVt0eXBlXS5pdGVtcyk7CiAgY29uc3Qgcm93cyA9IGdldFJvd3MoUkFURVNbcG9ydF1bdHlwZV0uaXRlbXMsIGNibSk7CiAgdXBkYXRlU3VtbWFyeShyb3dzKTsKICByZW5kZXJUYWJsZShyb3dzLCBwb3J0LCB0eXBlKTsKICBzeW5jUHJpbnQoKTsKfQoKcmVuZGVyKCk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD4K';
-const INC_B64='PGh0bWwgbGFuZz0ia28iPjxoZWFkPgo8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MS4wIj4KPHRpdGxlPuyatOyehCDsnbjshLzti7DruIwg6rSA66asPC90aXRsZT4KPHN0eWxlPgogIDpyb290IHsKICAgIC0tbmF2eTogIzBkMWIyYTsgLS1uYXZ5LW1pZDogIzFiMmU0NTsgLS1zbGF0ZTogIzJjNGE2ZTsKICAgIC0tYWNjZW50OiAjMDBiNGQ4OyAtLWFjY2VudC1saWdodDogIzkwZTBlZjsgLS1nb2xkOiAjZTA4YzJlOwogICAgLS1zdXJmYWNlOiAjZjVmOGZiOyAtLXN1cmZhY2UtYWx0OiAjZWFlZmY2OwogICAgLS1ib3JkZXI6ICNjZGQ4ZTg7IC0tdGV4dDogIzFhMjUzNTsgLS10ZXh0LW11dGVkOiAjNWE3MDg1OwogICAgLS11cDogIzEwYjk4MTsgLS1kb3duOiAjZWY0NDQ0OyAtLXdoaXRlOiAjZmZmOwogICAgLS1zaGFkb3c6IDAgMnB4IDEwcHggcmdiYSgxMywyNyw0MiwwLjA5KTsKICB9CiAgKiB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbjogMDsgcGFkZGluZzogMDsgfQogIGh0bWwsIGJvZHkgeyBoZWlnaHQ6IDEwMCU7IH0KICBib2R5IHsKICAgIGZvbnQtZmFtaWx5OiAnUHJldGVuZGFyZCcsJ0FwcGxlIFNEIEdvdGhpYyBOZW8nLCdOb3RvIFNhbnMgS1InLHNhbnMtc2VyaWY7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1zdXJmYWNlKTsgY29sb3I6IHZhcigtLXRleHQpOwogICAgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICB9CgogIC8qIOKUgOKUgCBIRUFERVIg4pSA4pSAICovCiAgaGVhZGVyIHsKICAgIGJhY2tncm91bmQ6IHZhcigtLW5hdnkpOyBjb2xvcjogdmFyKC0td2hpdGUpOwogICAgcGFkZGluZzogMCAyOS4wcHg7IGhlaWdodDogNTZweDsKICAgIGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKICAgIGZsZXgtc2hyaW5rOiAwOwogICAgYm94LXNoYWRvdzogMCAycHggMTJweCByZ2JhKDAsMCwwLDAuMjIpOwogICAgcG9zaXRpb246IHN0aWNreTsgdG9wOiAwOyB6LWluZGV4OiAxMDA7CiAgfQogIC5oZWFkZXItYnJhbmQgeyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDhweDsgfQogIC5sb2dvIHsgd2lkdGg6IDMwcHg7IGhlaWdodDogMzBweDsgYmFja2dyb3VuZDogdmFyKC0tYWNjZW50KTsgYm9yZGVyLXJhZGl1czogNnB4OwogICAgICAgICAgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7IGZvbnQtc2l6ZTogMTUuOHB4OyB9CiAgaGVhZGVyIGgxIHsgZm9udC1zaXplOiAxNi44cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IH0KICBoZWFkZXIgc21hbGwgeyBmb250LXNpemU6IDEzLjlweDsgY29sb3I6IHZhcigtLWFjY2VudC1saWdodCk7IH0KICAuaGVhZGVyLWFjdGlvbnMgeyBkaXNwbGF5OiBmbGV4OyBnYXA6IDZweDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgfQoKICAvKiDilIDilIAgQlVUVE9OUyAodG9wLWxldmVsIGR1cGxpY2F0ZSByZW1vdmVkIGJlbG93KSDilIDilIAgKi8KICAuYnRuIHsKICAgIGRpc3BsYXk6IGlubGluZS1mbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDVweDsKICAgIHBhZGRpbmc6IDEyLjdweCAyNy4ycHg7IGJvcmRlci1yYWRpdXM6IDdweDsgYm9yZGVyOiBub25lOwogICAgZm9udC1zaXplOiAxMy45cHg7IGZvbnQtd2VpZ2h0OiA2MDA7IGN1cnNvcjogcG9pbnRlcjsKICAgIHRyYW5zaXRpb246IGFsbCAuMTVzOyBmb250LWZhbWlseTogaW5oZXJpdDsgd2hpdGUtc3BhY2U6IG5vd3JhcDsKICB9CiAgLmJ0bi1wcmltYXJ5ICB7IGJhY2tncm91bmQ6IHZhcigtLWFjY2VudCk7IGNvbG9yOiB2YXIoLS1uYXZ5KTsgfQogIC5idG4tcHJpbWFyeTpob3ZlciB7IGJhY2tncm91bmQ6IHZhcigtLWFjY2VudC1saWdodCk7IH0KICAuYnRuLW91dGxpbmUgIHsgYmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7IGNvbG9yOiAjZmZmOyBib3JkZXI6IDEuNXB4IHNvbGlkIHJnYmEoMjU1LDI1NSwyNTUsLjMpOyB9CiAgLmJ0bi1vdXRsaW5lOmhvdmVyIHsgYmFja2dyb3VuZDogcmdiYSgyNTUsMjU1LDI1NSwuMDgpOyB9CiAgLmJ0bi1kYW5nZXIgICB7IGJhY2tncm91bmQ6IHZhcigtLWRvd24pOyBjb2xvcjogI2ZmZjsgfQogIC5idG4tZGFuZ2VyOmhvdmVyIHsgYmFja2dyb3VuZDogI2RjMjYyNjsgfQogIC5idG4tc3VjY2VzcyAgeyBiYWNrZ3JvdW5kOiB2YXIoLS11cCk7IGNvbG9yOiAjZmZmOyB9CiAgLmJ0bi1zdWNjZXNzOmhvdmVyIHsgYmFja2dyb3VuZDogIzA1OTY2OTsgfQogIC5idG4tZ2hvc3QgICAgeyBiYWNrZ3JvdW5kOiByZ2JhKDI1NSwyNTUsMjU1LC4xMik7IGNvbG9yOiAjZmZmOyB9CiAgLmJ0bi1naG9zdDpob3ZlciB7IGJhY2tncm91bmQ6IHJnYmEoMjU1LDI1NSwyNTUsLjIpOyB9CgogIC8qIOKUgOKUgCBNQUlOIExBWU9VVCDilIDilIAgKi8KICAucGFnZSB7CiAgICBmbGV4OiAxOyBkaXNwbGF5OiBmbGV4OyBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgcGFkZGluZzogMTguMXB4IDIlOyBnYXA6IDhweDsKICAgIG1pbi1oZWlnaHQ6IDA7CiAgfQoKICAvKiDilIDilIAgUEVSSU9EIE5BViDilIDilIAgKi8KICAucGVyaW9kLW5hdiB7CiAgICBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDJweDsKICAgIGJhY2tncm91bmQ6IHZhcigtLXdoaXRlKTsgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsKICAgIGJvcmRlci1yYWRpdXM6IDhweDsgcGFkZGluZzogNS4zcHg7CiAgICBvdmVyZmxvdy14OiBhdXRvOyBmbGV4LXNocmluazogMDsKICAgIGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdyk7CiAgICBzY3JvbGxiYXItd2lkdGg6IHRoaW47CiAgfQogIC5wZXJpb2QtdGFiIHsKICAgIGZsZXgtc2hyaW5rOiAwOyBwYWRkaW5nOiAxMC45cHggMjEuN3B4OyBib3JkZXItcmFkaXVzOiA2cHg7IGJvcmRlcjogbm9uZTsKICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50OyBmb250LXNpemU6IDE0LjhweDsgZm9udC13ZWlnaHQ6IDUwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgY3Vyc29yOiBwb2ludGVyOyB0cmFuc2l0aW9uOiBhbGwgLjE1czsKICAgIGZvbnQtZmFtaWx5OiBpbmhlcml0OyB3aGl0ZS1zcGFjZTogbm93cmFwOwogIH0KICAucGVyaW9kLXRhYjpob3ZlciB7IGJhY2tncm91bmQ6IHZhcigtLXN1cmZhY2UtYWx0KTsgY29sb3I6IHZhcigtLXRleHQpOyB9CiAgLnBlcmlvZC10YWIuYWN0aXZlIHsgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7IGNvbG9yOiAjZmZmOyBmb250LXdlaWdodDogNzAwOyB9CiAgLnBlcmlvZC10YWIubGF0ZXN0OjphZnRlciB7CiAgICBjb250ZW50OiAnTEFURVNUJzsgZm9udC1zaXplOiA4LjlweDsgYmFja2dyb3VuZDogdmFyKC0tYWNjZW50KTsKICAgIGNvbG9yOiB2YXIoLS1uYXZ5KTsgYm9yZGVyLXJhZGl1czogM3B4OyBwYWRkaW5nOiAxLjhweCA3LjJweDsKICAgIG1hcmdpbi1sZWZ0OiA0cHg7IGZvbnQtd2VpZ2h0OiA4MDA7IHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7CiAgfQoKICAvKiDilIDilIAgQUREIEZPUk0g4pSA4pSAICovCiAgLmFkZC1zZWN0aW9uIHsKICAgIGJhY2tncm91bmQ6IHZhcigtLXdoaXRlKTsgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsKICAgIGJvcmRlci1yYWRpdXM6IDhweDsgcGFkZGluZzogMjEuN3B4IDI5LjBweDsKICAgIGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdyk7IGZsZXgtc2hyaW5rOiAwOwogIH0KICAuYWRkLXNlY3Rpb24gaDMgeyBmb250LXNpemU6IDE0LjhweDsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLW5hdnkpOyBtYXJnaW4tYm90dG9tOiAxMHB4OyB9CiAgLmZvcm0tcm93IHsgZGlzcGxheTogZmxleDsgZ2FwOiA4cHg7IGZsZXgtd3JhcDogd3JhcDsgYWxpZ24taXRlbXM6IGZsZXgtZW5kOyB9CiAgLmZvcm0tZ3JvdXAgeyBkaXNwbGF5OiBmbGV4OyBmbGV4LWRpcmVjdGlvbjogY29sdW1uOyBnYXA6IDNweDsgfQogIC5mb3JtLWdyb3VwIGxhYmVsIHsgZm9udC1zaXplOiAxMi45cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsgbGV0dGVyLXNwYWNpbmc6IC41cHg7IH0KICAuZm9ybS1ncm91cCBzZWxlY3QgewogICAgcGFkZGluZzogOS4xcHggMTQuNnB4OyBib3JkZXI6IDEuNXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJvcmRlci1yYWRpdXM6IDZweDsKICAgIGZvbnQtc2l6ZTogMTQuOHB4OyBmb250LWZhbWlseTogaW5oZXJpdDsgY29sb3I6IHZhcigtLXRleHQpOwogICAgYmFja2dyb3VuZDogdmFyKC0td2hpdGUpOyBvdXRsaW5lOiBub25lOyBtaW4td2lkdGg6IDgwcHg7CiAgfQogIC5mb3JtLWdyb3VwIHNlbGVjdDpmb2N1cyB7IGJvcmRlci1jb2xvcjogdmFyKC0tYWNjZW50KTsgfQogIC5mb3JtLWhpbnQgeyBmb250LXNpemU6IDEzLjlweDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyBtYXJnaW4tdG9wOiA2cHg7IH0KCiAgLyog4pSA4pSAIENBUkQg4pSA4pSAICovCiAgLnJhdGUtY2FyZCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS13aGl0ZSk7IGJvcmRlci1yYWRpdXM6IDhweDsKICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdyk7CiAgICBvdmVyZmxvdzogaGlkZGVuOwogICAgZGlzcGxheTogZmxleDsgZmxleC1kaXJlY3Rpb246IGNvbHVtbjsKICAgIGZsZXgtc2hyaW5rOiAwOwogIH0KICAucmF0ZS1jYXJkLWhlYWRlciB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1uYXZ5KTsgY29sb3I6ICNmZmY7CiAgICBwYWRkaW5nOiAxOC4xcHggMjkuMHB4OwogICAgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuOwogICAgZmxleC1zaHJpbms6IDA7IGZsZXgtd3JhcDogd3JhcDsgZ2FwOiA2cHg7CiAgfQogIC5jYXJkLXRpdGxlIHsgZm9udC1zaXplOiAxNC44cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGdhcDogNnB4OyB9CiAgLnBlcmlvZC1iYWRnZSB7CiAgICBmb250LXNpemU6IDEyLjlweDsgZm9udC13ZWlnaHQ6IDcwMDsgcGFkZGluZzogMy42cHggMTQuNnB4OwogICAgYm9yZGVyLXJhZGl1czogMjBweDsgYmFja2dyb3VuZDogdmFyKC0tYWNjZW50KTsgY29sb3I6IHZhcigtLW5hdnkpOwogIH0KICAuY2FyZC1jb250cm9scyB7IGRpc3BsYXk6IGZsZXg7IGdhcDogNXB4OyBhbGlnbi1pdGVtczogY2VudGVyOyB9CgogIC5oYWxmLXRvZ2dsZSB7IGRpc3BsYXk6IGZsZXg7IGJhY2tncm91bmQ6IHJnYmEoMjU1LDI1NSwyNTUsLjEyKTsgYm9yZGVyLXJhZGl1czogNnB4OyBwYWRkaW5nOiAzLjZweDsgfQogIC5oYWxmLWJ0biB7CiAgICBwYWRkaW5nOiA5LjFweCAyMy41cHg7IGJvcmRlci1yYWRpdXM6IDRweDsgYm9yZGVyOiBub25lOwogICAgZm9udC1zaXplOiAxNC44cHg7IGZvbnQtd2VpZ2h0OiA2MDA7IGN1cnNvcjogcG9pbnRlcjsKICAgIGZvbnQtZmFtaWx5OiBpbmhlcml0OyBjb2xvcjogcmdiYSgyNTUsMjU1LDI1NSwuNTUpOyBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsgdHJhbnNpdGlvbjogYWxsIC4xNXM7CiAgfQogIC5oYWxmLWJ0bi5hY3RpdmUgeyBiYWNrZ3JvdW5kOiAjZmZmOyBjb2xvcjogdmFyKC0tbmF2eSk7IGJveC1zaGFkb3c6IDAgMXB4IDRweCByZ2JhKDAsMCwwLC4xNSk7IH0KCiAgLyog4pSA4pSAIFRBQkxFIFdSQVBQRVIg4pSA4pSAICovCiAgLnRhYmxlLXdyYXAgeyBvdmVyZmxvdzogYXV0bzsgfQoKICAvKiDilIDilIAgU1RBVFVTIEJBUiDilIDilIAgKi8KICAuc3RhdHVzLWJhciB7CiAgICBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47CiAgICBwYWRkaW5nOiAxMC45cHggMjEuN3B4OyBiYWNrZ3JvdW5kOiB2YXIoLS13aGl0ZSk7CiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1ib3JkZXIpOyBib3JkZXItcmFkaXVzOiA3cHg7CiAgICBmbGV4LXNocmluazogMDsgZm9udC1zaXplOiAxNC44cHg7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsKICAgIGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdyk7CiAgfQoKICAvKiDilIDilIAgVEFCTEUg4pSA4pSAICovCiAgdGFibGUgewogICAgd2lkdGg6IDEwMCU7IGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7CiAgICBmb250LXNpemU6IDE0LjhweDsKICAgIHRhYmxlLWxheW91dDogZml4ZWQ7CiAgfQoKICAvKiBDb2x1bW4gd2lkdGhzIOKAlCDruYTqs6Ag7Je0IOuEk+qyjCAoMjDsnpAg7KSE67CU6r+IIOq4sOykgCkgKi8KICBjb2wuYy1wb3J0ICB7IHdpZHRoOiA2JTsgfQogIGNvbC5jLWxpbmUgIHsgd2lkdGg6IDYlOyB9CiAgY29sLmMtcmF0ZSAgeyB3aWR0aDogNS41JTsgfQogIGNvbC5jLWluYyAgIHsgd2lkdGg6IDEzJTsgfQogIGNvbC5jLW5vbWkgIHsgd2lkdGg6IDQlOyB9CiAgY29sLmMtb2YgICAgeyB3aWR0aDogNCU7IH0KICBjb2wuYy1ub3RlICB7IHdpZHRoOiAxNiU7IH0KCiAgdGhlYWQgdGggewogICAgYmFja2dyb3VuZDogdmFyKC0tbmF2eS1taWQpOyBjb2xvcjogdmFyKC0tYWNjZW50LWxpZ2h0KTsKICAgIGZvbnQtc2l6ZTogMTIuOXB4OyBmb250LXdlaWdodDogNzAwOyBsZXR0ZXItc3BhY2luZzogLjVweDsKICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7IHBhZGRpbmc6IDkuMXB4IDkuMXB4OwogICAgdGV4dC1hbGlnbjogY2VudGVyOyBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCByZ2JhKDI1NSwyNTUsMjU1LC4wNyk7CiAgICBwb3NpdGlvbjogc3RpY2t5OyB0b3A6IDA7IHotaW5kZXg6IDI7CiAgICB3aGl0ZS1zcGFjZTogbm93cmFwOwogIH0KCiAgdGJvZHkgdHIgeyBib3JkZXItYm90dG9tOiAxcHggc29saWQgdmFyKC0tc3VyZmFjZS1hbHQpOyB9CiAgdGJvZHkgdHI6aG92ZXIgeyBiYWNrZ3JvdW5kOiAjZjBmOGZmOyB9CiAgdGJvZHkgdGQgewogICAgcGFkZGluZzogOC43cHggMTAuOXB4OwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgdmFyKC0tYm9yZGVyKTsKICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7CiAgfQogIHRib2R5IHRkOmxhc3QtY2hpbGQgeyBib3JkZXItcmlnaHQ6IG5vbmU7IH0KCiAgLyogU1lEL01FTC9CTkUg7IS466GcIOyEuCDspIQgKi8KICAucG9ydC1zdGFjayB7CiAgICBkaXNwbGF5OiBmbGV4OyBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7CiAgICBnYXA6IDFweDsKICB9CiAgLnBvcnQtdGFnIHsKICAgIGZvbnQtc2l6ZTogMTQuOHB4OyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tc2xhdGUpOwogICAgd2hpdGUtc3BhY2U6IG5vd3JhcDsKICB9CiAgLnBvcnQtdGFnICsgLnBvcnQtdGFnOjpiZWZvcmUgeyBjb250ZW50OiBub25lOyB9CiAgLnBvcnQtc2luZ2xlIHsgZm9udC1zaXplOiAxNC44cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGNvbG9yOiB2YXIoLS1zbGF0ZSk7IH0KCiAgLmxpbmUtY2VsbCAgeyBmb250LXNpemU6IDE0LjhweDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOyB9CiAgLnJhdGUtdmFsICAgeyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tbmF2eSk7IHdoaXRlLXNwYWNlOiBub3dyYXA7IGZvbnQtc2l6ZTogMTQuOHB4OyB9CiAgLnJhdGUtZW1wdHkgeyBjb2xvcjogdmFyKC0tYm9yZGVyKTsgfQogIC5kZWx0YS11cCAgIHsgY29sb3I6IHZhcigtLXVwKTsgICBmb250LXNpemU6IDExLjlweDsgZm9udC13ZWlnaHQ6IDcwMDsgZGlzcGxheTogYmxvY2s7IH0KICAuZGVsdGEtZG93biB7IGNvbG9yOiB2YXIoLS1kb3duKTsgZm9udC1zaXplOiAxMS45cHg7IGZvbnQtd2VpZ2h0OiA3MDA7IGRpc3BsYXk6IGJsb2NrOyB9CgogIC8qIGluY2VudGl2ZTogd3JhcCArIGNlbnRlciAqLwogIC5pbmMtY2VsbCB7CiAgICB3aGl0ZS1zcGFjZTogbm9ybWFsOyB3b3JkLWJyZWFrOiBicmVhay13b3JkOwogICAgZm9udC1zaXplOiAxNC44cHg7IGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsgbGluZS1oZWlnaHQ6IDEuNTsKICAgIG92ZXJmbG93OiB2aXNpYmxlOwogIH0KICAvKiBub3RlOiB3cmFwICsgbGVmdCwg7Y+w7Yq4IDExcHgsIOyXtCDrhIjruYQgMjDsnpAg6riw7KSAICovCiAgLm5vdGUtY2VsbCB7CiAgICB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7IHdvcmQtYnJlYWs6IGJyZWFrLXdvcmQ7CiAgICBmb250LXNpemU6IDEwLjlweDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogICAgdGV4dC1hbGlnbjogbGVmdDsgbGluZS1oZWlnaHQ6IDEuNTsKICAgIG92ZXJmbG93OiB2aXNpYmxlOwogIH0KICAubm9taS1jZWxsIHsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLXVwKTsgICBmb250LXNpemU6IDE0LjhweDsgfQogIC5vZi1jZWxsICAgeyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tZ29sZCk7IGZvbnQtc2l6ZTogMTQuOHB4OyB9CgogIC8qIOKUgOKUgCBFRElUIOKUgOKUgCAqLwogIC5lZGl0LWlucHV0IHsKICAgIHBhZGRpbmc6IDUuM3B4IDkuMXB4OyBib3JkZXI6IDEuNXB4IHNvbGlkIHZhcigtLWFjY2VudCk7IGJvcmRlci1yYWRpdXM6IDRweDsKICAgIGZvbnQtc2l6ZTogMTIuOXB4OyBmb250LXdlaWdodDogNjAwOyB0ZXh0LWFsaWduOiBjZW50ZXI7CiAgICBmb250LWZhbWlseTogaW5oZXJpdDsgY29sb3I6IHZhcigtLW5hdnkpOyBiYWNrZ3JvdW5kOiAjZjBmYmZmOyBvdXRsaW5lOiBub25lOwogICAgd2lkdGg6IDEwMCU7IG1pbi13aWR0aDogMDsKICB9CiAgLmVkaXQtaW5wdXQ6Zm9jdXMgeyBib3JkZXItY29sb3I6IHZhcigtLW5hdnkpOyBiYWNrZ3JvdW5kOiAjZmZmOyB9CiAgLmVkaXQtaW5wdXQubGVmdCAgeyB0ZXh0LWFsaWduOiBsZWZ0OyB9CiAgLyog67mE6rOgIHRleHRhcmVhICovCiAgLmVkaXQtdGV4dGFyZWEgewogICAgcGFkZGluZzogNS4zcHggOS4xcHg7IGJvcmRlcjogMS41cHggc29saWQgdmFyKC0tYWNjZW50KTsgYm9yZGVyLXJhZGl1czogNHB4OwogICAgZm9udC1zaXplOiAxMi45cHg7IGZvbnQtZmFtaWx5OiBpbmhlcml0OyBjb2xvcjogdmFyKC0tbmF2eSk7CiAgICBiYWNrZ3JvdW5kOiAjZjBmYmZmOyBvdXRsaW5lOiBub25lOwogICAgd2lkdGg6IDEwMCU7IG1pbi13aWR0aDogMDsgcmVzaXplOiB2ZXJ0aWNhbDsKICAgIGxpbmUtaGVpZ2h0OiAxLjU7IG1pbi1oZWlnaHQ6IDM2cHg7CiAgfQogIC5lZGl0LXRleHRhcmVhOmZvY3VzIHsgYm9yZGVyLWNvbG9yOiB2YXIoLS1uYXZ5KTsgYmFja2dyb3VuZDogI2ZmZjsgfQoKICAvKiDilIDilIAgU1RBVFVTIEJBUiDilIDilIAgKi8KICAuc3RhdHVzLWJhciB7CiAgICBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47CiAgICBwYWRkaW5nOiA5LjFweCAxOC4xcHg7IGJhY2tncm91bmQ6IHZhcigtLXdoaXRlKTsKICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWJvcmRlcik7IGJvcmRlci1yYWRpdXM6IDdweDsKICAgIGZsZXgtc2hyaW5rOiAwOyBmb250LXNpemU6IDEwLjlweDsgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93KTsKICB9CgogIC8qIOKUgOKUgCBUT0FTVCDilIDilIAgKi8KICAudG9hc3QgewogICAgcG9zaXRpb246IGZpeGVkOyBib3R0b206IDIwcHg7IHJpZ2h0OiAyMHB4OwogICAgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7IGNvbG9yOiAjZmZmOyBwYWRkaW5nOiAxOC4xcHggMzIuNnB4OwogICAgYm9yZGVyLXJhZGl1czogOXB4OyBmb250LXNpemU6IDExLjlweDsgZm9udC13ZWlnaHQ6IDYwMDsKICAgIGJveC1zaGFkb3c6IDAgNHB4IDE4cHggcmdiYSgwLDAsMCwuMjIpOyB6LWluZGV4OiA5OTk5OwogICAgZGlzcGxheTogZmxleDsgYWxpZ24taXRlbXM6IGNlbnRlcjsgZ2FwOiA3cHg7CiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoNzBweCk7IG9wYWNpdHk6IDA7IHRyYW5zaXRpb246IGFsbCAuMjhzIGVhc2U7CiAgfQogIC50b2FzdC5zaG93IHsgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApOyBvcGFjaXR5OiAxOyB9CiAgLnRvYXN0LnN1Y2Nlc3MgeyBib3JkZXItbGVmdDogNHB4IHNvbGlkIHZhcigtLXVwKTsgfQogIC50b2FzdC5lcnJvciAgIHsgYm9yZGVyLWxlZnQ6IDRweCBzb2xpZCB2YXIoLS1kb3duKTsgfQoKICAvKiDilIDilIAgTU9EQUwg4pSA4pSAICovCiAgLm1vZGFsLW92ZXJsYXkgewogICAgcG9zaXRpb246IGZpeGVkOyBpbnNldDogMDsgYmFja2dyb3VuZDogcmdiYSgxMywyNyw0MiwuNSk7CiAgICB6LWluZGV4OiA1MDA7IGRpc3BsYXk6IGZsZXg7IGFsaWduLWl0ZW1zOiBjZW50ZXI7IGp1c3RpZnktY29udGVudDogY2VudGVyOwogICAgb3BhY2l0eTogMDsgcG9pbnRlci1ldmVudHM6IG5vbmU7IHRyYW5zaXRpb246IG9wYWNpdHkgLjJzOwogIH0KICAubW9kYWwtb3ZlcmxheS5vcGVuIHsgb3BhY2l0eTogMTsgcG9pbnRlci1ldmVudHM6IGFsbDsgfQogIC5tb2RhbCB7CiAgICBiYWNrZ3JvdW5kOiAjZmZmOyBib3JkZXItcmFkaXVzOiAxMnB4OyBwYWRkaW5nOiA0My4zcHg7CiAgICB3aWR0aDogNDAwcHg7IG1heC13aWR0aDogOTV2dzsKICAgIGJveC1zaGFkb3c6IDAgOHB4IDQwcHggcmdiYSgwLDAsMCwuMTgpOwogICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDE4cHgpOyB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gLjJzOwogIH0KICAubW9kYWwtb3ZlcmxheS5vcGVuIC5tb2RhbCB7IHRyYW5zZm9ybTogdHJhbnNsYXRlWSgwKTsgfQogIC5tb2RhbCBoMyAgeyBmb250LXNpemU6IDE0LjhweDsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLW5hdnkpOyBtYXJnaW4tYm90dG9tOiAxMHB4OyB9CiAgLm1vZGFsIHAgICB7IGZvbnQtc2l6ZTogMTEuOXB4OyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IGxpbmUtaGVpZ2h0OiAxLjY7IG1hcmdpbi1ib3R0b206IDE4cHg7IH0KICAubW9kYWwtZm9vdGVyIHsgZGlzcGxheTogZmxleDsganVzdGlmeS1jb250ZW50OiBmbGV4LWVuZDsgZ2FwOiA4cHg7IH0KCiAgQG1lZGlhIHByaW50IHsKICAgIGhlYWRlciwucGVyaW9kLW5hdiwuc3RhdHVzLWJhciwuY2FyZC1jb250cm9scywuYWRkLXNlY3Rpb24sLmJ0biB7IGRpc3BsYXk6bm9uZSFpbXBvcnRhbnQ7IH0KICAgIC5yYXRlLWNhcmQgeyBib3gtc2hhZG93Om5vbmU7IGJvcmRlcjoxcHggc29saWQgI2NjYzsgfQogIH0KPC9zdHlsZT4KPC9oZWFkPgo8Ym9keT4KCjwhLS0gSEVBREVSIC0tPgo8aGVhZGVyPgogIDxkaXYgY2xhc3M9ImhlYWRlci1icmFuZCI+CiAgICA8ZGl2IGNsYXNzPSJsb2dvIj7wn5qiPC9kaXY+CiAgICA8ZGl2PgogICAgICA8aDE+7Jq07J6EIOyduOyEvO2LsOu4jCDqtIDrpqw8L2gxPgogICAgICA8c21hbGw+RnJlaWdodCBSYXRlICZhbXA7IEluY2VudGl2ZSBUcmFja2VyPC9zbWFsbD4KICAgIDwvZGl2PgogIDwvZGl2PgogIDxkaXYgY2xhc3M9ImhlYWRlci1hY3Rpb25zIj4KICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tb3V0bGluZSIgb25jbGljaz0idG9nZ2xlQWRkRm9ybSgpIj7vvIsg6riw6rCEIOy2lOqwgDwvYnV0dG9uPgogICAgPGJ1dHRvbiBjbGFzcz0iYnRuIGJ0bi1kYW5nZXIiIG9uY2xpY2s9ImNvbmZpcm1EZWxldGVQZXJpb2QoKSI+8J+XkSDquLDqsIQg7IKt7KCcPC9idXR0b24+CiAgICAKICA8L2Rpdj4KPC9oZWFkZXI+Cgo8ZGl2IGNsYXNzPSJwYWdlIj4KCiAgPCEtLSBQRVJJT0QgTkFWIC0tPgogIDxkaXYgY2xhc3M9InBlcmlvZC1uYXYiIGlkPSJwZXJpb2ROYXYiPjwvZGl2PgoKICA8IS0tIEFERCBGT1JNIC0tPgogIDxkaXYgY2xhc3M9ImFkZC1zZWN0aW9uIiBpZD0iYWRkU2VjdGlvbiIgc3R5bGU9ImRpc3BsYXk6bm9uZTsiPgogICAgPGgzPvCfk4sg7IOIIOq4sOqwhCDstpTqsIA8L2gzPgogICAgPGRpdiBjbGFzcz0iZm9ybS1yb3ciPgogICAgICA8ZGl2IGNsYXNzPSJmb3JtLWdyb3VwIj4KICAgICAgICA8bGFiZWw+7Jew64+EPC9sYWJlbD4KICAgICAgICA8c2VsZWN0IGlkPSJuZXdZZWFyIiBvbmNoYW5nZT0ic3luY01vbnRoT3B0aW9ucygpIj48b3B0aW9uIHZhbHVlPSIyMDI5Ij4yMDI564WEPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iMjAyOCI+MjAyOOuFhDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjIwMjciPjIwMjfrhYQ8L29wdGlvbj48b3B0aW9uIHZhbHVlPSIyMDI2Ij4yMDI264WEPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iMjAyNSI+MjAyNeuFhDwvb3B0aW9uPjwvc2VsZWN0PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZm9ybS1ncm91cCI+CiAgICAgICAgPGxhYmVsPuyblDwvbGFiZWw+CiAgICAgICAgPHNlbGVjdCBpZD0ibmV3TW9udGgiPjxvcHRpb24gdmFsdWU9IjEiPjHsm5Q8L29wdGlvbj48b3B0aW9uIHZhbHVlPSIyIj4y7JuUPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iMyI+M+yblDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjQiPjTsm5Q8L29wdGlvbj48b3B0aW9uIHZhbHVlPSI1Ij417JuUPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iNiI+NuyblDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjciPjfsm5Q8L29wdGlvbj48b3B0aW9uIHZhbHVlPSI4Ij447JuUPC9vcHRpb24+PG9wdGlvbiB2YWx1ZT0iOSI+OeyblDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjEwIj4xMOyblDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjExIj4xMeyblDwvb3B0aW9uPjxvcHRpb24gdmFsdWU9IjEyIj4xMuyblDwvb3B0aW9uPjwvc2VsZWN0PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0iZm9ybS1ncm91cCI+CiAgICAgICAgPGxhYmVsPuyDgS/tlZjrsJjquLA8L2xhYmVsPgogICAgICAgIDxzZWxlY3QgaWQ9Im5ld0hhbGYiPgogICAgICAgICAgPG9wdGlvbiB2YWx1ZT0i7IOB67CY6riwIj7sg4HrsJjquLAgKDF+MTXsnbwpPC9vcHRpb24+CiAgICAgICAgICA8b3B0aW9uIHZhbHVlPSLtlZjrsJjquLAiPu2VmOuwmOq4sCAoMTZ+66eQ7J28KTwvb3B0aW9uPgogICAgICAgIDwvc2VsZWN0PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBzdHlsZT0iZGlzcGxheTpmbGV4O2dhcDo2cHg7YWxpZ24taXRlbXM6ZmxleC1lbmQ7Ij4KICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLXN1Y2Nlc3MiIG9uY2xpY2s9ImFkZE5ld1BlcmlvZCgpIj7stpTqsIA8L2J1dHRvbj4KICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLWdob3N0IiBzdHlsZT0iY29sb3I6dmFyKC0tdGV4dCk7YmFja2dyb3VuZDp2YXIoLS1zdXJmYWNlLWFsdCk7IiBvbmNsaWNrPSJ0b2dnbGVBZGRGb3JtKCkiPuy3qOyGjDwvYnV0dG9uPgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAgPHAgY2xhc3M9ImZvcm0taGludCI+KiDstZzsi6Ag6riw6rCEIOuNsOydtO2EsOulvCDrs7XsgqztlbQg7IOd7ISx7ZWp64uI64ukLiDstpTqsIAg7ZuEIO2OuOynkSDrqqjrk5zsl5DshJwg6rCS7J2EIOyImOygle2VmOyEuOyalC48L3A+CiAgPC9kaXY+CgogIDwhLS0gU1RBVFVTIEJBUiAtLT4KICA8ZGl2IGNsYXNzPSJzdGF0dXMtYmFyIj4KICAgIDxzcGFuIGlkPSJjdXJyZW50UGVyaW9kTGFiZWwiPu2YhOyerCDrs7TquLA6IDIwMjbrhYQgNuyblCDtlZjrsJjquLA8L3NwYW4+CiAgICA8ZGl2IHN0eWxlPSJkaXNwbGF5OmZsZXg7Z2FwOjZweDsiPgogICAgICA8YnV0dG9uIGNsYXNzPSJidG4iIHN0eWxlPSJiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UtYWx0KTtjb2xvcjp2YXIoLS10ZXh0KTsiIG9uY2xpY2s9IndpbmRvdy5wcmludCgpIj7wn5aoIOyduOyHhDwvYnV0dG9uPgogICAgICAKICAgIDwvZGl2PgogIDwvZGl2PgoKICA8IS0tIE1BSU4gQ0FSRCAtLT4KICA8ZGl2IGNsYXNzPSJyYXRlLWNhcmQiPgogICAgPGRpdiBjbGFzcz0icmF0ZS1jYXJkLWhlYWRlciI+CiAgICAgIDxkaXYgY2xhc3M9ImNhcmQtdGl0bGUiPgogICAgICAgIPCfk6Yg7Jq07J6EICZhbXA7IOyduOyEvO2LsOu4jAogICAgICAgIDxzcGFuIGNsYXNzPSJwZXJpb2QtYmFkZ2UiIGlkPSJjYXJkQmFkZ2UiPjIwMjbrhYQgNuyblCDtlZjrsJjquLA8L3NwYW4+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJjYXJkLWNvbnRyb2xzIj4KICAgICAgICA8ZGl2IGNsYXNzPSJoYWxmLXRvZ2dsZSI+CiAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJoYWxmLWJ0biIgb25jbGljaz0ic3dpdGNoSGFsZign7IOB67CY6riwJyx0aGlzKSI+7IOB67CY6riwPC9idXR0b24+CiAgICAgICAgICA8YnV0dG9uIGNsYXNzPSJoYWxmLWJ0biBhY3RpdmUiIG9uY2xpY2s9InN3aXRjaEhhbGYoJ+2VmOuwmOq4sCcsdGhpcykiPu2VmOuwmOq4sDwvYnV0dG9uPgogICAgICAgIDwvZGl2PgogICAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tZ2hvc3QiIGlkPSJlZGl0QnRuIiBvbmNsaWNrPSJ0b2dnbGVFZGl0KCkiIHN0eWxlPSIiPuKcj++4jyDtjrjsp5E8L2J1dHRvbj4KICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLXN1Y2Nlc3MiIGlkPSJzYXZlQnRuIiBvbmNsaWNrPSJzYXZlRWRpdCgpIiBzdHlsZT0iZGlzcGxheTogbm9uZTsiPuKckyDsoIDsnqU8L2J1dHRvbj4KICAgICAgICA8YnV0dG9uIGNsYXNzPSJidG4gYnRuLWdob3N0IiBpZD0iY2FuY2VsQnRuIiBvbmNsaWNrPSJjYW5jZWxFZGl0KCkiIHN0eWxlPSJkaXNwbGF5OiBub25lOyI+7Leo7IaMPC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CgogICAgPGRpdiBjbGFzcz0idGFibGUtd3JhcCI+CiAgICAgIDx0YWJsZSBpZD0icmF0ZVRhYmxlIj4KICAgICAgICA8Y29sZ3JvdXA+CiAgICAgICAgICA8Y29sIGNsYXNzPSJjLXBvcnQiPjxjb2wgY2xhc3M9ImMtbGluZSI+CiAgICAgICAgICA8Y29sIGNsYXNzPSJjLXJhdGUiPjxjb2wgY2xhc3M9ImMtcmF0ZSI+CiAgICAgICAgICA8Y29sIGNsYXNzPSJjLXJhdGUiPjxjb2wgY2xhc3M9ImMtcmF0ZSI+CiAgICAgICAgICA8Y29sIGNsYXNzPSJjLWluYyI+PGNvbCBjbGFzcz0iYy1pbmMiPgogICAgICAgICAgPGNvbCBjbGFzcz0iYy1ub21pIj48Y29sIGNsYXNzPSJjLW9mIj4KICAgICAgICAgIDxjb2wgY2xhc3M9ImMtbm90ZSI+CiAgICAgICAgPC9jb2xncm91cD4KICAgICAgICA8dGhlYWQ+CiAgICAgICAgICA8dHI+CiAgICAgICAgICAgIDx0aD5QT1JUPC90aD48dGg+TElORTwvdGg+CiAgICAgICAgICAgIDx0aD4yMCc8L3RoPjx0aD4yMCdSRDwvdGg+CiAgICAgICAgICAgIDx0aD40MCc8L3RoPjx0aD40MCdSRDwvdGg+CiAgICAgICAgICAgIDx0aD5JTkNFTlRJVkUgKDIwJyk8L3RoPjx0aD5JTkNFTlRJVkUgKDQwJyk8L3RoPgogICAgICAgICAgICA8dGg+Tk9NSTwvdGg+PHRoPk9GPC90aD4KICAgICAgICAgICAgPHRoPuu5hOqzoDwvdGg+CiAgICAgICAgICA8L3RyPgogICAgICAgIDwvdGhlYWQ+CiAgICAgICAgPHRib2R5IGlkPSJyYXRlQm9keSI+PHRyPjx0ZD48ZGl2IGNsYXNzPSJwb3J0LXN0YWNrIj48c3BhbiBjbGFzcz0icG9ydC10YWciPlNZRDwvc3Bhbj48c3BhbiBjbGFzcz0icG9ydC10YWciPk1FTDwvc3Bhbj48c3BhbiBjbGFzcz0icG9ydC10YWciPkJORTwvc3Bhbj48L2Rpdj48L3RkPjx0ZCBjbGFzcz0ibGluZS1jZWxsIj5DT1NDTzwvdGQ+PHRkIGNsYXNzPSJyYXRlLXZhbCI+JDEsNzAyPHNwYW4gY2xhc3M9ImRlbHRhLXVwIj7ilrI0MDA8L3NwYW4+PC90ZD48dGQgY2xhc3M9InJhdGUtdmFsIj4kMSw0Nzc8c3BhbiBjbGFzcz0iZGVsdGEtdXAiPuKWsjMwMDwvc3Bhbj48L3RkPjx0ZCBjbGFzcz0icmF0ZS12YWwiPiQzLDEwNDxzcGFuIGNsYXNzPSJkZWx0YS11cCI+4payNjAwPC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJyYXRlLXZhbCI+JDIsNDA0PHNwYW4gY2xhc3M9ImRlbHRhLXVwIj7ilrIzMDA8L3NwYW4+PC90ZD48dGQgY2xhc3M9ImluYy1jZWxsIj4mbHQ7IDIwIGNibSAxNS8yMDxicj4mZ3Q7IDIwIGNibSAyOS80NDwvdGQ+PHRkIGNsYXNzPSJpbmMtY2VsbCI+Jmx0OyA0MCBjYm0gMjgvNDM8YnI+Jmd0OyA0MCBjYm0gMzgvNTM8L3RkPjx0ZCBjbGFzcz0ibm9taS1jZWxsIj40NTwvdGQ+PHRkIGNsYXNzPSJvZi1jZWxsIj4zNTwvdGQ+PHRkIGNsYXNzPSJub3RlLWNlbGwiPjwvdGQ+PC90cj48dHI+PHRkPjxzcGFuIGNsYXNzPSJwb3J0LXNpbmdsZSI+QUtMPC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJsaW5lLWNlbGwiPkNPU0NPPC90ZD48dGQgY2xhc3M9InJhdGUtdmFsIj4kMSwyNzI8c3BhbiBjbGFzcz0iZGVsdGEtdXAiPuKWsjIyNTwvc3Bhbj48L3RkPjx0ZCBjbGFzcz0icmF0ZS12YWwiPiQxLDEyMjxzcGFuIGNsYXNzPSJkZWx0YS11cCI+4payMjAwPC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJyYXRlLXZhbCI+JDIsNTQ0PHNwYW4gY2xhc3M9ImRlbHRhLXVwIj7ilrI0NTA8L3NwYW4+PC90ZD48dGQgY2xhc3M9InJhdGUtdmFsIj4kMiwyNDQ8c3BhbiBjbGFzcz0iZGVsdGEtdXAiPuKWsjQwMDwvc3Bhbj48L3RkPjx0ZCBjbGFzcz0iaW5jLWNlbGwiPjI1LzM1PC90ZD48dGQgY2xhc3M9ImluYy1jZWxsIj4yNS8zNTwvdGQ+PHRkIGNsYXNzPSJub21pLWNlbGwiPjQ1PC90ZD48dGQgY2xhc3M9Im9mLWNlbGwiPjM1PC90ZD48dGQgY2xhc3M9Im5vdGUtY2VsbCI+PC90ZD48L3RyPjx0cj48dGQ+PHNwYW4gY2xhc3M9InBvcnQtc2luZ2xlIj5EWEI8L3NwYW4+PC90ZD48dGQgY2xhc3M9ImxpbmUtY2VsbCI+SE1NPC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJyYXRlLWVtcHR5Ij7igJQ8L3RkPjx0ZCBjbGFzcz0icmF0ZS1lbXB0eSI+4oCUPC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJpbmMtY2VsbCI+RjM1L1JUICsgMzUvU0hJUDwvdGQ+PHRkIGNsYXNzPSJpbmMtY2VsbCI+4oCUPC90ZD48dGQgY2xhc3M9Im5vbWktY2VsbCI+4oCUPC90ZD48dGQgY2xhc3M9Im9mLWNlbGwiPuKAlDwvdGQ+PHRkIGNsYXNzPSJub3RlLWNlbGwiPjwvdGQ+PC90cj48dHI+PHRkPjxzcGFuIGNsYXNzPSJwb3J0LXNpbmdsZSI+RFhCPC9zcGFuPjwvdGQ+PHRkIGNsYXNzPSJsaW5lLWNlbGwiPkVTTDwvdGQ+PHRkIGNsYXNzPSJyYXRlLXZhbCI+JDUsMjc1PC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJyYXRlLXZhbCI+JDYsOTUwPC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJpbmMtY2VsbCI+4oCUPC90ZD48dGQgY2xhc3M9ImluYy1jZWxsIj7igJQ8L3RkPjx0ZCBjbGFzcz0ibm9taS1jZWxsIj4xNTA8L3RkPjx0ZCBjbGFzcz0ib2YtY2VsbCI+MTUwPC90ZD48dGQgY2xhc3M9Im5vdGUtY2VsbCI+RVNMIEJVU0FOIOyatOyehCA8YnI+7J207ZuEIOuqqOyEoCDsmrTsnoQg66q7IOuwm+ydjCA8YnI+N+yblCDsg4HrsJjquLAg7Jq07J6EIOyalOyyre2VmOq4sCA8L3RkPjwvdHI+PHRyPjx0ZD48c3BhbiBjbGFzcz0icG9ydC1zaW5nbGUiPkFMWDwvc3Bhbj48L3RkPjx0ZCBjbGFzcz0ibGluZS1jZWxsIj5DT1NDTzwvdGQ+PHRkIGNsYXNzPSJyYXRlLWVtcHR5Ij7igJQ8L3RkPjx0ZCBjbGFzcz0icmF0ZS1lbXB0eSI+4oCUPC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJyYXRlLWVtcHR5Ij7igJQ8L3RkPjx0ZCBjbGFzcz0iaW5jLWNlbGwiPjM4PC90ZD48dGQgY2xhc3M9ImluYy1jZWxsIj4zODwvdGQ+PHRkIGNsYXNzPSJub21pLWNlbGwiPuKAlDwvdGQ+PHRkIGNsYXNzPSJvZi1jZWxsIj7igJQ8L3RkPjx0ZCBjbGFzcz0ibm90ZS1jZWxsIj48L3RkPjwvdHI+PHRyPjx0ZD48c3BhbiBjbGFzcz0icG9ydC1zaW5nbGUiPkRVUjwvc3Bhbj48L3RkPjx0ZCBjbGFzcz0ibGluZS1jZWxsIj5PTkUgTElORTwvdGQ+PHRkIGNsYXNzPSJyYXRlLWVtcHR5Ij7igJQ8L3RkPjx0ZCBjbGFzcz0icmF0ZS1lbXB0eSI+4oCUPC90ZD48dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+PHRkIGNsYXNzPSJyYXRlLWVtcHR5Ij7igJQ8L3RkPjx0ZCBjbGFzcz0iaW5jLWNlbGwiPjQ4PC90ZD48dGQgY2xhc3M9ImluYy1jZWxsIj40ODwvdGQ+PHRkIGNsYXNzPSJub21pLWNlbGwiPuKAlDwvdGQ+PHRkIGNsYXNzPSJvZi1jZWxsIj7igJQ8L3RkPjx0ZCBjbGFzcz0ibm90ZS1jZWxsIj48L3RkPjwvdHI+PC90Ym9keT4KICAgICAgPC90YWJsZT4KICAgIDwvZGl2PgogIDwvZGl2PgoKPC9kaXY+PCEtLSAvcGFnZSAtLT4KCjwhLS0gREVMRVRFIE1PREFMIC0tPgo8ZGl2IGNsYXNzPSJtb2RhbC1vdmVybGF5IiBpZD0iZGVsZXRlTW9kYWwiPgogIDxkaXYgY2xhc3M9Im1vZGFsIj4KICAgIDxoMz7wn5eRIOq4sOqwhCDsgq3soJw8L2gzPgogICAgPHAgaWQ9ImRlbGV0ZU1vZGFsTXNnIj48L3A+CiAgICA8ZGl2IGNsYXNzPSJtb2RhbC1mb290ZXIiPgogICAgICA8YnV0dG9uIGNsYXNzPSJidG4iIHN0eWxlPSJiYWNrZ3JvdW5kOnZhcigtLXN1cmZhY2UtYWx0KTtjb2xvcjp2YXIoLS10ZXh0KTsiIG9uY2xpY2s9ImNsb3NlRGVsZXRlTW9kYWwoKSI+7Leo7IaMPC9idXR0b24+CiAgICAgIDxidXR0b24gY2xhc3M9ImJ0biBidG4tZGFuZ2VyIiBvbmNsaWNrPSJleGVjdXRlUGVyaW9kRGVsZXRlKCkiPuyCreygnDwvYnV0dG9uPgogICAgPC9kaXY+CiAgPC9kaXY+CjwvZGl2PgoKPGRpdiBjbGFzcz0idG9hc3Qgc3VjY2VzcyBzaG93IiBpZD0idG9hc3QiPuKckyDsoIDsnqXrkJjsl4jsirXri4jri6QuPC9kaXY+Cgo8c2NyaXB0PgovLyDilIDilIDilIAgREFUQSDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKY29uc3QgQVBJX1VSTCA9ICdodHRwczovL3NjcmlwdC5nb29nbGUuY29tL21hY3Jvcy9zL0FLZnljYndoX2hkdmtkbDZFd0NXTnpBTV9xNnVqZkliUzZPR0stQURnSHZJc3lPXzRkNXhPN3hGZ1B0R0FBNUI2djk0VG9ZL2V4ZWMnOwpsZXQgREFUQSA9IHt9OwoKCmxldCBwZXJpb2RzID0gW107CgpmdW5jdGlvbiBwU29ydChhLGIpewogIGNvbnN0IFt5YSxtYV09YS5zcGxpdCgnLicpLCBbeWIsbWJdPWIuc3BsaXQoJy4nKTsKICByZXR1cm4gKCt5YioxMDAgKyBwYXJzZUludChtYikpIC0gKCt5YSoxMDAgKyBwYXJzZUludChtYSkpOwp9CgovLyDilIDilIDilIAgSU5JVCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKYXN5bmMgZnVuY3Rpb24gaW5pdCgpIHsKICBkb2N1bWVudC5ib2R5Lmluc2VydEFkamFjZW50SFRNTCgnYWZ0ZXJiZWdpbicsCiAgICAnPGRpdiBpZD0ibGQtb3ZlcmxheSIgc3R5bGU9InBvc2l0aW9uOmZpeGVkO2luc2V0OjA7YmFja2dyb3VuZDpyZ2JhKDAsMCwwLDAuNik7ei1pbmRleDo5OTk5O2Rpc3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtjb2xvcjojZmZmO2ZvbnQtc2l6ZToxNXB4O2ZvbnQtZmFtaWx5OnNhbnMtc2VyaWYiPuKPsyDrjbDsnbTthLAg67aI65+s7Jik64qUIOykkS4uLjwvZGl2PicKICApOwogIHRyeSB7CiAgICBjb25zdCByID0gYXdhaXQgZmV0Y2goQVBJX1VSTCArICc/YWN0aW9uPWdldCcpOwogICAgY29uc3QgZCA9IGF3YWl0IHIuanNvbigpOwogICAgaWYgKGQub2sgJiYgZC5kYXRhKSBEQVRBID0gZC5kYXRhOwogIH0gY2F0Y2goZSkgeyBjb25zb2xlLmVycm9yKCfroZzrk5wg7Iuk7YyoOicsIGUpOyB9CgogIGNvbnN0IG92ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2xkLW92ZXJsYXknKTsKICBpZiAob3YpIG92LnJlbW92ZSgpOwoKICBwZXJpb2RzID0gT2JqZWN0LmtleXMoREFUQSkuc29ydChwU29ydCk7CiAgaWYgKCFwZXJpb2RzLmxlbmd0aCkgcmV0dXJuOwoKICBjdXJyZW50UGVyaW9kID0gcGVyaW9kc1swXTsKICBjdXJyZW50SGFsZiA9IERBVEFbY3VycmVudFBlcmlvZF0/Llsn7ZWY67CY6riwJ10/Lmxlbmd0aCA/ICftlZjrsJjquLAnIDogJ+yDgeuwmOq4sCc7CgogIGJ1aWxkWWVhck9wdGlvbnMoKTsKICByZW5kZXJQZXJpb2ROYXYoKTsKCiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLmhhbGYtYnRuJykuZm9yRWFjaChiID0+IHsKICAgIGIuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJywgYi50ZXh0Q29udGVudC50cmltKCkgPT09IGN1cnJlbnRIYWxmKTsKICB9KTsKCiAgdXBkYXRlTGFiZWxzKCk7CiAgcmVuZGVyVGFibGUoKTsKfQoKCmZ1bmN0aW9uIGJ1aWxkWWVhck9wdGlvbnMoKSB7CiAgY29uc3QgeWVhcnMgPSBuZXcgU2V0KHBlcmlvZHMubWFwKHAgPT4gewogICAgY29uc3QgeXkgPSBwLnNwbGl0KCcuJylbMF07CiAgICByZXR1cm4geXkubGVuZ3RoPT09MiA/IDIwMDArcGFyc2VJbnQoeXkpIDogcGFyc2VJbnQoeXkpOwogIH0pKTsKICBjb25zdCBtaW4gPSBNYXRoLm1pbiguLi55ZWFycyksIG1heCA9IDIwMjk7CiAgY29uc3Qgc2VsID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25ld1llYXInKTsKICBzZWwuaW5uZXJIVE1MID0gJyc7CiAgZm9yIChsZXQgeT1tYXg7IHk+PW1pbjsgeS0tKSB7CiAgICBjb25zdCBvPWRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ29wdGlvbicpOwogICAgby52YWx1ZT15OyBvLnRleHRDb250ZW50PXkrJ+uFhCc7IHNlbC5hcHBlbmRDaGlsZChvKTsKICB9CiAgc3luY01vbnRoT3B0aW9ucygpOwp9CgpmdW5jdGlvbiBzeW5jTW9udGhPcHRpb25zKCkgewogIGNvbnN0IHllYXIgPSBwYXJzZUludChkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbmV3WWVhcicpLnZhbHVlKTsKICBjb25zdCB5eSAgID0gU3RyaW5nKHllYXIpLnNsaWNlKC0yKTsKICBjb25zdCBzZWwgID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25ld01vbnRoJyk7CiAgc2VsLmlubmVySFRNTCA9ICcnOwogIGZvciAobGV0IG09MTsgbTw9MTI7IG0rKykgewogICAgY29uc3Qga2V5ICA9IGAke3l5fS4ke219YDsKICAgIGNvbnN0IGZ1bGwgPSBEQVRBW2tleV0/Llsn7IOB67CY6riwJ10gJiYgREFUQVtrZXldPy5bJ+2VmOuwmOq4sCddOwogICAgY29uc3QgbyAgICA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ29wdGlvbicpOwogICAgby52YWx1ZSA9IG07IG8udGV4dENvbnRlbnQgPSBtKyfsm5QnKyhmdWxsPycgKOyZhOujjCknOicnKTsgby5kaXNhYmxlZD0hIWZ1bGw7CiAgICBzZWwuYXBwZW5kQ2hpbGQobyk7CiAgfQogIGZvciAoY29uc3QgbyBvZiBzZWwub3B0aW9ucykgeyBpZiAoIW8uZGlzYWJsZWQpe28uc2VsZWN0ZWQ9dHJ1ZTticmVhazt9IH0KfQoKLy8g4pSA4pSA4pSAIFBFUklPRCBOQVYg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACmZ1bmN0aW9uIHJlbmRlclBlcmlvZE5hdigpIHsKICBjb25zdCBuYXYgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGVyaW9kTmF2Jyk7CiAgbmF2LmlubmVySFRNTCA9ICcnOwogIHBlcmlvZHMuZm9yRWFjaCgocCxpKSA9PiB7CiAgICBjb25zdCBiID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYnV0dG9uJyk7CiAgICBiLmNsYXNzTmFtZSA9ICdwZXJpb2QtdGFiJysoaT09PTA/JyBsYXRlc3QnOicnKTsKICAgIGIudGV4dENvbnRlbnQgPSBmbXRQZXJpb2QocCk7CiAgICBiLmRhdGFzZXQucGVyaW9kID0gcDsKICAgIGIub25jbGljayA9ICgpID0+IHNlbGVjdFBlcmlvZChwKTsKICAgIG5hdi5hcHBlbmRDaGlsZChiKTsKICB9KTsKfQoKZnVuY3Rpb24gZm10UGVyaW9kKHApIHsKICBjb25zdCBbeSxtXT1wLnNwbGl0KCcuJyk7CiAgY29uc3QgeWVhciA9IHkubGVuZ3RoPT09MiA/ICcyMCcreSA6IHk7CiAgY29uc3QgbW9udGggPSBTdHJpbmcocGFyc2VJbnQobSkpOwogIHJldHVybiBgJHt5ZWFyfeuFhCAke21vbnRofeyblGA7Cn0KCmZ1bmN0aW9uIHNlbGVjdFBlcmlvZChwKSB7CiAgY3VycmVudFBlcmlvZCA9IHA7CiAgaWYgKCFEQVRBW2N1cnJlbnRQZXJpb2RdPy5bY3VycmVudEhhbGZdIHx8IERBVEFbY3VycmVudFBlcmlvZF1bY3VycmVudEhhbGZdLmxlbmd0aCA9PT0gMCkgewogICAgY3VycmVudEhhbGYgPSBjdXJyZW50SGFsZiA9PT0gJ+2VmOuwmOq4sCcgPyAn7IOB67CY6riwJyA6ICftlZjrsJjquLAnOwogIH0KICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcucGVyaW9kLXRhYicpLmZvckVhY2godCA9PiB7CiAgICB0LmNsYXNzTGlzdC50b2dnbGUoJ2FjdGl2ZScsIHQuZGF0YXNldC5wZXJpb2QgPT09IHApOwogIH0pOwogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5oYWxmLWJ0bicpLmZvckVhY2goYiA9PiB7CiAgICBiLmNsYXNzTGlzdC50b2dnbGUoJ2FjdGl2ZScsIGIudGV4dENvbnRlbnQudHJpbSgpID09PSBjdXJyZW50SGFsZik7CiAgfSk7CiAgdXBkYXRlTGFiZWxzKCk7CiAgaXNFZGl0aW5nID8gcmVuZGVyRWRpdFRhYmxlKCkgOiByZW5kZXJUYWJsZSgpOwp9CgoKZnVuY3Rpb24gc3dpdGNoSGFsZihoYWxmLCBidG4pIHsKICBjdXJyZW50SGFsZiA9IGhhbGY7CiAgZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLmhhbGYtYnRuJykuZm9yRWFjaChiPT5iLmNsYXNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpKTsKICBidG4uY2xhc3NMaXN0LmFkZCgnYWN0aXZlJyk7CiAgdXBkYXRlTGFiZWxzKCk7CiAgaXNFZGl0aW5nID8gcmVuZGVyRWRpdFRhYmxlKCkgOiByZW5kZXJUYWJsZSgpOwp9CgovLyDilIDilIDilIAgTUVSR0UgTE9HSUMg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACi8vIEluc3RlYWQgb2Ygcm93c3Bhbiwgd2UgY29sbGFwc2UgY29uc2VjdXRpdmUgTUVSR0VfR1JPVVAgcm93cyBpbnRvIE9ORSByb3cKLy8gYnkgam9pbmluZyB0aGVpciBkYXRhLiBUaGUgYW5jaG9yIHJvdyAoU1lEKSBjYXJyaWVzIHRoZSB2YWx1ZXM7Ci8vIE1FTC9CTkUgcm93cyBhcmUgc2tpcHBlZCBlbnRpcmVseS4KZnVuY3Rpb24gYnVpbGRHcm91cHMocm93cykgewogIGNvbnN0IG91dCA9IFtdOyAgIC8vIGFycmF5IG9mIHsgZGlzcGxheVJvdywgc291cmNlSWR4cywgaXNNZXJnZWQgfQogIGxldCBpID0gMDsKICB3aGlsZSAoaSA8IHJvd3MubGVuZ3RoKSB7CiAgICBjb25zdCByID0gcm93c1tpXTsKICAgIGlmICghTUVSR0VfR1JPVVAuaW5jbHVkZXMoci5wb3J0KSkgewogICAgICBvdXQucHVzaCh7IGRpc3BsYXlSb3c6IHIsIHNvdXJjZUlkeHM6IFtpXSwgaXNNZXJnZWQ6IGZhbHNlIH0pOwogICAgICBpKys7IGNvbnRpbnVlOwogICAgfQogICAgLy8gRmluZCBhbGwgY29uc2VjdXRpdmUgTUVSR0VfR1JPVVAgcm93cyB3aXRoIHNhbWUgbGluZQogICAgY29uc3QgYW5jaG9yTGluZSA9IHIubGluZTsKICAgIGNvbnN0IHJ1biA9IFtpXTsKICAgIGxldCBqID0gaSsxOwogICAgd2hpbGUgKGogPCByb3dzLmxlbmd0aCAmJiBNRVJHRV9HUk9VUC5pbmNsdWRlcyhyb3dzW2pdLnBvcnQpICYmIHJvd3Nbal0ubGluZT09PWFuY2hvckxpbmUpIHsKICAgICAgcnVuLnB1c2goaik7IGorKzsKICAgIH0KICAgIC8vIENvbGxlY3Qgbm90ZXMgZnJvbSBhbGwgaW4gZ3JvdXAgKHNraXAgYmxhbmtzLCBkZWR1cGxpY2F0ZSkKICAgIGNvbnN0IG5vdGVzID0gWy4uLm5ldyBTZXQocnVuLm1hcChrPT5yb3dzW2tdLm5vdGUpLmZpbHRlcihCb29sZWFuKSldOwogICAgLy8gTWVyZ2VkIGRpc3BsYXkgcm93OiBwb3J0IGNlbGwgc2hvd3MgYWxsIHBvcnRzLCBvdGhlciB2YWx1ZXMgZnJvbSBhbmNob3IKICAgIGNvbnN0IGRpc3BsYXkgPSB7IC4uLnIsCiAgICAgIF9tZXJnZWRQb3J0czogcnVuLm1hcChrPT5yb3dzW2tdLnBvcnQpLAogICAgICBub3RlOiBub3Rlcy5qb2luKCcgLyAnKQogICAgfTsKICAgIG91dC5wdXNoKHsgZGlzcGxheVJvdzogZGlzcGxheSwgc291cmNlSWR4czogcnVuLCBpc01lcmdlZDogcnVuLmxlbmd0aD4xIH0pOwogICAgaSA9IGo7CiAgfQogIHJldHVybiBvdXQ7Cn0KCi8vIOKUgOKUgOKUgCBSRU5ERVIgKFZJRVcpIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApmdW5jdGlvbiByZW5kZXJUYWJsZSgpIHsKICBjb25zdCB0Ym9keSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdyYXRlQm9keScpOwogIGNvbnN0IHJvd3MgID0gREFUQVtjdXJyZW50UGVyaW9kXT8uW2N1cnJlbnRIYWxmXSB8fCBbXTsKICBjb25zdCBwcmV2ICA9IGdldFByZXYoY3VycmVudFBlcmlvZCwgY3VycmVudEhhbGYpOwogIGNvbnN0IGdyb3Vwcz0gYnVpbGRHcm91cHMocm93cyk7CiAgdGJvZHkuaW5uZXJIVE1MID0gJyc7CgogIGdyb3Vwcy5mb3JFYWNoKGcgPT4gewogICAgY29uc3Qgcm93ID0gZy5kaXNwbGF5Um93OwogICAgY29uc3QgcHJldlJvdyA9IHByZXYgPyBwcmV2LmRhdGEuZmluZChyPT5yLnBvcnQ9PT1yb3cucG9ydCAmJiByLmxpbmU9PT1yb3cubGluZSkgOiBudWxsOwogICAgY29uc3QgdHIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCd0cicpOwoKICAgIC8vIFBPUlQgY2VsbAogICAgbGV0IHBvcnRIdG1sOwogICAgaWYgKGcuaXNNZXJnZWQpIHsKICAgICAgY29uc3QgdGFncyA9IHJvdy5fbWVyZ2VkUG9ydHMubWFwKHA9PmA8c3BhbiBjbGFzcz0icG9ydC10YWciPiR7cH08L3NwYW4+YCkuam9pbignJyk7CiAgICAgIHBvcnRIdG1sID0gYDx0ZD48ZGl2IGNsYXNzPSJwb3J0LXN0YWNrIj4ke3RhZ3N9PC9kaXY+PC90ZD5gOwogICAgfSBlbHNlIHsKICAgICAgcG9ydEh0bWwgPSBgPHRkPjxzcGFuIGNsYXNzPSJwb3J0LXNpbmdsZSI+JHtyb3cucG9ydH08L3NwYW4+PC90ZD5gOwogICAgfQoKICAgIHRyLmlubmVySFRNTCA9CiAgICAgIHBvcnRIdG1sICsKICAgICAgYDx0ZCBjbGFzcz0ibGluZS1jZWxsIj4ke3Jvdy5saW5lfTwvdGQ+YCArCiAgICAgIHJDZWxsKHJvdy50MjAsICAgcHJldlJvdz8udDIwKSAgICsKICAgICAgckNlbGwocm93LnQyMHJkLCBwcmV2Um93Py50MjByZCkgKwogICAgICByQ2VsbChyb3cudDQwLCAgIHByZXZSb3c/LnQ0MCkgICArCiAgICAgIHJDZWxsKHJvdy50NDByZCwgcHJldlJvdz8udDQwcmQpICsKICAgICAgYDx0ZCBjbGFzcz0iaW5jLWNlbGwiPiR7Zm10SW5jKHJvdy5pbmMyMCl9PC90ZD5gICsKICAgICAgYDx0ZCBjbGFzcz0iaW5jLWNlbGwiPiR7Zm10SW5jKHJvdy5pbmM0MCl9PC90ZD5gICsKICAgICAgYDx0ZCBjbGFzcz0ibm9taS1jZWxsIj4ke3Jvdy5ub21pIT1udWxsP3Jvdy5ub21pOifigJQnfTwvdGQ+YCArCiAgICAgIGA8dGQgY2xhc3M9Im9mLWNlbGwiPiR7cm93Lm9mIT1udWxsP3Jvdy5vZjon4oCUJ308L3RkPmAgKwogICAgICBgPHRkIGNsYXNzPSJub3RlLWNlbGwiPiR7ZXNjKHJvdy5ub3RlfHwnJyl9PC90ZD5gOwoKICAgIHRib2R5LmFwcGVuZENoaWxkKHRyKTsKICB9KTsKfQoKZnVuY3Rpb24gckNlbGwodmFsLCBwcmV2KSB7CiAgaWYgKHZhbD09bnVsbCkgcmV0dXJuIGA8dGQgY2xhc3M9InJhdGUtZW1wdHkiPuKAlDwvdGQ+YDsKICBsZXQgZGVsdGE9Jyc7CiAgaWYgKHByZXYhPW51bGwgJiYgdmFsIT09cHJldikgewogICAgY29uc3QgZD12YWwtcHJldjsKICAgIGRlbHRhID0gZD4wCiAgICAgID8gYDxzcGFuIGNsYXNzPSJkZWx0YS11cCI+4payJHtkfTwvc3Bhbj5gCiAgICAgIDogYDxzcGFuIGNsYXNzPSJkZWx0YS1kb3duIj7ilrwke01hdGguYWJzKGQpfTwvc3Bhbj5gOwogIH0KICByZXR1cm4gYDx0ZCBjbGFzcz0icmF0ZS12YWwiPiQke3ZhbC50b0xvY2FsZVN0cmluZygpfSR7ZGVsdGF9PC90ZD5gOwp9CgpmdW5jdGlvbiBlc2MocykgewogIHJldHVybiBTdHJpbmcocykKICAgIC5yZXBsYWNlKC8mL2csJyZhbXA7JykucmVwbGFjZSgvPC9nLCcmbHQ7JykucmVwbGFjZSgvPi9nLCcmZ3Q7JykKICAgIC5yZXBsYWNlKC9cbi9nLCc8YnI+Jyk7Cn0KCi8vIOyduOyEvO2LsOu4jCDthY3siqTtirjrpbwg67O06riwIOyii+qyjCDtj6zrp7c6Ci8vICI8IDIwIGNibSAxNS8yMCAgPiAyMCBjYm0gMjkvNDQiIOKGkiDrkZAg7KSE66GcCmZ1bmN0aW9uIGZtdEluYyhzKSB7CiAgaWYgKCFzKSByZXR1cm4gJ+KAlCc7CiAgLy8gPCAuLi4gPiAuLi4g7Yyo7YS07J2EIOuRkCDspITroZwg67aE66asCiAgLy8g7Yyo7YS0OiAiPCBYIC4uLiBZL1ogID4gWCAuLi4gWS9aIiAo6rO167CxIDLqsJwg7J207IOB7Jy866GcIOq1rOu2hCkKICBjb25zdCBwYXJ0cyA9IHMuc3BsaXQoL1xzezIsfS8pOwogIGlmIChwYXJ0cy5sZW5ndGggPj0gMikgewogICAgcmV0dXJuIHBhcnRzLm1hcChwID0+IGVzYyhwLnRyaW0oKSkpLmpvaW4oJzxicj4nKTsKICB9CiAgcmV0dXJuIGVzYyhzKTsKfQoKZnVuY3Rpb24gZ2V0UHJldihwZXJpb2QsIGhhbGYpIHsKICBpZiAoaGFsZj09PSftlZjrsJjquLAnKSByZXR1cm4gREFUQVtwZXJpb2RdPy5bJ+yDgeuwmOq4sCddID8ge2RhdGE6REFUQVtwZXJpb2RdWyfsg4HrsJjquLAnXX0gOiBudWxsOwogIGNvbnN0IGlkeD1wZXJpb2RzLmluZGV4T2YocGVyaW9kKTsKICBpZiAoaWR4PHBlcmlvZHMubGVuZ3RoLTEpIHsgY29uc3QgcD1wZXJpb2RzW2lkeCsxXTsgcmV0dXJuIERBVEFbcF0/Llsn7ZWY67CY6riwJ10gPyB7ZGF0YTpEQVRBW3BdWyftlZjrsJjquLAnXX0gOiBudWxsOyB9CiAgcmV0dXJuIG51bGw7Cn0KCi8vIOKUgOKUgOKUgCBFRElUIFRBQkxFIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApmdW5jdGlvbiB0b2dnbGVFZGl0KCkgewogIGlzRWRpdGluZyAgICA9IHRydWU7CiAgZWRpdFNuYXBzaG90ID0gSlNPTi5wYXJzZShKU09OLnN0cmluZ2lmeShEQVRBW2N1cnJlbnRQZXJpb2RdW2N1cnJlbnRIYWxmXSkpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QnRuJykuc3R5bGUuZGlzcGxheSAgID0gJ25vbmUnOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzYXZlQnRuJykuc3R5bGUuZGlzcGxheSAgID0gJyc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhbmNlbEJ0bicpLnN0eWxlLmRpc3BsYXkgPSAnJzsKICByZW5kZXJFZGl0VGFibGUoKTsKfQoKZnVuY3Rpb24gcmVuZGVyRWRpdFRhYmxlKCkgewogIGNvbnN0IHRib2R5ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3JhdGVCb2R5Jyk7CiAgY29uc3Qgcm93cyAgPSBEQVRBW2N1cnJlbnRQZXJpb2RdW2N1cnJlbnRIYWxmXTsKICBjb25zdCBncm91cHM9IGJ1aWxkR3JvdXBzKHJvd3MpOwogIHRib2R5LmlubmVySFRNTCA9ICcnOwoKICBncm91cHMuZm9yRWFjaChnID0+IHsKICAgIGNvbnN0IHJvdyAgPSBnLmRpc3BsYXlSb3c7CiAgICBjb25zdCBhbmNoID0gZy5zb3VyY2VJZHhzWzBdOyAgIC8vIGFuY2hvciBpbmRleCBpbiBEQVRBIGFycmF5CiAgICBjb25zdCBtSWRzID0gZy5zb3VyY2VJZHhzOyAgICAgIC8vIGFsbCBpbmRpY2VzIHRvIHByb3BhZ2F0ZSB0bwoKICAgIGxldCBwb3J0SHRtbDsKICAgIGlmIChnLmlzTWVyZ2VkKSB7CiAgICAgIGNvbnN0IHRhZ3MgPSByb3cuX21lcmdlZFBvcnRzLm1hcChwPT5gPHNwYW4gY2xhc3M9InBvcnQtdGFnIj4ke3B9PC9zcGFuPmApLmpvaW4oJycpOwogICAgICBwb3J0SHRtbCA9IGA8dGQ+PGRpdiBjbGFzcz0icG9ydC1zdGFjayI+JHt0YWdzfTwvZGl2PjwvdGQ+YDsKICAgIH0gZWxzZSB7CiAgICAgIHBvcnRIdG1sID0gYDx0ZD48c3BhbiBjbGFzcz0icG9ydC1zaW5nbGUiPiR7cm93LnBvcnR9PC9zcGFuPjwvdGQ+YDsKICAgIH0KCiAgICBjb25zdCB0ciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3RyJyk7CiAgICBjb25zdCBtaSA9IEpTT04uc3RyaW5naWZ5KG1JZHMpOwoKICAgIHRyLmlubmVySFRNTCA9CiAgICAgIHBvcnRIdG1sICsKICAgICAgYDx0ZCBjbGFzcz0ibGluZS1jZWxsIj4ke3Jvdy5saW5lfTwvdGQ+YCArCiAgICAgIGA8dGQ+JHtlTigndDIwJywgICBhbmNoLCByb3cudDIwLCAgIG1pKX08L3RkPmAgKwogICAgICBgPHRkPiR7ZU4oJ3QyMHJkJywgYW5jaCwgcm93LnQyMHJkLCBtaSl9PC90ZD5gICsKICAgICAgYDx0ZD4ke2VOKCd0NDAnLCAgIGFuY2gsIHJvdy50NDAsICAgbWkpfTwvdGQ+YCArCiAgICAgIGA8dGQ+JHtlTigndDQwcmQnLCBhbmNoLCByb3cudDQwcmQsIG1pKX08L3RkPmAgKwogICAgICBgPHRkPiR7ZVMoJ2luYzIwJywgYW5jaCwgcm93LmluYzIwLCBtaSl9PC90ZD5gICsKICAgICAgYDx0ZD4ke2VTKCdpbmM0MCcsIGFuY2gsIHJvdy5pbmM0MCwgbWkpfTwvdGQ+YCArCiAgICAgIGA8dGQ+JHtlTignbm9taScsICBhbmNoLCByb3cubm9taSwgIG1pLCA0OCl9PC90ZD5gICsKICAgICAgYDx0ZD4ke2VOKCdvZicsICAgIGFuY2gsIHJvdy5vZiwgICAgbWksIDQwKX08L3RkPmAgKwogICAgICBgPHRkPiR7ZVRBKCdub3RlJywgYW5jaCwgcm93Lm5vdGUpfTwvdGQ+YDsKCiAgICB0Ym9keS5hcHBlbmRDaGlsZCh0cik7CiAgfSk7Cn0KCmZ1bmN0aW9uIGVOKGYsaWR4LHZhbCxtaSx3KSB7CiAgY29uc3QgbWEgPSBtaSA/IGBkYXRhLW1pPScke21pfSdgIDogJyc7CiAgcmV0dXJuIGA8aW5wdXQgY2xhc3M9ImVkaXQtaW5wdXQiIHN0eWxlPSJ3aWR0aDoke3d8fDYyfXB4IiB0eXBlPSJudW1iZXIiCiAgICB2YWx1ZT0iJHt2YWwhPW51bGw/dmFsOicnfSIgJHttYX0KICAgIG9uaW5wdXQ9InVjKCcke2Z9Jywke2lkeH0sdGhpcy52YWx1ZSx0cnVlLHRoaXMpIj5gOwp9CmZ1bmN0aW9uIGVTKGYsaWR4LHZhbCxtaSkgewogIGNvbnN0IG1hID0gbWkgPyBgZGF0YS1taT0nJHttaX0nYCA6ICcnOwogIHJldHVybiBgPGlucHV0IGNsYXNzPSJlZGl0LWlucHV0IGxlZnQiIHN0eWxlPSJ3aWR0aDoxMDAlO21pbi13aWR0aDo4MHB4IiB0eXBlPSJ0ZXh0IgogICAgdmFsdWU9IiR7KHZhbHx8JycpLnJlcGxhY2UoLyIvZywnJnF1b3Q7Jyl9IiAke21hfQogICAgb25pbnB1dD0idWMoJyR7Zn0nLCR7aWR4fSx0aGlzLnZhbHVlLGZhbHNlLHRoaXMpIj5gOwp9Ci8vIOu5hOqzoCDsoITsmqkgdGV4dGFyZWEgKOyXlO2EsCDspITrsJTqv4gg7KeA7JuQKQpmdW5jdGlvbiBlVEEoZixpZHgsdmFsKSB7CiAgY29uc3QgdiA9ICh2YWx8fCcnKS5yZXBsYWNlKC88L2csJyZsdDsnKS5yZXBsYWNlKC8+L2csJyZndDsnKTsKICByZXR1cm4gYDx0ZXh0YXJlYSBjbGFzcz0iZWRpdC10ZXh0YXJlYSIgcm93cz0iMiIKICAgIG9uaW5wdXQ9InVjKCcke2Z9Jywke2lkeH0sdGhpcy52YWx1ZSxmYWxzZSx0aGlzKSI+JHt2fTwvdGV4dGFyZWE+YDsKfQpmdW5jdGlvbiB1YyhmLGlkeCx2YWwsaXNOdW0sZWwpIHsKICBjb25zdCBwYXJzZWQgPSBpc051bSA/ICh2YWw9PT0nJz9udWxsOnBhcnNlRmxvYXQodmFsKSkgOiB2YWw7CiAgREFUQVtjdXJyZW50UGVyaW9kXVtjdXJyZW50SGFsZl1baWR4XVtmXSA9IHBhcnNlZDsKICBpZiAoZWw/LmRhdGFzZXQ/Lm1pKSB7CiAgICBKU09OLnBhcnNlKGVsLmRhdGFzZXQubWkpLmZvckVhY2goaSA9PiB7CiAgICAgIERBVEFbY3VycmVudFBlcmlvZF1bY3VycmVudEhhbGZdW2ldW2ZdID0gcGFyc2VkOwogICAgfSk7CiAgfQp9CgpmdW5jdGlvbiBzYXZlRWRpdCgpIHsKICBpc0VkaXRpbmc9ZmFsc2U7IGVkaXRTbmFwc2hvdD1udWxsOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QnRuJykuc3R5bGUuZGlzcGxheSAgID0gJyc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3NhdmVCdG4nKS5zdHlsZS5kaXNwbGF5ICAgPSAnbm9uZSc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhbmNlbEJ0bicpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgcmVuZGVyVGFibGUoKTsgc2hvd1RvYXN0KCfinJMg7KCA7J6l65CY7JeI7Iq164uI64ukLicsJ3N1Y2Nlc3MnKTsKfQpmdW5jdGlvbiBjYW5jZWxFZGl0KCkgewogIERBVEFbY3VycmVudFBlcmlvZF1bY3VycmVudEhhbGZdPWVkaXRTbmFwc2hvdDsKICBpc0VkaXRpbmc9ZmFsc2U7IGVkaXRTbmFwc2hvdD1udWxsOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdlZGl0QnRuJykuc3R5bGUuZGlzcGxheSAgID0gJyc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3NhdmVCdG4nKS5zdHlsZS5kaXNwbGF5ICAgPSAnbm9uZSc7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhbmNlbEJ0bicpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgcmVuZGVyVGFibGUoKTsKfQoKLy8g4pSA4pSA4pSAIEFERCBQRVJJT0Qg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACmZ1bmN0aW9uIHRvZ2dsZUFkZEZvcm0oKSB7CiAgY29uc3QgcyA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZGRTZWN0aW9uJyk7CiAgcy5zdHlsZS5kaXNwbGF5ID0gcy5zdHlsZS5kaXNwbGF5PT09J25vbmUnID8gJycgOiAnbm9uZSc7CiAgaWYgKHMuc3R5bGUuZGlzcGxheSE9PSdub25lJykgc3luY01vbnRoT3B0aW9ucygpOwp9CgpmdW5jdGlvbiBhZGROZXdQZXJpb2QoKSB7CiAgY29uc3QgeWVhciAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbmV3WWVhcicpLnZhbHVlOwogIGNvbnN0IG1vbnRoID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25ld01vbnRoJykudmFsdWU7CiAgY29uc3QgaGFsZiAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbmV3SGFsZicpLnZhbHVlOwogIGNvbnN0IHl5ICAgID0gU3RyaW5nKHllYXIpLnNsaWNlKC0yKTsKICBjb25zdCBrZXkgICA9IGAke3l5fS4ke1N0cmluZyhtb250aCkucGFkU3RhcnQoMiwiMCIpfWA7CgogIGlmICghREFUQVtrZXldKSBEQVRBW2tleV09e307CiAgaWYgKERBVEFba2V5XVtoYWxmXSkgeyBzaG93VG9hc3QoJ+ydtOuvuCDsobTsnqztlZjripQg6riw6rCE7J6F64uI64ukLicsJ2Vycm9yJyk7IHJldHVybjsgfQoKICBjb25zdCBsayA9IHBlcmlvZHNbMF07CiAgY29uc3QgbGggPSBEQVRBW2xrXVsn7IOB67CY6riwJ10gPyAn7IOB67CY6riwJyA6ICftlZjrsJjquLAnOwogIERBVEFba2V5XVtoYWxmXSA9IEpTT04ucGFyc2UoSlNPTi5zdHJpbmdpZnkoREFUQVtsa11bbGhdKSk7CiAgREFUQVtrZXldW2hhbGZdLmZvckVhY2gocj0+e3Iubm90ZT0nJzt9KTsKCiAgaWYgKCFwZXJpb2RzLmluY2x1ZGVzKGtleSkpIHBlcmlvZHMucHVzaChrZXkpOwogIHBlcmlvZHMuc29ydChwU29ydCk7CgogIHJlbmRlclBlcmlvZE5hdigpOwogIGN1cnJlbnRIYWxmID0gaGFsZjsKICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuaGFsZi1idG4nKS5mb3JFYWNoKGI9PmIuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJyxiLnRleHRDb250ZW50PT09aGFsZikpOwogIHNlbGVjdFBlcmlvZChrZXkpOwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZGRTZWN0aW9uJykuc3R5bGUuZGlzcGxheT0nbm9uZSc7CiAgc2hvd1RvYXN0KGDinJMgJHtmbXRQZXJpb2Qoa2V5KX0gJHtoYWxmfSDstpTqsIAg7JmE66OMISDtjrjsp5HsnLzroZwg6rCS7J2EIOyImOygle2VmOyEuOyalC5gLCdzdWNjZXNzJyk7Cn0KCi8vIOKUgOKUgOKUgCBERUxFVEUgUEVSSU9EIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApmdW5jdGlvbiBjb25maXJtRGVsZXRlUGVyaW9kKCkgewogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdkZWxldGVNb2RhbE1zZycpLmlubmVySFRNTCA9CiAgICBgPHN0cm9uZz4ke2ZtdFBlcmlvZChjdXJyZW50UGVyaW9kKX0gJHtjdXJyZW50SGFsZn08L3N0cm9uZz7snYQo66W8KSDsgq3soJztlZjsi5zqsqDsirXri4jquYw/PGJyPjxicj4KICAgICDqsJnsnYAg7JuU7J2YIOuwmOuMgCDrsJjquLDqsIAg7J6I7Jy866m0IO2VtOuLuSDsm5TsnYAg7Jyg7KeA65Cp64uI64ukLjxicj7sgq3soJwg7ZuEIOuzteq1rO2VoCDsiJgg7JeG7Iq164uI64ukLmA7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2RlbGV0ZU1vZGFsJykuY2xhc3NMaXN0LmFkZCgnb3BlbicpOwp9CmZ1bmN0aW9uIGNsb3NlRGVsZXRlTW9kYWwoKSB7IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdkZWxldGVNb2RhbCcpLmNsYXNzTGlzdC5yZW1vdmUoJ29wZW4nKTsgfQoKZnVuY3Rpb24gZXhlY3V0ZVBlcmlvZERlbGV0ZSgpIHsKICBjbG9zZURlbGV0ZU1vZGFsKCk7CiAgY29uc3Qga2V5ID0gY3VycmVudFBlcmlvZDsKICBkZWxldGUgREFUQVtrZXldW2N1cnJlbnRIYWxmXTsKICBpZiAoIU9iamVjdC5rZXlzKERBVEFba2V5XSkubGVuZ3RoKSB7CiAgICBkZWxldGUgREFUQVtrZXldOwogICAgY29uc3QgaT1wZXJpb2RzLmluZGV4T2Yoa2V5KTsgaWYoaT4tMSkgcGVyaW9kcy5zcGxpY2UoaSwxKTsKICB9CiAgcmVuZGVyUGVyaW9kTmF2KCk7CiAgaWYgKCFwZXJpb2RzLmxlbmd0aCkgewogICAgY3VycmVudFBlcmlvZD1udWxsOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3JhdGVCb2R5JykuaW5uZXJIVE1MPScnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NhcmRCYWRnZScpLnRleHRDb250ZW50PSfigJQnOwogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2N1cnJlbnRQZXJpb2RMYWJlbCcpLnRleHRDb250ZW50PSfquLDqsIQg7JeG7J2MJzsKICAgIHNob3dUb2FzdCgn7IKt7KCc65CY7JeI7Iq164uI64ukLicsJ3N1Y2Nlc3MnKTsgcmV0dXJuOwogIH0KICBpZiAoREFUQVtrZXldPy5bY3VycmVudEhhbGZdKSB7IHNlbGVjdFBlcmlvZChrZXkpOyB9CiAgZWxzZSBpZiAoREFUQVtrZXldKSB7CiAgICBjb25zdCBvaD1jdXJyZW50SGFsZj09PSfsg4HrsJjquLAnPyftlZjrsJjquLAnOifsg4HrsJjquLAnOwogICAgY3VycmVudEhhbGY9b2g7CiAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuaGFsZi1idG4nKS5mb3JFYWNoKGI9PmIuY2xhc3NMaXN0LnRvZ2dsZSgnYWN0aXZlJyxiLnRleHRDb250ZW50PT09b2gpKTsKICAgIHNlbGVjdFBlcmlvZChrZXkpOwogIH0gZWxzZSB7IHNlbGVjdFBlcmlvZChwZXJpb2RzWzBdKTsgfQogIHNob3dUb2FzdCgn8J+XkSDsgq3soJzrkJjsl4jsirXri4jri6QuJywnc3VjY2VzcycpOwp9CgovLyDilIDilIDilIAgRVhQT1JUIOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgApmdW5jdGlvbiBleHBvcnRIVE1MKCkgewogIGNvbnN0IHNlciA9IEpTT04uc3RyaW5naWZ5KERBVEEsbnVsbCwyKTsKICBjb25zdCBodG1sID0gZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50Lm91dGVySFRNTDsKICBjb25zdCB1cGRhdGVkID0gaHRtbC5yZXBsYWNlKAogICAgL2NvbnN0IERBVEEgPSBce1tcc1xTXSo/XH07XG5cblwvXC8g4pSAKyBTVEFURS8sCiAgICBgY29uc3QgREFUQSA9ICR7c2VyfTtcblxuLy8g4pSA4pSA4pSAIFNUQVRFYAogICk7CiAgY29uc3QgYmxvYj1uZXcgQmxvYihbdXBkYXRlZF0se3R5cGU6J3RleHQvaHRtbDtjaGFyc2V0PXV0Zi04J30pOwogIGNvbnN0IGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnYScpOwogIGEuaHJlZj1VUkwuY3JlYXRlT2JqZWN0VVJMKGJsb2IpOwogIGEuZG93bmxvYWQ9YGluY2VudGl2ZV9yYXRlc18ke25ldyBEYXRlKCkudG9JU09TdHJpbmcoKS5zbGljZSgwLDEwKX0uaHRtbGA7CiAgYS5jbGljaygpOwogIHNob3dUb2FzdCgn8J+SviBIVE1MIOyggOyepSDsmYTro4whJywnc3VjY2VzcycpOwp9CgpmdW5jdGlvbiBjb3B5VGFibGVUZXh0KCkgewogIGNvbnN0IHJvd3M9REFUQVtjdXJyZW50UGVyaW9kXT8uW2N1cnJlbnRIYWxmXXx8W107CiAgY29uc3QgaGRyPWBQT1JUXHRMSU5FXHQyMCdcdDIwJ1JEXHQ0MCdcdDQwJ1JEXHRJTkNFTlRJVkUoMjAnKVx0SU5DRU5USVZFKDQwJylcdE5PTUlcdE9GXHTruYTqs6BgOwogIGNvbnN0IGxpbmVzPXJvd3MubWFwKHI9PltyLnBvcnQsci5saW5lLHIudDIwPz8nJyxyLnQyMHJkPz8nJyxyLnQ0MD8/Jycsci50NDByZD8/Jycsci5pbmMyMD8/Jycsci5pbmM0MD8/Jycsci5ub21pPz8nJyxyLm9mPz8nJyxyLm5vdGU/PycnXS5qb2luKCdcdCcpKTsKICBuYXZpZ2F0b3IuY2xpcGJvYXJkLndyaXRlVGV4dChbaGRyLC4uLmxpbmVzXS5qb2luKCdcbicpKS50aGVuKCgpPT5zaG93VG9hc3QoJ/Cfk4sg67O17IKs65CY7JeI7Iq164uI64ukIScsJ3N1Y2Nlc3MnKSk7Cn0KCi8vIOKUgOKUgOKUgCBUT0FTVCDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIAKZnVuY3Rpb24gc2hvd1RvYXN0KG1zZyx0eXBlPSdzdWNjZXNzJykgewogIGNvbnN0IHQ9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RvYXN0Jyk7CiAgdC50ZXh0Q29udGVudD1tc2c7IHQuY2xhc3NOYW1lPWB0b2FzdCAke3R5cGV9IHNob3dgOwogIHNldFRpbWVvdXQoKCk9PnQuY2xhc3NMaXN0LnJlbW92ZSgnc2hvdycpLDMwMDApOwp9CgovLyDilIDilIDilIAgU1RBUlQg4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSACmluaXQoKTsKPC9zY3JpcHQ+CgoKPC9ib2R5PjwvaHRtbD4=';
+const AUS_HTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Australia Destination Charge Calculator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f5f5f3;color:#1a1a1a;font-size:14px}
+.container{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
+.bl-card{background:#fff;border:1px solid #e5e5e3;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1rem;display:grid;gap:12px;align-items:end}
+.bl-card.cols3{grid-template-columns:2fr 1fr 1fr}
+.bl-card.cols3b{grid-template-columns:1fr 1fr 1fr}
+.field label{font-size:12px;color:#888;display:block;margin-bottom:5px;font-weight:500}
+.field select,.field input{width:100%;padding:8px 10px;font-size:14px;border:1px solid #ddd;border-radius:8px;background:#fff;color:#1a1a1a;outline:none}
+.field select:focus,.field input:focus{border-color:#999}
+.bl-input{font-size:14px!important;font-weight:400!important;letter-spacing:0;text-transform:none;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif!important;background:#fff!important}
+.bl-input::placeholder{color:#bbb}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.metric{background:#f9f9f8;border-radius:8px;padding:12px 14px}
+.metric .mlabel{font-size:11px;color:#999;margin-bottom:3px;font-weight:500}
+.metric .mval{font-size:20px;font-weight:600}
+.mval.neg{color:#d04a4a}
+.table-wrap{background:#fff;border:1px solid #e5e5e3;border-radius:12px;overflow:hidden;margin-bottom:1rem}
+.table-header{padding:10px 16px;background:#2c2c2c;display:flex;justify-content:space-between;align-items:center}
+.table-header .port{font-size:14px;font-weight:600;color:#fff}
+.type-badge{font-size:11px;padding:3px 9px;border-radius:20px;background:#e8f0fe;color:#3b5bdb;font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+th{text-align:left;padding:8px 12px;color:#999;font-weight:500;border-bottom:1px solid #eee;font-size:12px;background:#fafaf9}
+th.r{text-align:right}
+td{padding:6px 12px;border-bottom:1px solid #f0f0f0;color:#1a1a1a}
+td.r{text-align:right}
+td.diff-neg{text-align:right;color:#d04a4a;font-weight:500}
+td.diff-pos{text-align:right;color:#2d8a4e;font-weight:500}
+td.diff-zero{text-align:right;color:#aaa}
+.cnee-input{width:80px;padding:4px 7px;font-size:13px;border:1px solid #ddd;border-radius:6px;background:#fff;color:#1a1a1a;text-align:right;outline:none}
+.cnee-input:focus{border-color:#888}
+tfoot tr td{padding:9px 12px;font-weight:600;background:#f5f5f3;border-bottom:none;border-top:1px solid #e5e5e3}
+.pdf-btn{width:100%;padding:11px;font-size:14px;font-weight:500;background:#1a1a1a;color:#fff;border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:background 0.15s;margin-bottom:1.5rem}
+.pdf-btn:hover{background:#333}
+.reset-btn{width:100%;padding:8px 10px;font-size:13px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;color:#888;transition:border-color 0.15s}
+.reset-btn:hover{border-color:#999;color:#555}
 
-const FRAMES={
-  aus:{id:'fr-aus',b64:AUS_B64,loaded:false},
-  inc:{id:'fr-inc',b64:INC_B64,loaded:false}
-};
-const TITLES={
-  home:{t:'홈',b:'LogiDesk · 대시보드'},
-  aus:{t:'호주 도착지 비용',b:'LogiDesk · 계산기'},
-  inc:{t:'선사운임 & 인센티브',b:'LogiDesk · 운임관리'}
+/* PRINT */
+.print-bl-header{display:none}
+@media print{
+  body{background:#fff;font-size:12px}
+  .no-print{display:none!important}
+  .container{max-width:100%;padding:12px 16px}
+  .print-bl-header{
+    display:flex!important;
+    justify-content:space-between;
+    align-items:flex-end;
+    border-bottom:2px solid #1a1a1a;
+    padding-bottom:10px;
+    margin-bottom:16px;
+  }
+  .print-bl-no{font-size:18px;font-weight:700;letter-spacing:1.5px;font-family:monospace;color:#1a1a1a}
+  .print-bl-sub{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+  .print-bl-right{text-align:right;font-size:12px;color:#555;line-height:1.7}
+  .table-wrap{border:1px solid #ccc;border-radius:0;box-shadow:none}
+  .table-header{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#2c2c2c!important}
+  .table-header .port{color:#fff!important}
+  .type-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#e8f0fe!important;color:#3b5bdb!important}
+  .summary-grid{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .metric{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#f9f9f8!important}
+  tfoot tr td{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#f5f5f3!important}
+}
+@media(max-width:600px){
+  .bl-card.cols3,.bl-card.cols3b,.summary-grid{grid-template-columns:1fr 1fr}
+  .bl-card.cols3 .field:first-child{grid-column:span 2}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Print-only BL header -->
+  <div class="print-bl-header">
+    <div>
+      <div class="print-bl-no" id="print-bl-no">—</div>
+      <div class="print-bl-sub">B/L Number</div>
+    </div>
+    <div class="print-bl-right" id="print-bl-right"></div>
+  </div>
+
+  <!-- BL Number + selectors -->
+  <div class="bl-card cols3 no-print">
+    <div class="field">
+      <label>B/L Number</label>
+      <input type="text" id="blNumber" class="bl-input" placeholder="e.g. COSU1234567890" oninput="syncPrint()"/>
+    </div>
+    <div class="field">
+      <label>Destination</label>
+      <select id="port" onchange="render()">
+        <option value="melbourne">Melbourne (AUD)</option>
+        <option value="sydney">Sydney (AUD)</option>
+        <option value="brisbane">Brisbane (AUD)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Consignee Type</label>
+      <select id="cargoType" onchange="render()">
+        <option value="co">Co-loader</option>
+        <option value="direct">Direct Consignee</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- W/M + Exchange (fixed) + Reset -->
+  <div class="bl-card cols3b no-print" style="margin-top:-0.5rem">
+    <div class="field">
+      <label>W/M (CBM)</label>
+      <input type="number" id="cbm" value="1.000" min="0.001" step="0.001" oninput="render()"/>
+    </div>
+    <div class="field">
+      <label>Exchange Rate (AUD → USD)</label>
+      <input type="number" id="exchangeRate" value="0.69" step="0.001" min="0.001" oninput="render()"/>
+    </div>
+    <div class="field" style="display:flex;align-items:flex-end">
+      <button class="reset-btn" onclick="resetCnee()">↺ Reset CNEE Rate</button>
+    </div>
+  </div>
+
+  <!-- Summary metrics -->
+  <div class="summary-grid" id="summaryGrid"></div>
+
+  <!-- Charge table -->
+  <div class="table-wrap" id="tableWrap"></div>
+
+  <!-- PDF button -->
+  <button class="pdf-btn no-print" onclick="window.print()">🖨 Save as PDF / Print</button>
+
+</div>
+<script>
+function getExchange(){ return parseFloat(document.getElementById("exchangeRate").value) || 0.69; }
+
+const RATES = {
+  melbourne:{
+    co:{label:'Co-loader',items:[
+      {name:'Port Service Charge',      cost:90,  unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:25,  unit:'W/M'},
+      {name:'Delivery Order',           cost:40,  unit:'B/L'},
+      {name:'CMR',                      cost:10,  unit:'B/L'},
+      {name:'ISPS',                     cost:10,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]},
+    direct:{label:'Direct Consignee',items:[
+      {name:'Port Service Charge',      cost:110, unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:30,  unit:'W/M'},
+      {name:'Delivery Order',           cost:65,  unit:'B/L'},
+      {name:'CMR',                      cost:25,  unit:'B/L'},
+      {name:'SCA',                      cost:20,  unit:'B/L'},
+      {name:'ISPS',                     cost:15,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]}
+  },
+  sydney:{
+    co:{label:'Co-loader',items:[
+      {name:'Port Service Charge',      cost:90,  unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:25,  unit:'W/M'},
+      {name:'Delivery Order',           cost:40,  unit:'B/L'},
+      {name:'CMR',                      cost:10,  unit:'B/L'},
+      {name:'ISPS',                     cost:10,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'CFS',                      cost:9.5, unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]},
+    direct:{label:'Direct Consignee',items:[
+      {name:'Port Service Charge',      cost:110, unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:30,  unit:'W/M'},
+      {name:'Delivery Order',           cost:65,  unit:'B/L'},
+      {name:'CMR',                      cost:25,  unit:'B/L'},
+      {name:'SCA',                      cost:20,  unit:'B/L'},
+      {name:'ISPS',                     cost:15,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'CFS',                      cost:9.5, unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]}
+  },
+  brisbane:{
+    co:{label:'Co-loader',items:[
+      {name:'Port Service Charge',      cost:90,  unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:25,  unit:'W/M'},
+      {name:'Delivery Order',           cost:40,  unit:'B/L'},
+      {name:'CMR',                      cost:10,  unit:'B/L'},
+      {name:'ISPS',                     cost:10,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'CFS',                      cost:9.5, unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]},
+    direct:{label:'Direct Consignee',items:[
+      {name:'Port Service Charge',      cost:110, unit:'W/M'},
+      {name:'Terminal Handling Charge', cost:30,  unit:'W/M'},
+      {name:'Delivery Order',           cost:65,  unit:'B/L'},
+      {name:'CMR',                      cost:25,  unit:'B/L'},
+      {name:'SCA',                      cost:20,  unit:'B/L'},
+      {name:'ISPS',                     cost:15,  unit:'B/L'},
+      {name:'Infrastructure Fee',       cost:27,  unit:'W/M'},
+      {name:'CFS',                      cost:9.5, unit:'W/M'},
+      {name:'Import Processing Fee',    cost:18,  unit:'W/M'},
+      {name:'Emergency Fuel Surcharge', cost:2,   unit:'W/M'},
+    ]}
+  }
 };
 
-function go(key,navEl){
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));
-  if(navEl){
-    navEl.classList.add('active');
-  } else {
-    document.querySelectorAll('.ni').forEach(n=>{
-      if(n.getAttribute('onclick') && n.getAttribute('onclick').includes("'"+key+"'")) n.classList.add('active');
+let currentCnee = [];
+
+function initCnee(items){ currentCnee = items.map(() => 0); }
+
+function getRows(items, cbm){
+  return items.map((it, i) => {
+    const mult = it.unit === 'W/M' ? cbm : 1;
+    const cneeVal = currentCnee[i] !== null ? currentCnee[i] : 0;
+    const diffRate = cneeVal - it.cost;
+    const diffAmt  = diffRate * mult;
+    return {...it, mult, cneeVal, diffRate, diffAmt};
+  });
+}
+
+function calcTotals(rows){
+  let totalAUD = 0;
+  rows.forEach(r => { totalAUD += r.diffAmt; });
+  return {totalAUD, totalUSD: totalAUD * getExchange()};
+}
+
+function syncPrint(){
+  const bl   = (document.getElementById('blNumber').value.trim() || '—').toUpperCase();
+  const port = document.getElementById('port').value;
+  const type = document.getElementById('cargoType').value;
+  const cbm  = parseFloat(document.getElementById('cbm').value) || 1;
+  const portLabel = {melbourne:'Melbourne',sydney:'Sydney',brisbane:'Brisbane'}[port];
+  document.getElementById('print-bl-no').textContent = bl;
+  document.getElementById('print-bl-right').innerHTML =
+    \`\${portLabel} &nbsp;·&nbsp; \${RATES[port][type].label} &nbsp;·&nbsp; W/M \${cbm.toFixed(3)}<br>\` +
+    \`<span style="color:#aaa;font-size:11px">AUD → USD Exchange Rate: \${getExchange()}</span>\`;
+}
+
+function updateSummary(rows){
+  const cbm = parseFloat(document.getElementById('cbm').value) || 1;
+  const {totalAUD, totalUSD} = calcTotals(rows);
+  const ex = getExchange();
+  document.getElementById('summaryGrid').innerHTML = \`
+    <div class="metric"><div class="mlabel">W/M (CBM)</div><div class="mval">\${cbm.toFixed(3)}</div></div>
+    <div class="metric"><div class="mlabel">Total Difference (AUD)</div><div class="mval neg">\${totalAUD.toFixed(2)}</div></div>
+    <div class="metric"><div class="mlabel">Total Difference (USD @ \${ex})</div><div class="mval neg">\${totalUSD.toFixed(2)}</div></div>
+  \`;
+}
+
+function renderTable(rows, port, type){
+  const {totalAUD, totalUSD} = calcTotals(rows);
+  const portLabel = {melbourne:'Melbourne',sydney:'Sydney',brisbane:'Brisbane'}[port];
+
+  const trs = rows.map((r, i) => {
+    const cneeDisp     = r.cneeVal !== null ? r.cneeVal : 0;
+    const diffRateDisp = r.diffRate.toFixed(2);
+    const diffAmtDisp  = r.diffAmt.toFixed(2);
+    const dc = r.diffAmt < -0.001 ? 'diff-neg' : r.diffAmt > 0.001 ? 'diff-pos' : 'diff-zero';
+    return \`<tr>
+      <td>\${r.name}</td>
+      <td class="r">\${r.unit}</td>
+      <td class="r">\${r.cost.toFixed(2)}</td>
+      <td style="text-align:right"><input class="cnee-input" type="number" value="\${cneeDisp}" step="0.5" data-idx="\${i}" oninput="onCneeChange(this)"/></td>
+      <td class="r">\${diffRateDisp}</td>
+      <td class="\${dc}">\${diffAmtDisp}</td>
+    </tr>\`;
+  }).join('');
+
+  document.getElementById('tableWrap').innerHTML = \`
+    <div class="table-header">
+      <span class="port">\${portLabel} Destination Charges</span>
+      <span class="type-badge">\${RATES[port][type].label}</span>
+    </div>
+    <table>
+      <colgroup><col style="width:30%"><col style="width:9%"><col style="width:13%"><col style="width:15%"><col style="width:13%"><col style="width:14%"></colgroup>
+      <thead><tr>
+        <th>Item</th>
+        <th class="r">Unit</th>
+        <th class="r">Original Cost</th>
+        <th style="text-align:right;padding-right:14px">CNEE Rate ✏️</th>
+        <th class="r">Diff Rate</th>
+        <th class="r">Diff Amt (AUD)</th>
+      </tr></thead>
+      <tbody>\${trs}</tbody>
+      <tfoot>
+        <tr><td colspan="5">Total (AUD)</td><td class="r">\${totalAUD.toFixed(2)}</td></tr>
+        <tr><td colspan="5">Total (USD) &nbsp; Exchange @ \${getExchange()}</td><td class="r">\${totalUSD.toFixed(2)}</td></tr>
+      </tfoot>
+    </table>
+  \`;
+}
+
+function onCneeChange(el){
+  const idx = parseInt(el.dataset.idx);
+  currentCnee[idx] = el.value.trim() === '' ? 0 : parseFloat(el.value);
+  const port = document.getElementById('port').value;
+  const type = document.getElementById('cargoType').value;
+  const cbm  = parseFloat(document.getElementById('cbm').value) || 1;
+  const rows = getRows(RATES[port][type].items, cbm);
+  updateSummary(rows);
+  // in-place update (preserve focus)
+  const tbody = document.querySelector('#tableWrap tbody');
+  const tfoot = document.querySelector('#tableWrap tfoot');
+  if(!tbody) return;
+  tbody.querySelectorAll('tr').forEach((tr, i) => {
+    const r = rows[i];
+    const diffRateDisp = r.diffRate.toFixed(2);
+    const diffAmtDisp  = r.diffAmt.toFixed(2);
+    const dc = r.diffAmt < -0.001 ? 'diff-neg' : r.diffAmt > 0.001 ? 'diff-pos' : 'diff-zero';
+    tr.children[4].textContent = diffRateDisp;
+    tr.children[5].textContent = diffAmtDisp;
+    tr.children[5].className   = dc;
+  });
+  if(tfoot){
+    const {totalAUD, totalUSD} = calcTotals(rows);
+    tfoot.rows[0].cells[1].textContent = totalAUD.toFixed(2);
+    tfoot.rows[1].cells[0].textContent = \`Total (USD)  Exchange @ \${getExchange()}\`;
+    tfoot.rows[1].cells[1].textContent = totalUSD.toFixed(2);
+  }
+  syncPrint();
+}
+
+function resetCnee(){
+  const port = document.getElementById('port').value;
+  const type = document.getElementById('cargoType').value;
+  initCnee(RATES[port][type].items);
+  render();
+}
+
+function render(){
+  const port = document.getElementById('port').value;
+  const type = document.getElementById('cargoType').value;
+  const cbm  = parseFloat(document.getElementById('cbm').value) || 1;
+  initCnee(RATES[port][type].items);
+  const rows = getRows(RATES[port][type].items, cbm);
+  updateSummary(rows);
+  renderTable(rows, port, type);
+  syncPrint();
+}
+
+render();
+</script>
+</body>
+</html>
+`;
+const INC_HTML = `<html lang="ko"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운임 인센티브 관리</title>
+<style>
+  :root {
+    --navy: #0d1b2a; --navy-mid: #1b2e45; --slate: #2c4a6e;
+    --accent: #00b4d8; --accent-light: #90e0ef; --gold: #e08c2e;
+    --surface: #f5f8fb; --surface-alt: #eaeff6;
+    --border: #cdd8e8; --text: #1a2535; --text-muted: #5a7085;
+    --up: #10b981; --down: #ef4444; --white: #fff;
+    --shadow: 0 2px 10px rgba(13,27,42,0.09);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+    background: var(--surface); color: var(--text);
+    display: flex; flex-direction: column;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--navy); color: var(--white);
+    padding: 0 16px; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-brand { display: flex; align-items: center; gap: 8px; }
+  .logo { width: 30px; height: 30px; background: var(--accent); border-radius: 6px;
+          display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  header h1 { font-size: 17px; font-weight: 700; }
+  header small { font-size: 14px; color: var(--accent-light); }
+  .header-actions { display: flex; gap: 6px; align-items: center; }
+
+  /* ── BUTTONS (top-level duplicate removed below) ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 15px; border-radius: 7px; border: none;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all .15s; font-family: inherit; white-space: nowrap;
+  }
+  .btn-primary  { background: var(--accent); color: var(--navy); }
+  .btn-primary:hover { background: var(--accent-light); }
+  .btn-outline  { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
+  .btn-outline:hover { background: rgba(255,255,255,.08); }
+  .btn-danger   { background: var(--down); color: #fff; }
+  .btn-danger:hover { background: #dc2626; }
+  .btn-success  { background: var(--up); color: #fff; }
+  .btn-success:hover { background: #059669; }
+  .btn-ghost    { background: rgba(255,255,255,.12); color: #fff; }
+  .btn-ghost:hover { background: rgba(255,255,255,.2); }
+
+  /* ── MAIN LAYOUT ── */
+  .page {
+    flex: 1; display: flex; flex-direction: column;
+    padding: 10px 20%; gap: 8px;
+    min-height: 0;
+  }
+
+  /* ── PERIOD NAV ── */
+  .period-nav {
+    display: flex; align-items: center; gap: 2px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 3px;
+    overflow-x: auto; flex-shrink: 0;
+    box-shadow: var(--shadow);
+    scrollbar-width: thin;
+  }
+  .period-tab {
+    flex-shrink: 0; padding: 6px 12px; border-radius: 6px; border: none;
+    background: transparent; font-size: 15px; font-weight: 500;
+    color: var(--text-muted); cursor: pointer; transition: all .15s;
+    font-family: inherit; white-space: nowrap;
+  }
+  .period-tab:hover { background: var(--surface-alt); color: var(--text); }
+  .period-tab.active { background: var(--navy); color: #fff; font-weight: 700; }
+  .period-tab.latest::after {
+    content: 'LATEST'; font-size: 9px; background: var(--accent);
+    color: var(--navy); border-radius: 3px; padding: 1px 4px;
+    margin-left: 4px; font-weight: 800; vertical-align: middle;
+  }
+
+  /* ── ADD FORM ── */
+  .add-section {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 16px;
+    box-shadow: var(--shadow); flex-shrink: 0;
+  }
+  .add-section h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .form-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
+  .form-group { display: flex; flex-direction: column; gap: 3px; }
+  .form-group label { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+  .form-group select {
+    padding: 5px 8px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-size: 15px; font-family: inherit; color: var(--text);
+    background: var(--white); outline: none; min-width: 80px;
+  }
+  .form-group select:focus { border-color: var(--accent); }
+  .form-hint { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+
+  /* ── CARD ── */
+  .rate-card {
+    background: var(--white); border-radius: 8px;
+    border: 1px solid var(--border); box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    flex-shrink: 0;
+  }
+  .rate-card-header {
+    background: var(--navy); color: #fff;
+    padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0; flex-wrap: wrap; gap: 6px;
+  }
+  .card-title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+  .period-badge {
+    font-size: 13px; font-weight: 700; padding: 2px 8px;
+    border-radius: 20px; background: var(--accent); color: var(--navy);
+  }
+  .card-controls { display: flex; gap: 5px; align-items: center; }
+
+  .half-toggle { display: flex; background: rgba(255,255,255,.12); border-radius: 6px; padding: 2px; }
+  .half-btn {
+    padding: 5px 13px; border-radius: 4px; border: none;
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    font-family: inherit; color: rgba(255,255,255,.55); background: transparent; transition: all .15s;
+  }
+  .half-btn.active { background: #fff; color: var(--navy); box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+
+  /* ── TABLE WRAPPER ── */
+  .table-wrap { overflow: auto; }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 12px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 7px;
+    flex-shrink: 0; font-size: 15px; color: var(--text-muted);
+    box-shadow: var(--shadow);
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 15px;
+    table-layout: fixed;
+  }
+
+  /* Column widths — 비고 열 넓게 (20자 줄바꿈 기준) */
+  col.c-port  { width: 6%; }
+  col.c-line  { width: 6%; }
+  col.c-rate  { width: 5.5%; }
+  col.c-inc   { width: 13%; }
+  col.c-nomi  { width: 4%; }
+  col.c-of    { width: 4%; }
+  col.c-note  { width: 16%; }
+
+  thead th {
+    background: var(--navy-mid); color: var(--accent-light);
+    font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    text-transform: uppercase; padding: 5px 5px;
+    text-align: center; border-right: 1px solid rgba(255,255,255,.07);
+    position: sticky; top: 0; z-index: 2;
+    white-space: nowrap;
+  }
+
+  tbody tr { border-bottom: 1px solid var(--surface-alt); }
+  tbody tr:hover { background: #f0f8ff; }
+  tbody td {
+    padding: 4.8px 6px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  tbody td:last-child { border-right: none; }
+
+  /* SYD/MEL/BNE 세로 세 줄 */
+  .port-stack {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1px;
+  }
+  .port-tag {
+    font-size: 15px; font-weight: 700; color: var(--slate);
+    white-space: nowrap;
+  }
+  .port-tag + .port-tag::before { content: none; }
+  .port-single { font-size: 15px; font-weight: 700; color: var(--slate); }
+
+  .line-cell  { font-size: 15px; color: var(--text-muted); }
+  .rate-val   { font-weight: 700; color: var(--navy); white-space: nowrap; font-size: 15px; }
+  .rate-empty { color: var(--border); }
+  .delta-up   { color: var(--up);   font-size: 12px; font-weight: 700; display: block; }
+  .delta-down { color: var(--down); font-size: 12px; font-weight: 700; display: block; }
+
+  /* incentive: wrap + center */
+  .inc-cell {
+    white-space: normal; word-break: break-word;
+    font-size: 15px; color: var(--text-muted);
+    text-align: center; line-height: 1.5;
+    overflow: visible;
+  }
+  /* note: wrap + left, 폰트 11px, 열 너비 20자 기준 */
+  .note-cell {
+    white-space: pre-wrap; word-break: break-word;
+    font-size: 11px; color: var(--text-muted);
+    text-align: left; line-height: 1.5;
+    overflow: visible;
+  }
+  .nomi-cell { font-weight: 700; color: var(--up);   font-size: 15px; }
+  .of-cell   { font-weight: 700; color: var(--gold); font-size: 15px; }
+
+  /* ── EDIT ── */
+  .edit-input {
+    padding: 3px 5px; border: 1.5px solid var(--accent); border-radius: 4px;
+    font-size: 13px; font-weight: 600; text-align: center;
+    font-family: inherit; color: var(--navy); background: #f0fbff; outline: none;
+    width: 100%; min-width: 0;
+  }
+  .edit-input:focus { border-color: var(--navy); background: #fff; }
+  .edit-input.left  { text-align: left; }
+  /* 비고 textarea */
+  .edit-textarea {
+    padding: 3px 5px; border: 1.5px solid var(--accent); border-radius: 4px;
+    font-size: 13px; font-family: inherit; color: var(--navy);
+    background: #f0fbff; outline: none;
+    width: 100%; min-width: 0; resize: vertical;
+    line-height: 1.5; min-height: 36px;
+  }
+  .edit-textarea:focus { border-color: var(--navy); background: #fff; }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 5px 10px; background: var(--white);
+    border: 1px solid var(--border); border-radius: 7px;
+    flex-shrink: 0; font-size: 11px; color: var(--text-muted);
+    box-shadow: var(--shadow);
+  }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--navy); color: #fff; padding: 10px 18px;
+    border-radius: 9px; font-size: 12px; font-weight: 600;
+    box-shadow: 0 4px 18px rgba(0,0,0,.22); z-index: 9999;
+    display: flex; align-items: center; gap: 7px;
+    transform: translateY(70px); opacity: 0; transition: all .28s ease;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success { border-left: 4px solid var(--up); }
+  .toast.error   { border-left: 4px solid var(--down); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(13,27,42,.5);
+    z-index: 500; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: #fff; border-radius: 12px; padding: 24px;
+    width: 400px; max-width: 95vw;
+    box-shadow: 0 8px 40px rgba(0,0,0,.18);
+    transform: translateY(18px); transition: transform .2s;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal h3  { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .modal p   { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-bottom: 18px; }
+  .modal-footer { display: flex; justify-content: flex-end; gap: 8px; }
+
+  @media print {
+    header,.period-nav,.status-bar,.card-controls,.add-section,.btn { display:none!important; }
+    .rate-card { box-shadow:none; border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-brand">
+    <div class="logo">🚢</div>
+    <div>
+      <h1>운임 인센티브 관리</h1>
+      <small>Freight Rate &amp; Incentive Tracker</small>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-outline" onclick="toggleAddForm()">＋ 기간 추가</button>
+    <button class="btn btn-danger" onclick="confirmDeletePeriod()">🗑 기간 삭제</button>
+    <button class="btn btn-primary" onclick="exportHTML()">💾 HTML 저장</button>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- PERIOD NAV -->
+  <div class="period-nav" id="periodNav"><button class="period-tab latest active" data-period="26.6">2026년 6월</button><button class="period-tab" data-period="26.5">2026년 5월</button><button class="period-tab" data-period="26.4">2026년 4월</button><button class="period-tab" data-period="26.3">2026년 3월</button><button class="period-tab" data-period="26.2">2026년 2월</button><button class="period-tab" data-period="26.1">2026년 1월</button><button class="period-tab" data-period="25.12">2025년 12월</button></div>
+
+  <!-- ADD FORM -->
+  <div class="add-section" id="addSection" style="display:none;">
+    <h3>📋 새 기간 추가</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>연도</label>
+        <select id="newYear" onchange="syncMonthOptions()"><option value="2029">2029년</option><option value="2028">2028년</option><option value="2027">2027년</option><option value="2026">2026년</option><option value="2025">2025년</option></select>
+      </div>
+      <div class="form-group">
+        <label>월</label>
+        <select id="newMonth"><option value="1">1월</option><option value="2">2월</option><option value="3">3월</option><option value="4">4월</option><option value="5">5월</option><option value="6">6월</option><option value="7">7월</option><option value="8">8월</option><option value="9">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select>
+      </div>
+      <div class="form-group">
+        <label>상/하반기</label>
+        <select id="newHalf">
+          <option value="상반기">상반기 (1~15일)</option>
+          <option value="하반기">하반기 (16~말일)</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end;">
+        <button class="btn btn-success" onclick="addNewPeriod()">추가</button>
+        <button class="btn btn-ghost" style="color:var(--text);background:var(--surface-alt);" onclick="toggleAddForm()">취소</button>
+      </div>
+    </div>
+    <p class="form-hint">* 최신 기간 데이터를 복사해 생성합니다. 추가 후 편집 모드에서 값을 수정하세요.</p>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <span id="currentPeriodLabel">현재 보기: 2026년 6월 하반기</span>
+    <div style="display:flex;gap:6px;">
+      <button class="btn" style="background:var(--surface-alt);color:var(--text);" onclick="window.print()">🖨 인쇄</button>
+      <button class="btn btn-primary" onclick="copyTableText()">📋 텍스트 복사</button>
+    </div>
+  </div>
+
+  <!-- MAIN CARD -->
+  <div class="rate-card">
+    <div class="rate-card-header">
+      <div class="card-title">
+        📦 운임 &amp; 인센티브
+        <span class="period-badge" id="cardBadge">2026년 6월 하반기</span>
+      </div>
+      <div class="card-controls">
+        <div class="half-toggle">
+          <button class="half-btn" onclick="switchHalf('상반기',this)">상반기</button>
+          <button class="half-btn active" onclick="switchHalf('하반기',this)">하반기</button>
+        </div>
+        <button class="btn btn-ghost" id="editBtn" onclick="toggleEdit()" style="">✏️ 편집</button>
+        <button class="btn btn-success" id="saveBtn" onclick="saveEdit()" style="display: none;">✓ 저장</button>
+        <button class="btn btn-ghost" id="cancelBtn" onclick="cancelEdit()" style="display: none;">취소</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="rateTable">
+        <colgroup>
+          <col class="c-port"><col class="c-line">
+          <col class="c-rate"><col class="c-rate">
+          <col class="c-rate"><col class="c-rate">
+          <col class="c-inc"><col class="c-inc">
+          <col class="c-nomi"><col class="c-of">
+          <col class="c-note">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>PORT</th><th>LINE</th>
+            <th>20'</th><th>20'RD</th>
+            <th>40'</th><th>40'RD</th>
+            <th>INCENTIVE (20')</th><th>INCENTIVE (40')</th>
+            <th>NOMI</th><th>OF</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody id="rateBody"><tr><td><div class="port-stack"><span class="port-tag">SYD</span><span class="port-tag">MEL</span><span class="port-tag">BNE</span></div></td><td class="line-cell">COSCO</td><td class="rate-val">$1,702<span class="delta-up">▲400</span></td><td class="rate-val">$1,477<span class="delta-up">▲300</span></td><td class="rate-val">$3,104<span class="delta-up">▲600</span></td><td class="rate-val">$2,404<span class="delta-up">▲300</span></td><td class="inc-cell">&lt; 20 cbm 15/20<br>&gt; 20 cbm 29/44</td><td class="inc-cell">&lt; 40 cbm 28/43<br>&gt; 40 cbm 38/53</td><td class="nomi-cell">45</td><td class="of-cell">35</td><td class="note-cell"></td></tr><tr><td><span class="port-single">AKL</span></td><td class="line-cell">COSCO</td><td class="rate-val">$1,272<span class="delta-up">▲225</span></td><td class="rate-val">$1,122<span class="delta-up">▲200</span></td><td class="rate-val">$2,544<span class="delta-up">▲450</span></td><td class="rate-val">$2,244<span class="delta-up">▲400</span></td><td class="inc-cell">25/35</td><td class="inc-cell">25/35</td><td class="nomi-cell">45</td><td class="of-cell">35</td><td class="note-cell"></td></tr><tr><td><span class="port-single">DXB</span></td><td class="line-cell">HMM</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="inc-cell">F35/RT + 35/SHIP</td><td class="inc-cell">—</td><td class="nomi-cell">—</td><td class="of-cell">—</td><td class="note-cell"></td></tr><tr><td><span class="port-single">DXB</span></td><td class="line-cell">ESL</td><td class="rate-val">$5,275</td><td class="rate-empty">—</td><td class="rate-val">$6,950</td><td class="rate-empty">—</td><td class="inc-cell">—</td><td class="inc-cell">—</td><td class="nomi-cell">150</td><td class="of-cell">150</td><td class="note-cell">ESL BUSAN 운임 <br>이후 모선 운임 못 받음 <br>7월 상반기 운임 요청하기 </td></tr><tr><td><span class="port-single">ALX</span></td><td class="line-cell">COSCO</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="inc-cell">38</td><td class="inc-cell">38</td><td class="nomi-cell">—</td><td class="of-cell">—</td><td class="note-cell"></td></tr><tr><td><span class="port-single">DUR</span></td><td class="line-cell">ONE LINE</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="rate-empty">—</td><td class="inc-cell">48</td><td class="inc-cell">48</td><td class="nomi-cell">—</td><td class="of-cell">—</td><td class="note-cell"></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- DELETE MODAL -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal">
+    <h3>🗑 기간 삭제</h3>
+    <p id="deleteModalMsg"></p>
+    <div class="modal-footer">
+      <button class="btn" style="background:var(--surface-alt);color:var(--text);" onclick="closeDeleteModal()">취소</button>
+      <button class="btn btn-danger" onclick="executePeriodDelete()">삭제</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast success show" id="toast">✓ 저장되었습니다.</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const DATA = {
+  "26.6": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1702,
+        "t20rd": 1477,
+        "t40": 3104,
+        "t40rd": 2404,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1272,
+        "t20rd": 1122,
+        "t40": 2544,
+        "t40rd": 2244,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "ESL",
+        "t20": 5275,
+        "t20rd": null,
+        "t40": 6950,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 150,
+        "of": 150,
+        "note": "ESL BUSAN 운임 \\n이후 모선 운임 못 받음 \\n7월 상반기 운임 요청하기 "
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1302,
+        "t20rd": 1177,
+        "t40": 2504,
+        "t40rd": 2104,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 45,
+        "of": 35,
+        "note": "327/654 인상"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1047,
+        "t20rd": 922,
+        "t40": 2094,
+        "t40rd": 1844,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 45,
+        "of": 35,
+        "note": "85/170 인하"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": "ESL KABIR $150/RT"
+      },
+      {
+        "port": "DXB",
+        "line": "ESL",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "26.5": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 975,
+        "t20rd": 850,
+        "t40": 1850,
+        "t40rd": 1650,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 35,
+        "of": 25,
+        "note": "100/200 인상"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 35,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 35,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1132,
+        "t20rd": 1007,
+        "t40": 2264,
+        "t40rd": 2014,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 50,
+        "of": 35,
+        "note": "100/200 인상"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": "GFS GALAXY $150"
+      },
+      {
+        "port": "DXB",
+        "line": "ESL",
+        "t20": 4600,
+        "t20rd": null,
+        "t40": 5600,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": "BRISBANE EXPRESS $140"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 875,
+        "t20rd": 750,
+        "t40": 1650,
+        "t40rd": 1450,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 35,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 35,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 35,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1032,
+        "t20rd": 907,
+        "t40": 2064,
+        "t40rd": 1814,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "ESL",
+        "t20": 4600,
+        "t20rd": null,
+        "t40": 5600,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "26.4": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 875,
+        "t20rd": 750,
+        "t40": 1650,
+        "t40rd": 1450,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 25,
+        "of": 25,
+        "note": "271/542 인상"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 25,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1032,
+        "t20rd": 907,
+        "t40": 2064,
+        "t40rd": 1814,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 45,
+        "of": 40,
+        "note": "211/422 인상"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 604,
+        "t20rd": 479,
+        "t40": 1108,
+        "t40rd": 908,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 25,
+        "of": 15,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 15,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 15,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 821,
+        "t20rd": 696,
+        "t40": 1642,
+        "t40rd": 1392,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "26.3": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 600,
+        "t20rd": null,
+        "t40": 1100,
+        "t40rd": null,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 25,
+        "of": 15,
+        "note": "100/200 인하"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 15,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 25,
+        "of": 15,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 850,
+        "t20rd": null,
+        "t40": 1700,
+        "t40rd": null,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "100/200 인하"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1267,
+        "t20rd": null,
+        "t40": 1810,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 15,
+        "of": 5,
+        "note": "280/400 인상"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": 1750,
+        "t40": 1800,
+        "t40rd": 1800,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 700,
+        "t20rd": 575,
+        "t40": 1300,
+        "t40rd": 1100,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 30,
+        "of": 20,
+        "note": "유지"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 30,
+        "of": 20,
+        "note": ""
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 30,
+        "of": 20,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 950,
+        "t20rd": 800,
+        "t40": 1900,
+        "t40rd": 1600,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "유지"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1267,
+        "t20rd": null,
+        "t40": 1810,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 20,
+        "of": 15,
+        "note": "280/400 인상"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": 1750,
+        "t40": 1800,
+        "t40rd": 1800,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "26.2": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 700,
+        "t20rd": 575,
+        "t40": 1300,
+        "t40rd": 1100,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 30,
+        "of": 20,
+        "note": "250/500 인하"
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 30,
+        "of": 20,
+        "note": "ALS JUNO 모선부터 적용"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 30,
+        "of": 20,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 950,
+        "t20rd": 800,
+        "t40": 1900,
+        "t40rd": 1600,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "유지"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 987,
+        "t20rd": null,
+        "t40": 1410,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 10,
+        "of": 5,
+        "note": "유지"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": 1750,
+        "t40": 1800,
+        "t40rd": 1800,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 950,
+        "t20rd": 825,
+        "t40": 1800,
+        "t40rd": 1600,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 40,
+        "of": 30,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 40,
+        "of": 30,
+        "note": "200/400 인하"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 40,
+        "of": 30,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 950,
+        "t20rd": 900,
+        "t40": 2100,
+        "t40rd": 1800,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 987,
+        "t20rd": null,
+        "t40": 1410,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 10,
+        "of": 5,
+        "note": "노미운임 2/10일 모선부터 적용 // 343/490 인하"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "26.1": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1150,
+        "t20rd": 1050,
+        "t40": 2200,
+        "t40rd": 2000,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 50,
+        "of": 40,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 40,
+        "note": "100/200 인하"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 40,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1050,
+        "t20rd": 950,
+        "t40": 2100,
+        "t40rd": 1900,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1400,
+        "t20rd": null,
+        "t40": 2000,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 20,
+        "of": 15,
+        "note": "210/300 인하"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1250,
+        "t20rd": 1125,
+        "t40": 2400,
+        "t40rd": 2200,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 50,
+        "of": 40,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 40,
+        "note": "150/300 인상"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 40,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1050,
+        "t20rd": 950,
+        "t40": 2100,
+        "t40rd": 1900,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "50/100 인상"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1610,
+        "t20rd": null,
+        "t40": 2300,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 20,
+        "of": 15,
+        "note": "210/300 인상"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  },
+  "25.12": {
+    "하반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1100,
+        "t20rd": 975,
+        "t40": 2100,
+        "t40rd": 1900,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": "200/400 인하"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 45,
+        "of": 35,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1025,
+        "t20rd": 900,
+        "t40": 2050,
+        "t40rd": 1800,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "유지"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1400,
+        "t20rd": null,
+        "t40": 2000,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 15,
+        "of": 10,
+        "note": "280/300 인상"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ],
+    "상반기": [
+      {
+        "port": "SYD",
+        "line": "COSCO",
+        "t20": 1300,
+        "t20rd": 1175,
+        "t40": 2500,
+        "t40rd": 2300,
+        "inc20": "< 20 cbm 15/20  > 20 cbm 29/44",
+        "inc40": "< 40 cbm 28/43  > 40 cbm 38/53",
+        "nomi": 50,
+        "of": 45,
+        "note": ""
+      },
+      {
+        "port": "MEL",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 45,
+        "note": "250/500 인하"
+      },
+      {
+        "port": "BNE",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "",
+        "inc40": "",
+        "nomi": 50,
+        "of": 45,
+        "note": ""
+      },
+      {
+        "port": "AKL",
+        "line": "COSCO",
+        "t20": 1025,
+        "t20rd": 1100,
+        "t40": 2050,
+        "t40rd": 2200,
+        "inc20": "25/35",
+        "inc40": "25/35",
+        "nomi": 40,
+        "of": 35,
+        "note": "200/400 인하"
+      },
+      {
+        "port": "DXB",
+        "line": "HMM",
+        "t20": 1190,
+        "t20rd": null,
+        "t40": 1700,
+        "t40rd": null,
+        "inc20": "F35/RT + 35/SHIP",
+        "inc40": "",
+        "nomi": 15,
+        "of": 10,
+        "note": "70/100 인상"
+      },
+      {
+        "port": "ALX",
+        "line": "COSCO",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "38",
+        "inc40": "38",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      },
+      {
+        "port": "DUR",
+        "line": "ONE LINE",
+        "t20": null,
+        "t20rd": null,
+        "t40": null,
+        "t40rd": null,
+        "inc20": "48",
+        "inc40": "48",
+        "nomi": null,
+        "of": null,
+        "note": ""
+      }
+    ]
+  }
+};
+
+// ─── STATE ──────────────────────────────────────────────────────────────────
+let currentPeriod = null;
+let currentHalf   = '상반기';
+let isEditing     = false;
+let editSnapshot  = null;
+
+// Ports that are merged into one visual row (no rowspan — single TR)
+const MERGE_GROUP = ['SYD','MEL','BNE'];
+
+const periods = Object.keys(DATA).sort(pSort);
+function pSort(a,b){
+  const [ya,ma]=a.split('.'), [yb,mb]=b.split('.');
+  return (+yb*100 + +mb) - (+ya*100 + +ma);
+}
+
+// ─── INIT ───────────────────────────────────────────────────────────────────
+function init() {
+  buildYearOptions();
+  renderPeriodNav();
+  selectPeriod(periods[0]);
+}
+
+// ─── YEAR / MONTH DROPDOWNS ─────────────────────────────────────────────────
+function buildYearOptions() {
+  const years = new Set(periods.map(p => {
+    const yy = p.split('.')[0];
+    return yy.length===2 ? 2000+parseInt(yy) : parseInt(yy);
+  }));
+  const min = Math.min(...years), max = 2029;
+  const sel = document.getElementById('newYear');
+  sel.innerHTML = '';
+  for (let y=max; y>=min; y--) {
+    const o=document.createElement('option');
+    o.value=y; o.textContent=y+'년'; sel.appendChild(o);
+  }
+  syncMonthOptions();
+}
+
+function syncMonthOptions() {
+  const year = parseInt(document.getElementById('newYear').value);
+  const yy   = String(year).slice(-2);
+  const sel  = document.getElementById('newMonth');
+  sel.innerHTML = '';
+  for (let m=1; m<=12; m++) {
+    const key  = \`\${yy}.\${m}\`;
+    const full = DATA[key]?.['상반기'] && DATA[key]?.['하반기'];
+    const o    = document.createElement('option');
+    o.value = m; o.textContent = m+'월'+(full?' (완료)':''); o.disabled=!!full;
+    sel.appendChild(o);
+  }
+  for (const o of sel.options) { if (!o.disabled){o.selected=true;break;} }
+}
+
+// ─── PERIOD NAV ─────────────────────────────────────────────────────────────
+function renderPeriodNav() {
+  const nav = document.getElementById('periodNav');
+  nav.innerHTML = '';
+  periods.forEach((p,i) => {
+    const b = document.createElement('button');
+    b.className = 'period-tab'+(i===0?' latest':'');
+    b.textContent = fmtPeriod(p);
+    b.dataset.period = p;
+    b.onclick = () => selectPeriod(p);
+    nav.appendChild(b);
+  });
+}
+
+function fmtPeriod(p) {
+  const [y,m]=p.split('.');
+  return \`\${y.length===2?'20'+y:y}년 \${m}월\`;
+}
+
+function selectPeriod(p) {
+  currentPeriod = p;
+  document.querySelectorAll('.period-tab').forEach(t=>t.classList.toggle('active', t.dataset.period===p));
+  updateLabels();
+  isEditing ? renderEditTable() : renderTable();
+}
+
+function updateLabels() {
+  const lbl = fmtPeriod(currentPeriod);
+  document.getElementById('currentPeriodLabel').textContent = \`현재 보기: \${lbl} \${currentHalf}\`;
+  document.getElementById('cardBadge').textContent = \`\${lbl} \${currentHalf}\`;
+}
+
+function switchHalf(half, btn) {
+  currentHalf = half;
+  document.querySelectorAll('.half-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  updateLabels();
+  isEditing ? renderEditTable() : renderTable();
+}
+
+// ─── MERGE LOGIC ─────────────────────────────────────────────────────────────
+// Instead of rowspan, we collapse consecutive MERGE_GROUP rows into ONE row
+// by joining their data. The anchor row (SYD) carries the values;
+// MEL/BNE rows are skipped entirely.
+function buildGroups(rows) {
+  const out = [];   // array of { displayRow, sourceIdxs, isMerged }
+  let i = 0;
+  while (i < rows.length) {
+    const r = rows[i];
+    if (!MERGE_GROUP.includes(r.port)) {
+      out.push({ displayRow: r, sourceIdxs: [i], isMerged: false });
+      i++; continue;
+    }
+    // Find all consecutive MERGE_GROUP rows with same line
+    const anchorLine = r.line;
+    const run = [i];
+    let j = i+1;
+    while (j < rows.length && MERGE_GROUP.includes(rows[j].port) && rows[j].line===anchorLine) {
+      run.push(j); j++;
+    }
+    // Collect notes from all in group (skip blanks, deduplicate)
+    const notes = [...new Set(run.map(k=>rows[k].note).filter(Boolean))];
+    // Merged display row: port cell shows all ports, other values from anchor
+    const display = { ...r,
+      _mergedPorts: run.map(k=>rows[k].port),
+      note: notes.join(' / ')
+    };
+    out.push({ displayRow: display, sourceIdxs: run, isMerged: run.length>1 });
+    i = j;
+  }
+  return out;
+}
+
+// ─── RENDER (VIEW) ───────────────────────────────────────────────────────────
+function renderTable() {
+  const tbody = document.getElementById('rateBody');
+  const rows  = DATA[currentPeriod]?.[currentHalf] || [];
+  const prev  = getPrev(currentPeriod, currentHalf);
+  const groups= buildGroups(rows);
+  tbody.innerHTML = '';
+
+  groups.forEach(g => {
+    const row = g.displayRow;
+    const prevRow = prev ? prev.data.find(r=>r.port===row.port && r.line===row.line) : null;
+    const tr = document.createElement('tr');
+
+    // PORT cell
+    let portHtml;
+    if (g.isMerged) {
+      const tags = row._mergedPorts.map(p=>\`<span class="port-tag">\${p}</span>\`).join('');
+      portHtml = \`<td><div class="port-stack">\${tags}</div></td>\`;
+    } else {
+      portHtml = \`<td><span class="port-single">\${row.port}</span></td>\`;
+    }
+
+    tr.innerHTML =
+      portHtml +
+      \`<td class="line-cell">\${row.line}</td>\` +
+      rCell(row.t20,   prevRow?.t20)   +
+      rCell(row.t20rd, prevRow?.t20rd) +
+      rCell(row.t40,   prevRow?.t40)   +
+      rCell(row.t40rd, prevRow?.t40rd) +
+      \`<td class="inc-cell">\${fmtInc(row.inc20)}</td>\` +
+      \`<td class="inc-cell">\${fmtInc(row.inc40)}</td>\` +
+      \`<td class="nomi-cell">\${row.nomi!=null?row.nomi:'—'}</td>\` +
+      \`<td class="of-cell">\${row.of!=null?row.of:'—'}</td>\` +
+      \`<td class="note-cell">\${esc(row.note||'')}</td>\`;
+
+    tbody.appendChild(tr);
+  });
+}
+
+function rCell(val, prev) {
+  if (val==null) return \`<td class="rate-empty">—</td>\`;
+  let delta='';
+  if (prev!=null && val!==prev) {
+    const d=val-prev;
+    delta = d>0
+      ? \`<span class="delta-up">▲\${d}</span>\`
+      : \`<span class="delta-down">▼\${Math.abs(d)}</span>\`;
+  }
+  return \`<td class="rate-val">$\${val.toLocaleString()}\${delta}</td>\`;
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\\n/g,'<br>');
+}
+
+// 인센티브 텍스트를 보기 좋게 포맷:
+// "< 20 cbm 15/20  > 20 cbm 29/44" → 두 줄로
+function fmtInc(s) {
+  if (!s) return '—';
+  // < ... > ... 패턴을 두 줄로 분리
+  // 패턴: "< X ... Y/Z  > X ... Y/Z" (공백 2개 이상으로 구분)
+  const parts = s.split(/\\s{2,}/);
+  if (parts.length >= 2) {
+    return parts.map(p => esc(p.trim())).join('<br>');
+  }
+  return esc(s);
+}
+
+function getPrev(period, half) {
+  if (half==='하반기') return DATA[period]?.['상반기'] ? {data:DATA[period]['상반기']} : null;
+  const idx=periods.indexOf(period);
+  if (idx<periods.length-1) { const p=periods[idx+1]; return DATA[p]?.['하반기'] ? {data:DATA[p]['하반기']} : null; }
+  return null;
+}
+
+// ─── EDIT TABLE ──────────────────────────────────────────────────────────────
+function toggleEdit() {
+  isEditing    = true;
+  editSnapshot = JSON.parse(JSON.stringify(DATA[currentPeriod][currentHalf]));
+  document.getElementById('editBtn').style.display   = 'none';
+  document.getElementById('saveBtn').style.display   = '';
+  document.getElementById('cancelBtn').style.display = '';
+  renderEditTable();
+}
+
+function renderEditTable() {
+  const tbody = document.getElementById('rateBody');
+  const rows  = DATA[currentPeriod][currentHalf];
+  const groups= buildGroups(rows);
+  tbody.innerHTML = '';
+
+  groups.forEach(g => {
+    const row  = g.displayRow;
+    const anch = g.sourceIdxs[0];   // anchor index in DATA array
+    const mIds = g.sourceIdxs;      // all indices to propagate to
+
+    let portHtml;
+    if (g.isMerged) {
+      const tags = row._mergedPorts.map(p=>\`<span class="port-tag">\${p}</span>\`).join('');
+      portHtml = \`<td><div class="port-stack">\${tags}</div></td>\`;
+    } else {
+      portHtml = \`<td><span class="port-single">\${row.port}</span></td>\`;
+    }
+
+    const tr = document.createElement('tr');
+    const mi = JSON.stringify(mIds);
+
+    tr.innerHTML =
+      portHtml +
+      \`<td class="line-cell">\${row.line}</td>\` +
+      \`<td>\${eN('t20',   anch, row.t20,   mi)}</td>\` +
+      \`<td>\${eN('t20rd', anch, row.t20rd, mi)}</td>\` +
+      \`<td>\${eN('t40',   anch, row.t40,   mi)}</td>\` +
+      \`<td>\${eN('t40rd', anch, row.t40rd, mi)}</td>\` +
+      \`<td>\${eS('inc20', anch, row.inc20, mi)}</td>\` +
+      \`<td>\${eS('inc40', anch, row.inc40, mi)}</td>\` +
+      \`<td>\${eN('nomi',  anch, row.nomi,  mi, 48)}</td>\` +
+      \`<td>\${eN('of',    anch, row.of,    mi, 40)}</td>\` +
+      \`<td>\${eTA('note', anch, row.note)}</td>\`;
+
+    tbody.appendChild(tr);
+  });
+}
+
+function eN(f,idx,val,mi,w) {
+  const ma = mi ? \`data-mi='\${mi}'\` : '';
+  return \`<input class="edit-input" style="width:\${w||62}px" type="number"
+    value="\${val!=null?val:''}" \${ma}
+    oninput="uc('\${f}',\${idx},this.value,true,this)">\`;
+}
+function eS(f,idx,val,mi) {
+  const ma = mi ? \`data-mi='\${mi}'\` : '';
+  return \`<input class="edit-input left" style="width:100%;min-width:80px" type="text"
+    value="\${(val||'').replace(/"/g,'&quot;')}" \${ma}
+    oninput="uc('\${f}',\${idx},this.value,false,this)">\`;
+}
+// 비고 전용 textarea (엔터 줄바꿈 지원)
+function eTA(f,idx,val) {
+  const v = (val||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return \`<textarea class="edit-textarea" rows="2"
+    oninput="uc('\${f}',\${idx},this.value,false,this)">\${v}</textarea>\`;
+}
+function uc(f,idx,val,isNum,el) {
+  const parsed = isNum ? (val===''?null:parseFloat(val)) : val;
+  DATA[currentPeriod][currentHalf][idx][f] = parsed;
+  if (el?.dataset?.mi) {
+    JSON.parse(el.dataset.mi).forEach(i => {
+      DATA[currentPeriod][currentHalf][i][f] = parsed;
     });
   }
-  document.getElementById('pg-'+key).classList.add('active');
-  document.getElementById('PT').textContent=TITLES[key].t;
-  document.getElementById('BC').textContent=TITLES[key].b;
-  if(FRAMES[key]&&!FRAMES[key].loaded){
-    const bin=atob(FRAMES[key].b64),bytes=new Uint8Array(bin.length);
-    for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
-    document.getElementById(FRAMES[key].id).src=URL.createObjectURL(new Blob([bytes],{type:'text/html;charset=utf-8'}));
-    FRAMES[key].loaded=true;
+}
+
+function saveEdit() {
+  isEditing=false; editSnapshot=null;
+  document.getElementById('editBtn').style.display   = '';
+  document.getElementById('saveBtn').style.display   = 'none';
+  document.getElementById('cancelBtn').style.display = 'none';
+  renderTable(); showToast('✓ 저장되었습니다.','success');
+}
+function cancelEdit() {
+  DATA[currentPeriod][currentHalf]=editSnapshot;
+  isEditing=false; editSnapshot=null;
+  document.getElementById('editBtn').style.display   = '';
+  document.getElementById('saveBtn').style.display   = 'none';
+  document.getElementById('cancelBtn').style.display = 'none';
+  renderTable();
+}
+
+// ─── ADD PERIOD ──────────────────────────────────────────────────────────────
+function toggleAddForm() {
+  const s = document.getElementById('addSection');
+  s.style.display = s.style.display==='none' ? '' : 'none';
+  if (s.style.display!=='none') syncMonthOptions();
+}
+
+function addNewPeriod() {
+  const year  = document.getElementById('newYear').value;
+  const month = document.getElementById('newMonth').value;
+  const half  = document.getElementById('newHalf').value;
+  const yy    = String(year).slice(-2);
+  const key   = \`\${yy}.\${month}\`;
+
+  if (!DATA[key]) DATA[key]={};
+  if (DATA[key][half]) { showToast('이미 존재하는 기간입니다.','error'); return; }
+
+  const lk = periods[0];
+  const lh = DATA[lk]['상반기'] ? '상반기' : '하반기';
+  DATA[key][half] = JSON.parse(JSON.stringify(DATA[lk][lh]));
+  DATA[key][half].forEach(r=>{r.note='';});
+
+  if (!periods.includes(key)) periods.push(key);
+  periods.sort(pSort);
+
+  renderPeriodNav();
+  currentHalf = half;
+  document.querySelectorAll('.half-btn').forEach(b=>b.classList.toggle('active',b.textContent===half));
+  selectPeriod(key);
+  document.getElementById('addSection').style.display='none';
+  showToast(\`✓ \${fmtPeriod(key)} \${half} 추가 완료! 편집으로 값을 수정하세요.\`,'success');
+}
+
+// ─── DELETE PERIOD ───────────────────────────────────────────────────────────
+function confirmDeletePeriod() {
+  document.getElementById('deleteModalMsg').innerHTML =
+    \`<strong>\${fmtPeriod(currentPeriod)} \${currentHalf}</strong>을(를) 삭제하시겠습니까?<br><br>
+     같은 월의 반대 반기가 있으면 해당 월은 유지됩니다.<br>삭제 후 복구할 수 없습니다.\`;
+  document.getElementById('deleteModal').classList.add('open');
+}
+function closeDeleteModal() { document.getElementById('deleteModal').classList.remove('open'); }
+
+function executePeriodDelete() {
+  closeDeleteModal();
+  const key = currentPeriod;
+  delete DATA[key][currentHalf];
+  if (!Object.keys(DATA[key]).length) {
+    delete DATA[key];
+    const i=periods.indexOf(key); if(i>-1) periods.splice(i,1);
+  }
+  renderPeriodNav();
+  if (!periods.length) {
+    currentPeriod=null;
+    document.getElementById('rateBody').innerHTML='';
+    document.getElementById('cardBadge').textContent='—';
+    document.getElementById('currentPeriodLabel').textContent='기간 없음';
+    showToast('삭제되었습니다.','success'); return;
+  }
+  if (DATA[key]?.[currentHalf]) { selectPeriod(key); }
+  else if (DATA[key]) {
+    const oh=currentHalf==='상반기'?'하반기':'상반기';
+    currentHalf=oh;
+    document.querySelectorAll('.half-btn').forEach(b=>b.classList.toggle('active',b.textContent===oh));
+    selectPeriod(key);
+  } else { selectPeriod(periods[0]); }
+  showToast('🗑 삭제되었습니다.','success');
+}
+
+// ─── EXPORT ──────────────────────────────────────────────────────────────────
+function exportHTML() {
+  const ser = JSON.stringify(DATA,null,2);
+  const html = document.documentElement.outerHTML;
+  const updated = html.replace(
+    /const DATA = \\{[\\s\\S]*?\\};\\n\\n\\/\\/ ─+ STATE/,
+    \`const DATA = \${ser};\\n\\n// ─── STATE\`
+  );
+  const blob=new Blob([updated],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=\`incentive_rates_\${new Date().toISOString().slice(0,10)}.html\`;
+  a.click();
+  showToast('💾 HTML 저장 완료!','success');
+}
+
+function copyTableText() {
+  const rows=DATA[currentPeriod]?.[currentHalf]||[];
+  const hdr=\`PORT\\tLINE\\t20'\\t20'RD\\t40'\\t40'RD\\tINCENTIVE(20')\\tINCENTIVE(40')\\tNOMI\\tOF\\t비고\`;
+  const lines=rows.map(r=>[r.port,r.line,r.t20??'',r.t20rd??'',r.t40??'',r.t40rd??'',r.inc20??'',r.inc40??'',r.nomi??'',r.of??'',r.note??''].join('\\t'));
+  navigator.clipboard.writeText([hdr,...lines].join('\\n')).then(()=>showToast('📋 복사되었습니다!','success'));
+}
+
+// ─── TOAST ───────────────────────────────────────────────────────────────────
+function showToast(msg,type='success') {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=\`toast \${type} show\`;
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ─── START ───────────────────────────────────────────────────────────────────
+init();
+</script>
+
+
+</body></html>`;
+
+const frames = {
+  aus: { id:'fr-aus', html: AUS_HTML, loaded: false },
+  inc: { id:'fr-inc', html: INC_HTML, loaded: false },
+};
+
+function go(key, tabEl) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  if (tabEl) tabEl.classList.add('active');
+  document.getElementById('page-' + key).classList.add('active');
+  if (frames[key] && !frames[key].loaded) {
+    const blob = new Blob([frames[key].html], {type:'text/html'});
+    document.getElementById(frames[key].id).src = URL.createObjectURL(blob);
+    frames[key].loaded = true;
   }
 }
 
-let items=[];
-function ke(ev,nxt){if(ev.key!=='Enter')return;ev.preventDefault();nxt==='ADD'?add():document.getElementById(nxt).focus();}
-function add(){
-  const w=document.getElementById('cw'),l=document.getElementById('cl'),h=document.getElementById('ch'),p=document.getElementById('cp');
-  if(!w.value||!l.value||!h.value||!p.value)return;
-  const cbm=(parseFloat(w.value)/100)*(parseFloat(l.value)/100)*(parseFloat(h.value)/100)*parseInt(p.value);
-  items.push({spec:w.value+'x'+l.value+'x'+h.value,pkg:parseInt(p.value),cbm});
-  render();w.value='';l.value='';h.value='';p.value='';w.focus();
+// CBM
+let items = [];
+function ke(ev, nxt) {
+  if (ev.key !== 'Enter') return;
+  ev.preventDefault();
+  nxt === 'ADD' ? add() : document.getElementById(nxt).focus();
 }
-function render(){
-  let tP=0,tC=0;
-  document.getElementById('cbm-bd').innerHTML=items.map((it,i)=>{
-    tP+=it.pkg;tC+=it.cbm;
-    return '<tr><td style="font-size:9.5px">'+it.spec+'</td><td>'+it.pkg+'</td><td>'+it.cbm.toFixed(3)+'</td><td class="dl" onclick="dl('+i+')">x</td></tr>';
+function add() {
+  const w=document.getElementById('cw'), l=document.getElementById('cl'),
+        h=document.getElementById('ch'), p=document.getElementById('cp');
+  if (!w.value||!l.value||!h.value||!p.value) return;
+  const cbm = (parseFloat(w.value)/100)*(parseFloat(l.value)/100)*(parseFloat(h.value)/100)*parseInt(p.value);
+  items.push({spec:`${w.value}×${l.value}×${h.value}`, pkg:parseInt(p.value), cbm});
+  render(); w.value=''; l.value=''; h.value=''; p.value=''; w.focus();
+}
+function render() {
+  let tP=0, tC=0;
+  document.getElementById('cbm-body').innerHTML = items.map((it,i) => {
+    tP+=it.pkg; tC+=it.cbm;
+    return `<tr><td style="font-size:9.5px">${it.spec}</td><td>${it.pkg}</td><td>${it.cbm.toFixed(3)}</td><td class="del" onclick="del(${i})">✕</td></tr>`;
   }).join('');
-  document.getElementById('cbm-pk').textContent=tP.toLocaleString();
-  document.getElementById('cbm-cb').textContent=tC.toFixed(3);
+  document.getElementById('cbm-pkg').textContent = tP.toLocaleString();
+  document.getElementById('cbm-cbm').textContent = tC.toFixed(3);
 }
-function dl(i){items.splice(i,1);render();}
-function cc(){items=[];render();document.getElementById('cw').focus();}
+function del(i) { items.splice(i,1); render(); }
+function cc() { items=[]; render(); document.getElementById('cw').focus(); }
 </script>
 </body>
 </html>
