@@ -1,4 +1,4 @@
-<!-- updated: 2026-06-27 01:08:02 -->
+<!-- updated: 2026-06-27 01:24:52 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -99,7 +99,7 @@ a.ni:hover{background:#2a3650;color:#fff}
   <div class="ni" onclick="go('bl',this)"><span class="ic">📄</span>미발행 BL</div>
   <div class="ni" onclick="go('dcond',this)"><span class="ic">🚚</span>D조건 딜리버리</div>
   <div class="ns">스케줄</div>
-  <div class="ni" onclick="go('sched',this)"><span class="ic">📅</span>항로별 스케줄</div>
+  <div class="ni" onclick="go('sched',this)"><span class="ic">📅</span>주간 스케줄</div>
   <div class="ns">외부 링크</div>
   <a class="ni" href="https://www.tradlinx.com/ko/container-terminal-schedule" target="_blank" style="text-decoration:none"><span class="ic">🚢</span>컨테이너 터미널</a>
   <a class="ni" href="https://unipass.customs.go.kr/csp/index.do?tgMenuId=MYC_MNU_00000450" target="_blank" style="text-decoration:none"><span class="ic">📦</span>수입화물 진행정보</a>
@@ -167,7 +167,7 @@ a.ni:hover{background:#2a3650;color:#fff}
           <div class="cards">
             <div class="card" onclick="go('sched',null)">
               <div class="card-ic">📅</div>
-              <div class="card-tt">항로별 스케줄</div>
+              <div class="card-tt">주간 스케줄</div>
               <div class="card-dc">오세아니아·아프리카·중동<br>매주 업데이트</div>
               <div class="card-ar">→</div>
             </div>
@@ -275,7 +275,7 @@ const TITLES={
   inc:{t:'선사운임 & 인센티브',b:'LogiDesk · 운임관리'},
   bl:{t:'미발행 BL 관리',b:'LogiDesk · 업무관리'},
   dcond:{t:'D조건 딜리버리',b:'LogiDesk · 업무관리'},
-  sched:{t:'항로별 스케줄',b:'LogiDesk · 스케줄 조회'},
+  sched:{t:'주간 스케줄',b:'LogiDesk · 스케줄 조회'},
   tariff:{t:'선적지 로컬 타립',b:'LogiDesk · 요율관리'}
 };
 
@@ -341,7 +341,7 @@ function renderSchedule(){
   if(!el) return;
   const isEmpty = !SCHEDULE_DATA || Object.keys(SCHEDULE_DATA).length===0;
 
-  let html = `<div class="home-title">📅 항로별 스케줄</div>
+  let html = `<div class="home-title">📅 주간 스케줄</div>
     <div class="home-sub" style="color:#64748b">최종 업데이트: ${SCHEDULE_UPDATED} &nbsp;|&nbsp; ** SCHEDULES ARE SUBJECT TO CHANGE **</div>`;
 
   if(isEmpty){
@@ -370,10 +370,10 @@ function renderSchedule(){
           </tr></thead>
           <tbody>`;
       rows.forEach(r => {
-        const isSkip = (r.vessel||'').toUpperCase().includes('SKIP')||(r.vessel||'').toUpperCase().includes('T.B.N');
-        const rowStyle = isSkip ? 'opacity:0.45;font-style:italic' : '';
+        const isSkip = false;
+        const rowStyle = '';
         html += `<tr style="border-bottom:1px solid #f1f5f9;${rowStyle}">
-          <td style="padding:8px 12px;color:#1e293b;font-weight:${isSkip?'400':'600'}">${r.vessel||''}</td>
+          <td style="padding:8px 12px;color:#1e293b;font-weight:600">${r.vessel||''}</td>
           <td style="padding:8px 12px;text-align:center;color:#64748b">${r.voyage||''}</td>
           <td style="padding:8px 12px;text-align:center;color:#64748b">${r.doc_cls||''}</td>
           <td style="padding:8px 12px;text-align:center;color:#64748b">${r.cargo_cls||''}</td>
